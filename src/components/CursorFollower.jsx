@@ -5,7 +5,8 @@ export default function CursorFollower() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
-  
+  const [isMobile, setIsMobile] = useState(false); 
+
   // Smooth motion values for the cursor
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
@@ -14,7 +15,13 @@ export default function CursorFollower() {
   const y = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    
+    // Check screen size once on mount
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 768) { // 👈 Tailwind md = 768px
+      setIsMobile(true);
+      return;
+    }
+
     const move = (e) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
       cursorX.set(e.clientX);
@@ -26,11 +33,10 @@ export default function CursorFollower() {
     const handleMouseDown = () => setIsClicking(true);
     const handleMouseUp = () => setIsClicking(false);
 
-    // Add hover detection for interactive elements
     const interactiveElements = document.querySelectorAll(
       'a, button, input, textarea, [data-cursor-hover]'
     );
-    
+
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', handleHover);
       el.addEventListener('mouseleave', handleLeave);
@@ -41,9 +47,7 @@ export default function CursorFollower() {
     window.addEventListener('mouseup', handleMouseUp);
 
     return () => {
-      // Restore default cursor on unmount
       document.body.style.cursor = '';
-      
       window.removeEventListener('mousemove', move);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
@@ -54,12 +58,14 @@ export default function CursorFollower() {
     };
   }, [cursorX, cursorY]);
 
+  // 👇 إذا الهاتف أو التابلت، رجّع والو
+  if (isMobile) return null;
+
   return (
     <motion.div
       className="fixed top-0 left-0 pointer-events-none z-[9999]"
       style={{ x, y }}
     >
-      {/* Main cursor dot with smooth transitions */}
       <motion.div
         className="w-4 h-4 rounded-full bg-[#64FFDA]"
         animate={{
@@ -67,21 +73,20 @@ export default function CursorFollower() {
           opacity: isHovering ? 1 : 0.9,
           backgroundColor: isHovering ? '#FF6B6B' : '#64FFDA'
         }}
-        transition={{ 
-          type: 'spring', 
-          stiffness: 500, 
+        transition={{
+          type: 'spring',
+          stiffness: 500,
           damping: 15,
           scale: { duration: 0.15 }
         }}
       />
       
-      {/* Pulsing ring effect */}
       <motion.div
         className="absolute top-0 left-0 border border-[#64FFDA] rounded-full pointer-events-none"
-        initial={{ 
-          width: 32, 
-          height: 32, 
-          x: -12, 
+        initial={{
+          width: 32,
+          height: 32,
+          x: -12,
           y: -12,
           opacity: 0
         }}
@@ -95,22 +100,21 @@ export default function CursorFollower() {
           borderColor: isHovering ? '#FF6B6B' : '#64FFDA',
           scale: isClicking ? 0.85 : 1
         }}
-        transition={{ 
-          type: 'spring', 
-          stiffness: 300, 
+        transition={{
+          type: 'spring',
+          stiffness: 300,
           damping: 20,
           opacity: { duration: 0.2 }
         }}
       />
-      
-      {/* Click ripple effect */}
+
       {isClicking && (
         <motion.div
           className="absolute top-0 left-0 border border-[#ff0000] rounded-full"
-          initial={{ 
-            width: 20, 
-            height: 20, 
-            x: -6, 
+          initial={{
+            width: 20,
+            height: 20,
+            x: -6,
             y: -6,
             opacity: 0.8
           }}
@@ -121,7 +125,7 @@ export default function CursorFollower() {
             y: -26,
             opacity: 0
           }}
-          transition={{ 
+          transition={{
             duration: 0.6,
             ease: "easeOut"
           }}

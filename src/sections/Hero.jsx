@@ -8,11 +8,20 @@ export default function Hero() {
   const navigate = useNavigate();
 
   useEffect(() => {
+  const alreadyShown = localStorage.getItem('introShown');
+  if (alreadyShown) {
+    setShowIntro(false);
+  } else {
+    setShowIntro(true);
+    localStorage.setItem('introShown', 'true');
+
     const timer = setTimeout(() => {
       setShowIntro(false);
-    }, 5000); 
+    }, 6000);
     return () => clearTimeout(timer);
-  }, []);
+  }
+}, []);
+
 
   return (
     <section className="min-h-screen bg-[#0A192F] text-[#E6F1FF] relative overflow-hidden">

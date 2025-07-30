@@ -34,7 +34,7 @@ const experiences = [
       "Gained experience in real-world front-end development in a corporate setting"
     ],
     awards: []
-  }, 
+  },
 ];
 
 export default function Experiences() {
@@ -63,8 +63,8 @@ export default function Experiences() {
         </motion.div>
 
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-4 md:left-1/2 h-full w-0.5 bg-[#233554] origin-top"></div>
+          {/* Timeline line - hidden on small screens */}
+          <div className="hidden md:block absolute left-4 md:left-1/2 h-full w-0.5 bg-[#233554] origin-top"></div>
 
           <div className="flex flex-col gap-16">
             {experiences.map((exp, index) => (
@@ -74,18 +74,18 @@ export default function Experiences() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className={`relative md:grid md:grid-cols-2 md:items-start gap-8`}
+                className="relative flex flex-col md:grid md:grid-cols-2 md:items-start gap-8"
               >
-                {/* Timeline dot */}
+                {/* Timeline dot - hidden on small screens */}
                 <div className="hidden md:block absolute left-1/2 top-5 -translate-x-1/2 w-4 h-4 bg-[#64FFDA] rounded-full z-10"></div>
 
-                {/* Left column spacing */}
+                {/* Left column spacing (for right side alignment) */}
                 <div className={`${index % 2 !== 0 ? 'md:col-start-2' : ''}`}></div>
 
                 {/* Experience card */}
                 <div className="bg-[#112240]/50 p-8 rounded-lg border border-[#233554] hover:border-[#64FFDA]/30 transition-colors shadow-md">
                   <div className="flex items-center gap-4 mb-4">
-                    <FiBriefcase className="text-2xl text-[#64FFDA]" />
+                    <FiBriefcase className="hidden md:block text-2xl text-[#64FFDA]" />
                     <div>
                       <h3 className="text-xl font-semibold text-[#E6F1FF]">{exp.role}</h3>
                       <p className="text-[#64FFDA]">{exp.company} • {exp.period}</p>
