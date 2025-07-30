@@ -1,0 +1,96 @@
+{
+  "personalInfo": {
+    "name": "LAHMIDI ABDERRAHMANE",
+    "title": "Développeur Full-Stack",
+    "profileImage": "../../src/assets/images/abderrahmane.jpeg", 
+    "contact": [
+      {
+        "icon": "phone",
+        "value": "0639311730"
+      },
+      {
+        "icon": "email",
+        "value": "dvabderrahmane@gmail.com"
+      },
+      {
+        "icon": "linkedin",
+        "value": "linkedin/lahmidi",
+        "link": "https://linkedin.com/in/lahmidi"
+      },
+      {
+        "icon": "github",
+        "value": "github/abderrahmanelahmidi",
+        "link": "https://github.com/Abderrahmanlahmidi"
+      }
+    ]
+  },
+  "skills": {
+    "frontend": "HTML, CSS, JavaScript, React, Next, Tailwind, Bootstrap",
+    "uiUx": "Figma, Adobe Illustrator, Adobe InDesign",
+    "methodologies": "Agile, Scrum, Kanban",
+    "versionControl": "Git, GitHub"
+  },
+  "languages": [
+    "Arabic: maternelle",
+    "Francais: Avancé",
+    "Anglais: Intermédiaire (A2)"
+  ],
+  "experience": [
+    {
+      "company": "Centoria Services",
+      "position": "IT Services and IT Consulting",
+      "period": "2024 - PRESENT",
+      "responsibilities": [
+        "Acquisition d'une expérience pratique sur des projets réels, alliant théorie et mise en œuvre terrain.",
+        "Collaboration efficace dans un environnement de développement dynamique et structuré."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "YOUQUIZ - Application de quiz interactive",
+      "technologies": "HTML, CSS, Tailwind, JavaScript",
+      "link": "https://github.com/Abderrahmanlahmidi/F_AQ"
+    },
+    {
+      "name": "ULTIMATE TEAM - Application web",
+      "technologies": "HTML, CSS, Tailwind, JavaScript",
+      "link": "https://github.com/Abderrahmanlahmidi/Ultimate Team"
+    },
+    {
+      "name": "RENTEASY - Rental Management",
+      "technologies": "HTML, CSS, ReactJS, Laravel",
+      "link": "https://github.com/Abderrahmanlahmidi/RentEase"
+    }
+  ],
+  "education": [
+    {
+      "institution": "YouCode - Youssoufia",
+      "details": [
+        "Conceptions: UML, Merise (Actuellement étudiant)",
+        "Gestion de projet: Jira, Trello"
+      ]
+    },
+    {
+      "institution": "Licence en Économie",
+      "period": "2020-2023",
+      "details": [
+        "Université Hassan ler de Settat"
+      ]
+    },
+    {
+      "institution": "Baccalauréat en Sciences",
+      "period": "2018-2019",
+      "details": [
+        "École de Settat"
+      ]
+    }
+  ],
+  "certifications": [
+    "Create High-Fidelity Designs and Prototypes in Figma (Google CF)",
+    "Introduction to Git and GitHub (Google CF)",
+    "HTML and CSS in depth (Meta CE)",
+    "Programming with JavaScript (Meta CF)",
+    "React Basics (Meta CF)"
+  ]
+}

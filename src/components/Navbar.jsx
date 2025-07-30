@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX, FiMail } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 const navItems = [
   { name: 'Home', path: '#home', number: '01.' },
@@ -12,6 +13,26 @@ const navItems = [
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('#home');
+  const navigate = useNavigate();
+
+  // Set active section based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map(item => document.getElementById(item.path.substring(1)));
+      const scrollPosition = window.scrollY + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        if (sections[i] && scrollPosition >= sections[i].offsetTop) {
+          setActiveSection(navItems[i].path);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close menu when clicking outside or pressing Escape
   useEffect(() => {
@@ -38,13 +59,11 @@ export default function Navbar() {
     e.preventDefault();
     
     if (path === '#home') {
-      // Special handling for home link - scroll to very top
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
     } else {
-      // Normal behavior for other sections
       const target = document.getElementById(path.substring(1));
       if (target) {
         window.scrollTo({
@@ -54,6 +73,7 @@ export default function Navbar() {
       }
     }
 
+    setActiveSection(path);
     window.history.pushState(null, null, path);
     setIsMenuOpen(false);
   };
@@ -95,7 +115,7 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed top-0 right-0 w-72 h-full bg-[#0A192F] text-white z-50 shadow-xl p-6 space-y-6 menu-container"
+            className="fixed top-0 right-0 w-72 h-full bg-[#0A192F] text-white z-50 shadow-xl p-6 flex flex-col menu-container"
           >
             {/* Close Button */}
             <div className="flex justify-end">
@@ -111,13 +131,17 @@ export default function Navbar() {
             </div>
 
             {/* Navigation Links */}
-            <nav className="flex flex-col space-y-6 mt-8">
+            <nav className="flex flex-col space-y-6 mt-8 flex-grow">
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.name}
                   href={item.path}
                   onClick={(e) => handleSmoothScroll(e, item.path)}
-                  className="text-[#8892B0] hover:text-[#64FFDA] transition-colors text-lg"
+                  className={`text-lg transition-colors ${
+                    activeSection === item.path 
+                      ? 'text-[#64FFDA]' 
+                      : 'text-[#8892B0] hover:text-[#64FFDA]'
+                  }`}
                   initial={{ x: 50, opacity: 0 }}
                   animate={{ 
                     x: 0, 
@@ -134,6 +158,26 @@ export default function Navbar() {
                 </motion.a>
               ))}
             </nav>
+
+            {/* Contact Button - Fixed at the bottom */}
+            <motion.button
+              onClick={() => {
+                navigate("/contact");
+                setIsMenuOpen(false);
+              }}
+              className="flex items-center justify-center gap-2 bg-[#64FFDA]/10 border border-[#64FFDA] text-[#64FFDA] px-6 py-3 rounded-lg hover:bg-[#64FFDA]/20 transition-colors mt-auto mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ 
+                opacity: 1,
+                y: 0,
+                transition: { delay: 0.3 + navItems.length * 0.05 }
+              }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <FiMail />
+              <span>Contact Me</span>
+            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>

@@ -9,3 +9,22 @@ body{
 html {
   scroll-behavior: smooth;
 }
+
+::selection {
+  background-color: rgba(100, 255, 218, 0.3); /* Teal tint with transparency */
+  color: #ffffff; /* Pure white for better contrast */
+  text-shadow: 0 0 2px rgba(100, 255, 218, 0.5); /* Subtle glow effect */
+}
+
+/* For Firefox compatibility */
+::-moz-selection {
+  background-color: rgba(100, 255, 218, 0.3);
+  color: #ffffff;
+  text-shadow: 0 0 2px rgba(100, 255, 218, 0.5);
+}
+
+/* Optional: Style for selected text in inputs and textareas */
+input::selection,
+textarea::selection {
+  background-color: rgba(100, 255, 218, 0.2); /* Slightly lighter for form elements */
+}
