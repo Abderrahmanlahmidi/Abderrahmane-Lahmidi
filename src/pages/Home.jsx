@@ -5,6 +5,7 @@ import Footer from "../components/Footer"
 import Skills from "../sections/skills"
 import Experiences from "../sections/Experiences"
 import Certificates from "../sections/Certificates"
+import Projects from "../sections/Projects"
 
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <Skills/>
       <Certificates/>
       <Experiences/>
+      <Projects/>
       <Footer/>
     </div>
   )

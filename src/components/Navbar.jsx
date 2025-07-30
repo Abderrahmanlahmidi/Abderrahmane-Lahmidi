@@ -9,6 +9,7 @@ const navItems = [
   { name: 'Skills', path: '#skills', number: '03.' },
   { name: 'Certificates', path: '#certificates', number: '04.' },
   { name: 'Experiences', path: '#experiences', number: '05.' },
+  { name: 'Projects', path: '#projects', number: '06.' },
 ];
 
 export default function Navbar() {
@@ -83,7 +84,7 @@ export default function Navbar() {
       {/* Floating Menu Button */}
       <motion.button
         onClick={() => setIsMenuOpen(true)}
-        className="fixed top-4 right-4 z-50 text-[#64FFDA] text-2xl bg-[#0A192F]/90 p-2 rounded-full backdrop-blur-md shadow-lg"
+        className="fixed top-4 right-4 z-50 text-[#64FFDA] border-2 border-[#64FFDA] text-2xl bg-[#0A192F]/90 p-2 rounded-full backdrop-blur-md shadow-lg"
         whileTap={{ scale: 0.95 }}
         aria-label="Open menu"
         animate={{ 

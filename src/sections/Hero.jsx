@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiChevronDown, FiGithub, FiExternalLink, FiLinkedin } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 export default function Hero() {
   const [showIntro, setShowIntro] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -96,9 +98,46 @@ export default function Hero() {
           <div id="home" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="max-w-3xl">
               <p className="text-[#64FFDA] text-sm md:text-base mb-2">Hi, my name is</p>
-              <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-                Abderrahmane Lahmidi.
-              </h1>
+             <motion.h1 
+  className="text-4xl md:text-6xl font-bold text-white leading-tight overflow-hidden inline-block"
+  initial="hidden"
+  animate="visible"
+  variants={{
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.07 }
+    }
+  }}
+>
+  {"Abderrahmane Lahmidi.".split("").map((char, i) => (
+    <motion.span
+      key={i}
+      className="inline-block whitespace-pre"
+      variants={{
+        hidden: { 
+          opacity: 0, 
+          y: 30,
+          letterSpacing: "-0.5em"  // Starts with tight spacing
+        },
+        visible: {
+          opacity: 1,
+          y: 0,
+          letterSpacing: "0em",  // Ends with normal spacing
+          transition: { 
+            type: "spring",
+            stiffness: 400,
+            damping: 15,
+            mass: 0.5
+          }
+        }
+      }}
+      custom={i}
+    >
+      {char === " " ? "\u00A0" : char}
+    </motion.span>
+  ))}
+</motion.h1>
               <h2 className="text-3xl md:text-5xl text-[#8892B0] mt-2">
                 I build things for the web.
               </h2>
@@ -109,43 +148,89 @@ export default function Hero() {
                 prioritize user experience.
               </p>
 
-              <div className="flex items-center gap-6 mt-8">
-                <a
-                  href="#projects"
-                  className="border border-[#64FFDA] text-[#64FFDA] px-6 py-3 rounded hover:bg-[#64FFDA1A] transition"
-                >
-                  Check out my work
-                </a>
+             <div className="flex items-center gap-6 mt-8">
+  {/* Projects Button */}
+  <motion.div className="relative group">
+    <motion.a
+      href="#projects"
+      className="relative overflow-hidden border border-[#64FFDA] text-[#64FFDA] px-6 py-3 rounded"
+      whileHover={{ y: -2 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <span className="relative z-10">Check out my work</span>
+      <motion.span
+        className="absolute inset-0 bg-[#64FFDA]/10 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"
+      />
+    </motion.a>
+   
+  </motion.div>
 
-                <a
-                  href="https://github.com/Abderrahmanlahmidi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#64FFDA] text-xl hover:scale-110 transition"
-                >
-                  <FiGithub />
-                </a>
+  {/* GitHub Link */}
+  <motion.div className="relative group">
+    <motion.a
+      href="https://github.com/Abderrahmanlahmidi"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative text-[#64FFDA] text-xl"
+      aria-label="GitHub"
+      whileHover={{ y: -2 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <FiGithub className="relative z-10" />
+      <motion.span
+        className="absolute bottom-0 left-1/2 w-0 h-px bg-[#64FFDA] group-hover:w-full transform -translate-x-1/2 transition-all duration-300"
+      />
+    </motion.a>
+    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-[#112240] text-[#E6F1FF] text-sm px-3 py-1 rounded whitespace-nowrap border border-[#64FFDA]/30">
+      Visit my GitHub
+      <div className="absolute top-full left-1/2 w-2 h-2 bg-[#112240] border-r border-b border-[#64FFDA]/30 transform -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
+    </div>
+  </motion.div>
 
-                <a
-                  href="https://www.linkedin.com/in/lahmidi/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#64FFDA] text-xl hover:scale-110 transition"
-                  aria-label="LinkedIn"
-                >
-                  <FiLinkedin />
-                </a>
+  {/* LinkedIn Link */}
+  <motion.div className="relative group">
+    <motion.a
+      href="https://www.linkedin.com/in/lahmidi/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative text-[#64FFDA] text-xl"
+      aria-label="LinkedIn"
+      whileHover={{ y: -2 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <FiLinkedin className="relative z-10" />
+      <motion.span
+        className="absolute bottom-0 left-1/2 w-0 h-px bg-[#64FFDA] group-hover:w-full transform -translate-x-1/2 transition-all duration-300"
+      />
+    </motion.a>
+    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-[#112240] text-[#E6F1FF] text-sm px-3 py-1 rounded whitespace-nowrap border border-[#64FFDA]/30">
+      Connect on LinkedIn
+      <div className="absolute top-full left-1/2 w-2 h-2 bg-[#112240] border-r border-b border-[#64FFDA]/30 transform -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
+    </div>
+  </motion.div>
 
-                <a
-                  href="https://yourportfolio.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#64FFDA] text-xl hover:scale-110 transition"
-                  aria-label="Portfolio"
-                >
-                  <FiExternalLink />
-                </a>
-              </div>
+  {/* Portfolio Link */}
+  <motion.div className="relative group">
+    <motion.a
+      onClick={() => navigate("/resume")}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative text-[#64FFDA] text-xl"
+      aria-label="Portfolio"
+      whileHover={{ y: -2 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <FiExternalLink className="relative z-10" />
+      <motion.span
+        className="absolute bottom-0 left-1/2 w-0 h-px bg-[#64FFDA] group-hover:w-full transform -translate-x-1/2 transition-all duration-300"
+      />
+    </motion.a>
+    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-[#112240] text-[#E6F1FF] text-sm px-3 py-1 rounded whitespace-nowrap border border-[#64FFDA]/30">
+      View my Resume
+      <div className="absolute top-full left-1/2 w-2 h-2 bg-[#112240] border-r border-b border-[#64FFDA]/30 transform -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
+    </div>
+  </motion.div>
+</div>
 
               <motion.div
                 className="mt-16 text-center text-[#64FFDA]"

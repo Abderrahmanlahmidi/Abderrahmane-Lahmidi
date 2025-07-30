@@ -16,7 +16,7 @@ import ReactCert from '../../src/assets/images/Certificates/REACT BASICS CF-1.pn
 const certificates = [
   {
     title: "Figma Certification",
-    issuer: "Coursera-Google",
+    issuer: "Google",
     date: "January 31, 2024",
     skills: ["Figma", "UI/UX"],
     link: "https://www.coursera.org/account/accomplishments/verify/FERKX3V4GYBG",
@@ -24,7 +24,7 @@ const certificates = [
   },
   {
     title: "Introduction to Git and GitHub",
-    issuer: "Coursera-Google",
+    issuer: "Google",
     date: "December 19, 2023",
     skills: ["GitHub", "Version Control"],
     link: "https://www.coursera.org/account/accomplishments/verify/B36TMBB3PRQQ",
@@ -68,7 +68,7 @@ const certificates = [
     date: "December 21, 2023",
     skills: ["Typescript", "JavaScript"],
     link: "https://www.coursera.org/account/accomplishments/verify/2CHKZ9M77X44",
-    image: ReactCert 
+    image: TypescriptCert
   },
   {
     title: "Foundations of User Experience",
