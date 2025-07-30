@@ -157,7 +157,7 @@ export default function Hero() {
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.95 }}
     >
-      <span className="relative z-10">Check out my work</span>
+      <span className="relative z-10">Check work</span>
       <motion.span
         className="absolute inset-0 bg-[#64FFDA]/10 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"
       />
