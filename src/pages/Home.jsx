@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar";
 import Hero from "../sections/Hero";
 import About from "../sections/About";
 import Footer from "../components/Footer";
-import Skills from "../sections/skills";
+import Skills from "../sections/Skills";
 import Experiences from "../sections/Experiences";
 import Certificates from "../sections/Certificates";
 import Projects from "../sections/Projects";
