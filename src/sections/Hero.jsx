@@ -217,28 +217,6 @@ export default function Hero() {
       <div className="absolute top-full left-1/2 w-2 h-2 bg-[#112240] border-r border-b border-[#64FFDA]/30 transform -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
     </div>
   </motion.div>
-
-  {/* Portfolio Link */}
-  <motion.div className="relative group">
-    <motion.a
-      onClick={() => navigate("/resume")}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="relative text-[#64FFDA] text-xl"
-      aria-label="Portfolio"
-      whileHover={{ y: -2 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      <FiExternalLink className="relative z-10" />
-      <motion.span
-        className="absolute bottom-0 left-1/2 w-0 h-px bg-[#64FFDA] group-hover:w-full transform -translate-x-1/2 transition-all duration-300"
-      />
-    </motion.a>
-    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-[#112240] text-[#E6F1FF] text-sm px-3 py-1 rounded whitespace-nowrap border border-[#64FFDA]/30">
-      View my Resume
-      <div className="absolute top-full left-1/2 w-2 h-2 bg-[#112240] border-r border-b border-[#64FFDA]/30 transform -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
-    </div>
-  </motion.div>
 </div>
 
               <motion.div

@@ -18,18 +18,41 @@ export default function ContactPage() {
         <div className="absolute bottom-40 right-40 w-60 h-60 rounded-full bg-[#FF6B6B] blur-[100px] opacity-20"></div>
       </motion.div>
 
-      {/* Back button */}
-      <motion.button
-        onClick={() => navigate("/")}
-        className="fixed top-6 left-6 z-10 flex items-center gap-2 text-[#64FFDA] hover:text-[#64FFDA]/80 transition-colors group"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        whileHover={{ x: -5 }}
-      >
-        <FiArrowLeft className="text-xl transition-transform group-hover:-translate-x-1" />
-        <span>Back to Portfolio</span>
-      </motion.button>
+      {/* Circular Home Button */}
+<motion.button
+  onClick={() => navigate("/")}
+  className="fixed top-6 left-6 z-10 p-3 rounded-full border-2 border-[#64FFDA] hover:border-white bg-[#0A192F]/50 backdrop-blur-sm text-[#64FFDA] hover:text-white transition-all"
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.5 }}
+  whileHover={{ 
+    scale: 1.1,
+    backgroundColor: 'rgba(100, 255, 218, 0.1)'
+  }}
+  whileTap={{ scale: 0.9 }}
+  aria-label="Return to home"
+>
+  <motion.div
+    animate={{ rotate: 0 }}
+    whileHover={{ rotate: -90 }}
+    transition={{ duration: 0.3 }}
+  >
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="20" 
+      height="20" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    >
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+    </svg>
+  </motion.div>
+</motion.button>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 w-full relative">
         {/* Header section */}
@@ -137,24 +160,6 @@ export default function ContactPage() {
                 </div>
                 <div className="absolute inset-0 bg-[#64FFDA]/5 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
               </motion.a>
-
-              <motion.div 
-                className="flex items-center gap-4 group relative overflow-hidden p-2 rounded-lg"
-                whileHover={{ x: 5 }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <div className="p-3 bg-[#112240] rounded-lg group-hover:bg-[#64FFDA]/10 transition-all duration-300 z-10">
-                  <FiMapPin className="text-2xl text-[#64FFDA]" />
-                </div>
-                <div className="z-10">
-                  <p className="text-sm text-[#8892B0]">Location</p>
-                  <p className="text-[#E6F1FF] group-hover:text-[#64FFDA] transition-colors">Morocco</p>
-                </div>
-                <div className="absolute inset-0 bg-[#64FFDA]/5 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
-              </motion.div>
 
               <motion.a 
                 href="https://linkedin.com/in/lahmidi" 

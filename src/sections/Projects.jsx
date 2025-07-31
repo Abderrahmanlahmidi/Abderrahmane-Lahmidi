@@ -70,7 +70,7 @@ export default function Projects() {
                     >
                       <FiGithub />
                     </a>
-                    {project.live && (
+                    {/* {project.live && (
                       <a 
                         href={project.live} 
                         target="_blank" 
@@ -80,7 +80,7 @@ export default function Projects() {
                       >
                         <FiExternalLink />
                       </a>
-                    )}
+                    )} */}
                   </div>
                 </div>
 

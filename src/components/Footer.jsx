@@ -22,7 +22,7 @@ const Footer = () => {
 
           {/* Middle - Navigation */}
           <nav className="hidden md:flex gap-6">
-            {['Home', 'About', 'Projects', 'Contact'].map((item) => (
+            {['Home', 'About', 'Skills', 'Certificates', 'Experiences', 'Projects'].map((item) => (
               <a 
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -36,7 +36,7 @@ const Footer = () => {
           {/* Right side - Social links ..*/}
           <div className="flex gap-6">
             <a 
-              href="https://github.com/yourusername" 
+              href="https://github.com/Abderrahmanlahmidi" 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -45,7 +45,7 @@ const Footer = () => {
               <FiGithub />
             </a>
             <a 
-              href="https://linkedin.com/in/yourprofile" 
+              href="https://www.linkedin.com/in/lahmidi/" 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -54,14 +54,14 @@ const Footer = () => {
               <FiLinkedin />
             </a>
             <a 
-              href="mailto:your.email@example.com" 
+              href="dvabderrahman@gmail.com" 
               aria-label="Email"
               className="text-[#CCD6F6] hover:text-[#64FFDA] transition-colors text-xl"
             >
               <FiMail />
             </a>
             <a 
-              href="https://twitter.com/yourhandle" 
+              href="https://x.com/Abderra47978756" 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="Twitter"

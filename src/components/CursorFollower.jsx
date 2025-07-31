@@ -7,7 +7,7 @@ export default function CursorFollower() {
   const [isClicking, setIsClicking] = useState(false);
   const [isMobile, setIsMobile] = useState(false); 
 
-  // Smooth motion values for the cursor
+
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
   const springConfig = { stiffness: 500, damping: 30 };
@@ -15,9 +15,9 @@ export default function CursorFollower() {
   const y = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Check screen size once on mount
+
     const screenWidth = window.innerWidth;
-    if (screenWidth < 768) { // 👈 Tailwind md = 768px
+    if (screenWidth < 768) { 
       setIsMobile(true);
       return;
     }
