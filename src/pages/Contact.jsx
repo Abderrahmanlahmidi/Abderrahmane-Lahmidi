@@ -1,10 +1,26 @@
-import { motion } from 'framer-motion';
+import { motion, useMotionValueEvent, useScroll, AnimatePresence } from 'framer-motion';
 import { FiMail, FiLinkedin, FiGithub, FiSend, FiArrowLeft, FiPhone, FiMapPin } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 export default function ContactPage() {
   const navigate = useNavigate();
+const [isVisible, setIsVisible] = useState(true);
+  const [scrollTimeout, setScrollTimeout] = useState(null);
+  const { scrollY } = useScroll();
 
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    // Hide button when scrolling
+    setIsVisible(true);
+    
+    // Clear any existing timeout
+    if (scrollTimeout) clearTimeout(scrollTimeout);
+    
+    // Show button after scrolling stops for 1 second
+    setScrollTimeout(setTimeout(() => {
+      setIsVisible(false);
+    }, 4000));
+  });
   return (
     <div className="min-h-screen bg-[#0A192F] text-[#E6F1FF] overflow-hidden">
       {/* Animated background elements */}
@@ -19,40 +35,45 @@ export default function ContactPage() {
       </motion.div>
 
       {/* Circular Home Button */}
-<motion.button
-  onClick={() => navigate("/")}
-  className="fixed top-6 left-6 z-10 p-3 rounded-full border-2 border-[#64FFDA] hover:border-white bg-[#0A192F]/50 backdrop-blur-sm text-[#64FFDA] hover:text-white transition-all"
-  initial={{ opacity: 0, scale: 0.8 }}
-  animate={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 0.5 }}
-  whileHover={{ 
-    scale: 1.1,
-    backgroundColor: 'rgba(100, 255, 218, 0.1)'
-  }}
-  whileTap={{ scale: 0.9 }}
-  aria-label="Return to home"
->
-  <motion.div
-    animate={{ rotate: 0 }}
-    whileHover={{ rotate: -90 }}
-    transition={{ duration: 0.3 }}
-  >
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      width="20" 
-      height="20" 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round"
-    >
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-      <polyline points="9 22 9 12 15 12 15 22"></polyline>
-    </svg>
-  </motion.div>
-</motion.button>
+ <AnimatePresence>
+      {isVisible && (
+        <motion.button
+          onClick={() => navigate("/")}
+          className="fixed top-6 left-6 z-10 p-3 rounded-full border-2 border-[#64FFDA] hover:border-white bg-[#0A192F]/50 backdrop-blur-sm text-[#64FFDA] hover:text-white transition-all"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.3 }}
+          whileHover={{ 
+            scale: 1.1,
+            backgroundColor: 'rgba(100, 255, 218, 0.1)'
+          }}
+          whileTap={{ scale: 0.9 }}
+          aria-label="Return to home"
+        >
+          <motion.div
+            animate={{ rotate: 0 }}
+            whileHover={{ rotate: -90 }}
+            transition={{ duration: 0.3 }}
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="20" 
+              height="20" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </motion.div>
+        </motion.button>
+      )}
+    </AnimatePresence>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 w-full relative">
         {/* Header section */}

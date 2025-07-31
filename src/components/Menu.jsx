@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { FiMenu, FiX, FiMail } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,14 +12,18 @@ const navItems = [
   { name: 'Projects', path: '#projects', number: '06.' },
 ];
 
-export default function Navbar() {
+export default function Menu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('#home');
+  const [isVisible, setIsVisible] = useState(true);
+  const scrollTimeout = useRef();
+  const { scrollY } = useScroll();
   const navigate = useNavigate();
 
-  // Set active section based on scroll position
+  // Handle scroll to show/hide menu button
   useEffect(() => {
     const handleScroll = () => {
+      // Set active section
       const sections = navItems.map(item => document.getElementById(item.path.substring(1)));
       const scrollPosition = window.scrollY + 100;
 
@@ -29,10 +33,36 @@ export default function Navbar() {
           break;
         }
       }
+
+      // Hide menu button when scrolling
+      setIsVisible(true);
+      
+      // Clear any existing timeout
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+      
+      // Show menu button after scrolling stops for 1 second
+      scrollTimeout.current = setTimeout(() => {
+        setIsVisible(false);
+      }, 3000);
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    };
+  }, []);
+
+  // Show menu button when clicking anywhere (except on menu itself)
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (!e.target.closest('.menu-container') && !e.target.closest('.menu-button')) {
+        setIsVisible(true);
+      }
+    };
+
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
   }, []);
 
   // Close menu when clicking outside or pressing Escape
@@ -82,18 +112,24 @@ export default function Navbar() {
   return (
     <>
       {/* Floating Menu Button */}
-      <motion.button
-        onClick={() => setIsMenuOpen(true)}
-        className="fixed top-4 right-4 z-50 text-[#64FFDA] border-2 border-[#64FFDA] text-2xl bg-[#0A192F]/90 p-2 rounded-full backdrop-blur-md shadow-lg"
-        whileTap={{ scale: 0.95 }}
-        aria-label="Open menu"
-        animate={{ 
-          opacity: isMenuOpen ? 0 : 1,
-          transition: { duration: 0.2 }
-        }}
-      >
-        <FiMenu size={24} />
-      </motion.button>
+      <AnimatePresence>
+        {isVisible && (
+          <motion.button
+            onClick={() => setIsMenuOpen(true)}
+            className="fixed top-4 right-4 z-50 text-[#64FFDA] border-2 border-[#64FFDA] text-2xl bg-[#0A192F]/90 p-2 rounded-full backdrop-blur-md shadow-lg menu-button"
+            whileTap={{ scale: 0.95 }}
+            aria-label="Open menu"
+            initial={{ opacity: 0 }}
+            animate={{ 
+              opacity: isMenuOpen ? 0 : 1,
+              transition: { duration: 0.2 }
+            }}
+            exit={{ opacity: 0 }}
+          >
+            <FiMenu size={24} />
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {/* Overlay */}
       <AnimatePresence>
