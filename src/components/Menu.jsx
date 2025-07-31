@@ -20,7 +20,7 @@ export default function Menu() {
   const { scrollY } = useScroll();
   const navigate = useNavigate();
 
-  // Handle scroll to show/hide menu button
+
   useEffect(() => {
     const handleScroll = () => {
       // Set active section
@@ -34,13 +34,13 @@ export default function Menu() {
         }
       }
 
-      // Hide menu button when scrolling
+
       setIsVisible(true);
       
-      // Clear any existing timeout
+
       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
       
-      // Show menu button after scrolling stops for 1 second
+
       scrollTimeout.current = setTimeout(() => {
         setIsVisible(false);
       }, 3000);
@@ -53,7 +53,7 @@ export default function Menu() {
     };
   }, []);
 
-  // Show menu button when clicking anywhere (except on menu itself)
+
   useEffect(() => {
     const handleClick = (e) => {
       if (!e.target.closest('.menu-container') && !e.target.closest('.menu-button')) {
@@ -65,7 +65,7 @@ export default function Menu() {
     return () => document.removeEventListener('click', handleClick);
   }, []);
 
-  // Close menu when clicking outside or pressing Escape
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (isMenuOpen && !e.target.closest('.menu-container')) {
@@ -111,7 +111,7 @@ export default function Menu() {
 
   return (
     <>
-      {/* Floating Menu Button */}
+
       <AnimatePresence>
         {isVisible && (
           <motion.button
@@ -131,7 +131,6 @@ export default function Menu() {
         )}
       </AnimatePresence>
 
-      {/* Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -144,7 +143,6 @@ export default function Menu() {
         )}
       </AnimatePresence>
 
-      {/* Side Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -154,7 +152,7 @@ export default function Menu() {
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             className="fixed top-0 right-0 w-72 h-full bg-[#0A192F] text-white z-50 shadow-xl p-6 flex flex-col menu-container"
           >
-            {/* Close Button */}
+
             <div className="flex justify-end">
               <motion.button
                 onClick={() => setIsMenuOpen(false)}
@@ -167,7 +165,6 @@ export default function Menu() {
               </motion.button>
             </div>
 
-            {/* Navigation Links */}
             <nav className="flex flex-col space-y-6 mt-8 flex-grow">
               {navItems.map((item, index) => (
                 <motion.a
@@ -196,7 +193,6 @@ export default function Menu() {
               ))}
             </nav>
 
-            {/* Contact Button - Fixed at the bottom */}
             <motion.button
               onClick={() => {
                 navigate("/contact");

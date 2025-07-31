@@ -10,20 +10,19 @@ const [isVisible, setIsVisible] = useState(true);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    // Hide button when scrolling
+
     setIsVisible(true);
     
-    // Clear any existing timeout
+
     if (scrollTimeout) clearTimeout(scrollTimeout);
     
-    // Show button after scrolling stops for 1 second
     setScrollTimeout(setTimeout(() => {
       setIsVisible(false);
     }, 4000));
   });
   return (
     <div className="min-h-screen bg-[#0A192F] text-[#E6F1FF] overflow-hidden">
-      {/* Animated background elements */}
+
       <motion.div 
         className="absolute top-0 left-0 w-full h-full pointer-events-none"
         initial={{ opacity: 0 }}
@@ -34,7 +33,7 @@ const [isVisible, setIsVisible] = useState(true);
         <div className="absolute bottom-40 right-40 w-60 h-60 rounded-full bg-[#FF6B6B] blur-[100px] opacity-20"></div>
       </motion.div>
 
-      {/* Circular Home Button */}
+
  <AnimatePresence>
       {isVisible && (
         <motion.button
@@ -76,7 +75,6 @@ const [isVisible, setIsVisible] = useState(true);
     </AnimatePresence>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 w-full relative">
-        {/* Header section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -116,7 +114,6 @@ const [isVisible, setIsVisible] = useState(true);
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Contact information */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -124,7 +121,6 @@ const [isVisible, setIsVisible] = useState(true);
             viewport={{ once: true, margin: "-100px" }}
             className="space-y-8 bg-[#112240]/30 p-8 rounded-xl border border-[#233554] backdrop-blur-sm relative overflow-hidden"
           >
-            {/* Decorative element */}
             <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-[#64FFDA]/10 blur-[60px]"></div>
             
             <motion.h2 

@@ -17,7 +17,6 @@ export default function About() {
           viewport={{ once: true, margin: "0px 0px -100px 0px" }}
           className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center"
         >
-          {/* Text Content - Comes first on mobile */}
           <div className="order-2 md:order-1">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 flex items-center">
               <span className="text-[#64FFDA] mr-4">02.</span>
@@ -66,7 +65,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Profile Image - Comes first on mobile */}
+
           <div className="order-1 md:order-2 relative group mx-auto w-full max-w-[400px] md:max-w-[500px]">
             <div className="relative w-full aspect-square rounded-lg overflow-hidden">
               <img
@@ -76,9 +75,6 @@ export default function About() {
                 loading="lazy"
               />
 
-              {/* Frame overlay effect */}
-
-              {/* Decorative corner accents */}
               <div className="absolute top-0 left-0 w-6 h-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#64FFDA] rounded-tl-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-[#64FFDA] rounded-tr-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="absolute bottom-0 left-0 w-6 h-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-[#64FFDA] rounded-bl-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>

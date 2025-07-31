@@ -92,7 +92,7 @@ const certificates = [
     date: "January 10, 2024",
     skills: ["React", "Javascript"],
     link: "https://www.coursera.org/account/accomplishments/verify/5G4N28EJV2RV",
-    image: UXCert 
+    image: ReactCert 
   }
   
 ];  
@@ -103,7 +103,6 @@ export default function Certificates() {
 
 
 
-  // Pagination logic
   const totalPages = Math.ceil(certificates.length / itemsPerPage);
   const currentItems = certificates.slice(
     currentPage * itemsPerPage,
@@ -152,7 +151,7 @@ export default function Certificates() {
               <div className="h-[230px] bg-[#233554] overflow-hidden relative">
                 {cert.image ? (
                   <motion.img 
-                    src={cert.image.src || cert.image} // Handle both imported and static images
+                    src={cert.image.src || cert.image}
                     alt={cert.title}
                     className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 p-4"
                     initial={{ opacity: 0.9 }}
@@ -198,7 +197,7 @@ export default function Certificates() {
                 </div>
               </div>
 
-              {/* Glow effect on hover */}
+
               <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#64FFDA]/10 to-[#64FFDA]/5 rounded-lg blur-sm"></div>
               </div>
@@ -206,7 +205,7 @@ export default function Certificates() {
           ))}
         </div>
 
-        {/* Pagination */}
+
         {totalPages > 1 && (
           <div className="flex justify-center gap-2 mt-8">
             {Array.from({ length: totalPages }).map((_, index) => (

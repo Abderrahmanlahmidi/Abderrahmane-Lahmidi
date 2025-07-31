@@ -58,7 +58,7 @@ export default function CursorFollower() {
     };
   }, [cursorX, cursorY]);
 
-  // 👇 إذا الهاتف أو التابلت، رجّع والو
+
   if (isMobile) return null;
 
   return (

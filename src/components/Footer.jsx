@@ -12,7 +12,7 @@ const Footer = () => {
           viewport={{ once: true }}
           className="flex flex-col md:flex-row justify-between items-center gap-8"
         >
-          {/* Left side - Copyright */}
+
           <div className="text-center md:text-left">
             <p className="text-[#64FFDA] text-lg mb-2">Abderrahmane Lahmidi</p>
             <p className="text-[#8892B0] text-sm">
@@ -20,7 +20,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Middle - Navigation */}
+
           <nav className="hidden md:flex gap-6">
             {['Home', 'About', 'Skills', 'Certificates', 'Experiences', 'Projects'].map((item) => (
               <a 
@@ -33,7 +33,7 @@ const Footer = () => {
             ))}
           </nav>
 
-          {/* Right side - Social links ..*/}
+
           <div className="flex gap-6">
             <a 
               href="https://github.com/Abderrahmanlahmidi" 
@@ -72,7 +72,7 @@ const Footer = () => {
           </div>
         </motion.div>
 
-        {/* Mobile navigation - optimized for small screens */}
+
 <motion.div
   initial={{ opacity: 0 }}
   whileInView={{ opacity: 1 }}
