@@ -72,26 +72,28 @@ const Footer = () => {
           </div>
         </motion.div>
 
-        {/* Mobile navigation */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          viewport={{ once: true }}
-          className="md:hidden mt-8 pt-8 border-t border-[#233554]"
-        >
-          <nav className="flex justify-center gap-6">
-            {['Home', 'About', 'Projects', 'Contact'].map((item) => (
-              <a 
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-[#CCD6F6] hover:text-[#64FFDA] transition-colors text-sm"
-              >
-                {item}
-              </a>
-            ))}
-          </nav>
-        </motion.div>
+        {/* Mobile navigation - optimized for small screens */}
+<motion.div
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  transition={{ delay: 0.3 }}
+  viewport={{ once: true }}
+  className="lg:hidden mt-8 pt-6 border-t border-[#233554]"
+>
+  <nav className="flex flex-wrap justify-center gap-3 px-4">
+    {['Home', 'About', 'Skills', 'Certificates', 'Experiences', 'Projects'].map((item) => (
+      <motion.a
+        key={item}
+        href={`#${item.toLowerCase()}`}
+        className="text-[#CCD6F6] hover:text-[#64FFDA] transition-colors text-xs sm:text-sm px-2 py-1"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        {item}
+      </motion.a>
+    ))}
+  </nav>
+</motion.div>
       </div>
     </footer>
   );
