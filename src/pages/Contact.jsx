@@ -1,11 +1,11 @@
 import { motion, useMotionValueEvent, useScroll, AnimatePresence } from 'framer-motion';
 import { FiMail, FiLinkedin, FiGithub, FiSend, FiArrowLeft, FiPhone, FiMapPin } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 
 export default function ContactPage() {
   const navigate = useNavigate();
-const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
   const [scrollTimeout, setScrollTimeout] = useState(null);
   const { scrollY } = useScroll();
 

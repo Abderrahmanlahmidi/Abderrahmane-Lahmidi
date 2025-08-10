@@ -1,29 +1,24 @@
 import { useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 
 export default function CursorFollower() {
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
-  const [isMobile, setIsMobile] = useState(false); 
-
+  const [isMobile, setIsMobile] = useState(false);
 
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
-  const springConfig = { stiffness: 500, damping: 30 };
-  const x = useSpring(cursorX, springConfig);
-  const y = useSpring(cursorY, springConfig);
+  const x = useSpring(cursorX, { stiffness: 500, damping: 30 });
+  const y = useSpring(cursorY, { stiffness: 500, damping: 30 });
 
   useEffect(() => {
-
     const screenWidth = window.innerWidth;
-    if (screenWidth < 768) { 
+    if (screenWidth < 768) {
       setIsMobile(true);
       return;
     }
 
     const move = (e) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
     };
@@ -47,7 +42,6 @@ export default function CursorFollower() {
     window.addEventListener('mouseup', handleMouseUp);
 
     return () => {
-      document.body.style.cursor = '';
       window.removeEventListener('mousemove', move);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
@@ -58,7 +52,6 @@ export default function CursorFollower() {
     };
   }, [cursorX, cursorY]);
 
-
   if (isMobile) return null;
 
   return (
@@ -66,71 +59,83 @@ export default function CursorFollower() {
       className="fixed top-0 left-0 pointer-events-none z-[9999]"
       style={{ x, y }}
     >
+
       <motion.div
-        className="w-4 h-4 rounded-full bg-[#64FFDA]"
-        animate={{
-          scale: isHovering ? 1.8 : (isClicking ? 0.7 : 1),
-          opacity: isHovering ? 1 : 0.9,
-          backgroundColor: isHovering ? '#FF6B6B' : '#64FFDA'
-        }}
-        transition={{
-          type: 'spring',
-          stiffness: 500,
-          damping: 15,
-          scale: { duration: 0.15 }
-        }}
-      />
-      
-      <motion.div
-        className="absolute top-0 left-0 border border-[#64FFDA] rounded-full pointer-events-none"
-        initial={{
-          width: 32,
-          height: 32,
-          x: -12,
-          y: -12,
-          opacity: 0
-        }}
-        animate={{
-          width: isHovering ? 48 : 32,
-          height: isHovering ? 48 : 32,
-          x: isHovering ? -18 : -12,
-          y: isHovering ? -18 : -12,
-          opacity: isClicking ? 0.6 : 0.3,
-          borderWidth: isHovering ? 1.5 : 1,
+        className="rounded-full border pointer-events-none"
+        style={{
           borderColor: isHovering ? '#FF6B6B' : '#64FFDA',
+          borderWidth: isHovering ? 2 : 1,
+          width: isHovering ? 45 : 40,
+          height: isHovering ? 45 : 40,
+          x: isHovering ? -28 : -20,
+          y: isHovering ? -28 : -20,
+          position: 'relative',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          transition: 'all 0.3s ease'
+        }}
+        animate={{
           scale: isClicking ? 0.85 : 1
         }}
         transition={{
           type: 'spring',
           stiffness: 300,
-          damping: 20,
-          opacity: { duration: 0.2 }
+          damping: 20
         }}
-      />
+      >
 
-      {isClicking && (
         <motion.div
-          className="absolute top-0 left-0 border border-[#ff0000] rounded-full"
-          initial={{
-            width: 20,
-            height: 20,
-            x: -6,
-            y: -6,
-            opacity: 0.8
+          className="rounded-full bg-[#64FFDA]"
+          style={{
+            width: 14,
+            height: 14,
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            translateX: '-50%',
+            translateY: '-50%',
+            boxShadow: 'none',
           }}
           animate={{
-            width: 60,
-            height: 60,
-            x: -26,
-            y: -26,
-            opacity: 0
+            scale: isClicking ? 0.7 : 1.1,
+            backgroundColor: isClicking ? '#FF4757' : '#64FFDA'
           }}
           transition={{
-            duration: 0.6,
-            ease: "easeOut"
+            type: 'spring',
+            stiffness: 500,
+            damping: 20
           }}
         />
-      )}
+      </motion.div>
+
+      {/* نبضة عند click */}
+      <AnimatePresence>
+        {isClicking && (
+          <motion.div
+            className="absolute top-0 left-0 rounded-full border border-[#FF4757]"
+            initial={{
+              width: 20,
+              height: 20,
+              x: -10,
+              y: -10,
+              opacity: 0.8
+            }}
+            animate={{
+              width: 80,
+              height: 80,
+              x: -40,
+              y: -40,
+              opacity: 0
+            }}
+            exit={{ opacity: 0 }}
+            transition={{
+              duration: 0.6,
+              ease: 'easeOut'
+            }}
+          />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

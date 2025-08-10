@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FiExternalLink } from 'react-icons/fi';
 import { useState } from 'react';
+
 import figmaCert from '../../src/assets/images/Certificates/FIGMA CF-1.png';
 import gitCert from '../../src/assets/images/Certificates/GIT-GITHUB CF-1.png';
 import htmlCssCert from '../../src/assets/images/Certificates/HTML-CSS CF-1.png';
@@ -10,7 +11,6 @@ import MongoDbCert from '../../src/assets/images/Certificates/MONGODB-CF-1.png';
 import TypescriptCert from '../../src/assets/images/Certificates/TYPSCRIPT CF-1.png';
 import UXCert from '../../src/assets/images/Certificates/UX-DESIGN CF-1.png';
 import ReactCert from '../../src/assets/images/Certificates/REACT BASICS CF-1.png';
-
 
 
 const certificates = [
@@ -94,7 +94,6 @@ const certificates = [
     link: "https://www.coursera.org/account/accomplishments/verify/5G4N28EJV2RV",
     image: ReactCert 
   }
-  
 ];  
 
 export default function Certificates() {
@@ -225,7 +224,6 @@ export default function Certificates() {
           </div>
         )}
 
-    
       </div>
     </section>
   );

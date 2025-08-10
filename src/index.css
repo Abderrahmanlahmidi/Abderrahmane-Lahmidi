@@ -28,3 +28,31 @@ input::selection,
 textarea::selection {
   background-color: rgba(100, 255, 218, 0.2); /* Slightly lighter for form elements */
 }
+
+
+
+/* For Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A192F; /* Dark blue background matching your theme */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #64FFDA; /* Teal accent color */
+  border-radius: 5px;
+  border: 2px solid #0A192F;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52d1b8; /* Slightly lighter teal on hover */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #64FFDA #0A192F;
+}

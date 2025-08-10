@@ -7,7 +7,6 @@ import Experiences from "../sections/Experiences";
 import Certificates from "../sections/Certificates";
 import Projects from "../sections/Projects";
 
-
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
