@@ -6,6 +6,7 @@ import Skills from "../sections/Skills";
 import Experiences from "../sections/Experiences";
 import Certificates from "../sections/Certificates";
 import Projects from "../sections/Projects";
+import Contact from "../sections/Contact";
 
 export default function Home() {
   return (

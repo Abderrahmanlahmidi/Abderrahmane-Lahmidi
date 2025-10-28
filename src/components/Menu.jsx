@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX, FiMail } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
 
 const navItems = [
   { name: 'Home', path: '#home', number: '01.' },
@@ -10,6 +9,7 @@ const navItems = [
   { name: 'Certificates', path: '#certificates', number: '04.' },
   { name: 'Experiences', path: '#experiences', number: '05.' },
   { name: 'Projects', path: '#projects', number: '06.' },
+  { name: 'Contact', path: '#contact', number: '07.' },
 ];
 
 export default function Menu() {
@@ -17,8 +17,8 @@ export default function Menu() {
   const [activeSection, setActiveSection] = useState('#home');
   const [isVisible, setIsVisible] = useState(true);
   const scrollTimeout = useRef();
-  const { scrollY } = useScroll();
-  const navigate = useNavigate();
+
+
 
 
   useEffect(() => {
@@ -192,25 +192,6 @@ export default function Menu() {
                 </motion.a>
               ))}
             </nav>
-
-            <motion.button
-              onClick={() => {
-                navigate("/contact");
-                setIsMenuOpen(false);
-              }}
-              className="flex items-center justify-center gap-2 bg-[#64FFDA]/10 border border-[#64FFDA] text-[#64FFDA] px-6 py-3 rounded-lg hover:bg-[#64FFDA]/20 transition-colors mt-auto mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ 
-                opacity: 1,
-                y: 0,
-                transition: { delay: 0.3 + navItems.length * 0.05 }
-              }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <FiMail />
-              <span>Contact Me</span>
-            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>

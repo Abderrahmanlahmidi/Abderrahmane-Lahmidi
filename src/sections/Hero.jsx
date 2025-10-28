@@ -1,120 +1,13 @@
-import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiChevronDown, FiGithub, FiExternalLink, FiLinkedin } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
-import BubbleBackground from '../components/BubbleBackground';
+import { FiChevronDown, FiGithub, FiLinkedin } from 'react-icons/fi';
+
 
 export default function Hero() {
-    const [showIntro, setShowIntro] = useState(true);
-    const [isHovering, setIsHovering] = useState(false);
-    const [isExiting, setIsExiting] = useState(false);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            if (!isExiting) {
-                setShowIntro(false);
-            }
-        }, 6000);
-
-        return () => clearTimeout(timer);
-    }, [isExiting]);
-
-    const handleSkip = () => {
-        setIsExiting(true);
-        setShowIntro(false);
-    };
 
     return (
         <section className="min-h-screen bg-[#0A192F] text-[#E6F1FF] relative overflow-hidden">
-            {/* Intro Screen */}
-            <BubbleBackground/>
             <AnimatePresence>
-                {showIntro && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0A192F]"
-                    >
-                        {/* Skip button */}
-                        <motion.button
-                            onClick={handleSkip}
-                            className="absolute top-6 right-6 z-50 px-4 py-2 rounded-full border border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10 transition-all"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            Skip Intro
-                        </motion.button>
-
-                        <div className="relative text-center">
-                            {/* Main text with elegant reveal */}
-                            <motion.div
-                                initial={{ clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)' }}
-                                animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)' }}
-                                transition={{ duration: 1.5, ease: [0.83, 0, 0.17, 1] }}
-                                className="overflow-hidden"
-                            >
-                                <h1 className="text-5xl md:text-7xl font-bold text-[#64FFDA] mb-4">
-                                    Hello World
-                                </h1>
-                            </motion.div>
-
-                            {/* Subtitle with staggered letters */}
-                            <motion.div
-                                className="text-[#CCD6F6] text-xl md:text-2xl mb-8"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 1.2, duration: 0.8 }}
-                            >
-                                {"I build digital experiences".split("").map((char, i) => (
-                                    <motion.span
-                                        key={i}
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{
-                                            delay: 1.5 + i * 0.03,
-                                            duration: 0.5,
-                                            ease: "backOut"
-                                        }}
-                                    >
-                                        {char === " " ? "\u00A0" : char}
-                                    </motion.span>
-                                ))}
-                            </motion.div>
-
-                            {/* Progress indicator */}
-                            <div className="relative h-[2px] w-64 mx-auto bg-[#233554] overflow-hidden rounded-full">
-                                <motion.div
-                                    initial={{ scaleX: 0, transformOrigin: 'left' }}
-                                    animate={{ scaleX: 1 }}
-                                    transition={{
-                                        delay: 2.2,
-                                        duration: 2.5,
-                                        ease: [0.65, 0, 0.35, 1]
-                                    }}
-                                    className="absolute top-0 left-0 h-full w-full bg-[#64FFDA] rounded-full"
-                                />
-                            </div>
-
-                            {/* Signature reveal */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 3.5, duration: 0.8, ease: "backOut" }}
-                                className="mt-12 text-[#8892B0] text-sm tracking-widest"
-                            >
-                                ABDERRAHMANE LAHMIDI
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            {/* Actual Hero Content */}
-            <AnimatePresence>
-                {!showIntro && (
+               
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -231,8 +124,6 @@ export default function Hero() {
                                             className="relative text-[#64FFDA] text-xl p-2 rounded-full border-2 border-[#64FFDA] hover:bg-[#64FFDA]/10 transition-colors"
                                             whileHover={{ y: -3, rotate: 5 }}
                                             whileTap={{ scale: 0.9 }}
-                                            onHoverStart={() => setIsHovering(true)}
-                                            onHoverEnd={() => setIsHovering(false)}
                                             aria-label="GitHub"
                                         >
                                             <FiGithub />
@@ -289,7 +180,6 @@ export default function Hero() {
                             </div>
                         </div>
                     </motion.div>
-                )}
             </AnimatePresence>
         </section>
     );
