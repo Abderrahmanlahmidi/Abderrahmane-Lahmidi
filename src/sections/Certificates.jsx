@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
-import { FiExternalLink } from 'react-icons/fi';
-import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiExternalLink, FiX, FiChevronLeft, FiChevronRight, FiEye } from 'react-icons/fi';
+import { useState, useEffect } from 'react';
 
 import figmaCert from '../../src/assets/images/Certificates/FIGMA CF-1.png';
 import gitCert from '../../src/assets/images/Certificates/GIT-GITHUB CF-1.png';
@@ -11,7 +11,6 @@ import MongoDbCert from '../../src/assets/images/Certificates/MONGODB-CF-1.png';
 import TypescriptCert from '../../src/assets/images/Certificates/TYPSCRIPT CF-1.png';
 import UXCert from '../../src/assets/images/Certificates/UX-DESIGN CF-1.png';
 import ReactCert from '../../src/assets/images/Certificates/REACT BASICS CF-1.png';
-
 
 const certificates = [
   {
@@ -97,20 +96,80 @@ const certificates = [
 ];  
 
 export default function Certificates() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 3;
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [certificatesPerPage, setCertificatesPerPage] = useState(3);
 
+  // Update certificates per page based on screen size
+  useEffect(() => {
+    const updateCertificatesPerPage = () => {
+      if (window.innerWidth < 640) {
+        setCertificatesPerPage(1);
+      } else if (window.innerWidth < 1024) {
+        setCertificatesPerPage(2);
+      } else {
+        setCertificatesPerPage(3);
+      }
+    };
 
+    updateCertificatesPerPage();
+    window.addEventListener('resize', updateCertificatesPerPage);
+    
+    return () => window.removeEventListener('resize', updateCertificatesPerPage);
+  }, []);
 
-  const totalPages = Math.ceil(certificates.length / itemsPerPage);
-  const currentItems = certificates.slice(
-    currentPage * itemsPerPage,
-    (currentPage + 1) * itemsPerPage
-  );
+  // Calculate pagination
+  const totalPages = Math.ceil(certificates.length / certificatesPerPage);
+  const startIndex = (currentPage - 1) * certificatesPerPage;
+  const currentCertificates = certificates.slice(startIndex, startIndex + certificatesPerPage);
+
+  const handleCertificateOpen = (certificate) => {
+    setSelectedCertificate(certificate);
+    setIsOverlayOpen(true);
+  };
+
+  const handleCertificateClose = () => {
+    setIsOverlayOpen(false);
+    setTimeout(() => setSelectedCertificate(null), 300);
+  };
+
+  const nextPage = () => {
+    setCurrentPage(prev => Math.min(prev + 1, totalPages));
+  };
+
+  const prevPage = () => {
+    setCurrentPage(prev => Math.max(prev - 1, 1));
+  };
 
   const goToPage = (page) => {
     setCurrentPage(page);
   };
+
+  // Generate visible page numbers for responsive pagination
+  const getVisiblePages = () => {
+    const visiblePages = [];
+    const maxVisiblePages = window.innerWidth < 640 ? 3 : 5;
+    
+    if (totalPages <= maxVisiblePages) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      visiblePages.push(i);
+    }
+
+    return visiblePages;
+  };
+
+  const visiblePages = getVisiblePages();
 
   return (
     <section 
@@ -118,7 +177,7 @@ export default function Certificates() {
       className="min-h-[calc(100vh-5rem)] bg-[#0A192F] text-[#E6F1FF] flex items-center py-16 md:py-20"
       style={{ scrollMarginTop: '5rem' }}
     >
-      <div className="max-w-7xl mx-auto px-6 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -136,23 +195,24 @@ export default function Certificates() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {currentItems.map((cert, index) => (
+        {/* Certificates Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {currentCertificates.map((cert, index) => (
             <motion.div
-              key={index}
+              key={startIndex + index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -5 }}
-              className="group relative bg-[#112240]/50 rounded-lg border border-[#233554] hover:border-[#64FFDA]/30 transition-all overflow-hidden"
+              className="group relative bg-[#112240]/50 rounded-lg border border-[#233554] hover:border-[#64FFDA]/30 transition-all overflow-hidden shadow-lg"
             >
               <div className="h-[230px] bg-[#233554] overflow-hidden relative">
                 {cert.image ? (
                   <motion.img 
                     src={cert.image.src || cert.image}
                     alt={cert.title}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 p-4"
+                    className="w-full h-full object-contain transition-transform duration-500 p-4"
                     initial={{ opacity: 0.9 }}
                     whileHover={{ opacity: 1 }}
                   />
@@ -161,21 +221,36 @@ export default function Certificates() {
                     Certificate Image
                   </div>
                 )}
+                
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] to-transparent opacity-80"></div>
               </div>
 
               <div className="p-6">
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-xl font-semibold text-[#E6F1FF]">{cert.title}</h3>
-                  <a 
-                    href={cert.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-[#64FFDA] hover:text-[#64FFDA]/80 transition-colors"
-                    aria-label={`View ${cert.title} certificate`}
-                  >
-                    <FiExternalLink />
-                  </a>
+                  <div className="flex gap-2">
+                    {/* View Certificate Button */}
+                    <motion.button
+                      onClick={() => handleCertificateOpen(cert)}
+                      className="text-[#64FFDA] hover:text-[#64FFDA]/80 transition-colors p-1"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      aria-label={`View ${cert.title} certificate`}
+                    >
+                      <FiEye size={18} />
+                    </motion.button>
+                    
+                    {/* External Link Button */}
+                    <a 
+                      href={cert.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-[#64FFDA] hover:text-[#64FFDA]/80 transition-colors p-1"
+                      aria-label={`Verify ${cert.title} certificate`}
+                    >
+                      <FiExternalLink size={18} />
+                    </a>
+                  </div>
                 </div>
 
                 <div className="flex justify-between text-sm text-[#8892B0] mb-4">
@@ -196,7 +271,7 @@ export default function Certificates() {
                 </div>
               </div>
 
-
+              {/* Glow effect on hover */}
               <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#64FFDA]/10 to-[#64FFDA]/5 rounded-lg blur-sm"></div>
               </div>
@@ -204,26 +279,173 @@ export default function Certificates() {
           ))}
         </div>
 
-
+        {/* Pagination Controls */}
         {totalPages > 1 && (
-          <div className="flex justify-center gap-2 mt-8">
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToPage(index)}
-                className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
-                  currentPage === index
-                    ? 'bg-[#64FFDA] text-[#0A192F]'
-                    : 'bg-[#112240] text-[#E6F1FF] hover:bg-[#64FFDA]/20'
-                }`}
-                aria-label={`Go to page ${index + 1}`}
-              >
-                {index + 1}
-              </button>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"
+          >
+            {/* Previous Button */}
+            <button
+              onClick={prevPage}
+              disabled={currentPage === 1}
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${
+                currentPage === 1
+                  ? 'border-[#233554] text-[#8892B0] cursor-not-allowed'
+                  : 'border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10'
+              }`}
+            >
+              <FiChevronLeft size={16} />
+              <span className="hidden sm:inline">Previous</span>
+              <span className="sm:hidden">Prev</span>
+            </button>
+
+            {/* Page Numbers */}
+            <div className="flex gap-1 sm:gap-2 flex-wrap justify-center">
+              {/* First page and ellipsis */}
+              {visiblePages[0] > 1 && (
+                <>
+                  <button
+                    onClick={() => goToPage(1)}
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${
+                      currentPage === 1
+                        ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
+                        : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
+                    }`}
+                  >
+                    1
+                  </button>
+                  {visiblePages[0] > 2 && (
+                    <span className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-[#8892B0]">
+                      ...
+                    </span>
+                  )}
+                </>
+              )}
+
+              {/* Visible page numbers */}
+              {visiblePages.map((page) => (
+                <button
+                  key={page}
+                  onClick={() => goToPage(page)}
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${
+                    currentPage === page
+                      ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
+                      : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+
+              {/* Last page and ellipsis */}
+              {visiblePages[visiblePages.length - 1] < totalPages && (
+                <>
+                  {visiblePages[visiblePages.length - 1] < totalPages - 1 && (
+                    <span className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-[#8892B0]">
+                      ...
+                    </span>
+                  )}
+                  <button
+                    onClick={() => goToPage(totalPages)}
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${
+                      currentPage === totalPages
+                        ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
+                        : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
+                    }`}
+                  >
+                    {totalPages}
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Next Button */}
+            <button
+              onClick={nextPage}
+              disabled={currentPage === totalPages}
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${
+                currentPage === totalPages
+                  ? 'border-[#233554] text-[#8892B0] cursor-not-allowed'
+                  : 'border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10'
+              }`}
+            >
+              <span className="hidden sm:inline">Next</span>
+              <span className="sm:hidden">Next</span>
+              <FiChevronRight size={16} />
+            </button>
+          </motion.div>
         )}
 
+        {/* Page Info */}
+        {totalPages > 1 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mt-4"
+          >
+            <p className="text-[#8892B0] text-sm">
+              Page {currentPage} of {totalPages} • Showing {currentCertificates.length} of {certificates.length} certificates
+            </p>
+          </motion.div>
+        )}
+
+        {/* Certificate Overlay */}
+        <AnimatePresence>
+          {selectedCertificate && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isOverlayOpen ? 1 : 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-[#0A192F]/95 z-50 flex items-center justify-center p-4"
+              onClick={handleCertificateClose}
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ 
+                  scale: isOverlayOpen ? 1 : 0.9,
+                  opacity: isOverlayOpen ? 1 : 0
+                }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="relative max-w-6xl w-full max-h-[90vh]"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={handleCertificateClose}
+                  className="absolute -top-12 right-0 text-[#64FFDA] hover:text-white transition-colors p-2 z-10"
+                  aria-label="Close certificate view"
+                >
+                  <FiX size={24} />
+                </button>
+                
+                {/* Certificate image without white background */}
+                <div className="rounded-lg overflow-hidden shadow-2xl max-h-[80vh] flex items-center justify-center">
+                  <img 
+                    src={selectedCertificate.image.src || selectedCertificate.image}
+                    alt={selectedCertificate.title}
+                    className="w-auto h-auto max-w-full max-h-[80vh] object-contain"
+                  />
+                </div>
+                
+                <div className="mt-4 text-center">
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    {selectedCertificate.title}
+                  </h3>
+                  <p className="text-[#8892B0]">
+                    Issued by {selectedCertificate.issuer} • {selectedCertificate.date}
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

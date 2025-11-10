@@ -1,9 +1,11 @@
 
-export default  function Contact (){
-    return (
-        <div>
-            contact
-        </div>
-    )
-}
 
+export default function Contact() {
+
+
+    return (
+        <section>
+
+        </section>
+    );
+}

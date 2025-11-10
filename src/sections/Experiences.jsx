@@ -2,7 +2,9 @@ import { motion } from 'framer-motion';
 import { FiBriefcase, FiAward } from 'react-icons/fi';
 
 const experiences = [
+
   {
+    type: "experience",
     role: "Full Stack Developer Intern",
     company: "Jaag Advisory",
     period: "May 15, 2025 - July 15, 2025",
@@ -14,6 +16,7 @@ const experiences = [
     awards: []
   },
   {
+    type: "experience",
     role: "Student Developer",
     company: "YouCode (Training Program)",
     period: "September 2024 - Present",
@@ -25,6 +28,7 @@ const experiences = [
     awards: []
   },
   {
+    type: "experience",
     role: "Frontend Developer Intern",
     company: "Centoria Services",
     period: "August 7, 2023 - October 2023",
@@ -35,6 +39,31 @@ const experiences = [
     ],
     awards: []
   },
+
+  {
+    type: "experience",
+    role: "Ijaza en Économie",
+    company: "Morocco",
+    period: "2024",
+    responsibilities: [
+      "Studied core economic principles including microeconomics and macroeconomics",
+      "Developed analytical skills through case studies and projects",
+      "Learned financial management and data interpretation techniques"
+    ],
+    awards: []
+  },
+  {
+    type: "experience",
+    role: "Baccalauréat SVT",
+    company: "Morocco",
+    period: "2019",
+    responsibilities: [
+      "Acquired solid knowledge in biology, chemistry, and earth sciences",
+      "Developed critical thinking and problem-solving skills",
+      "Completed practical laboratory projects and experiments"
+    ],
+    awards: []
+  }
 ];
 
 
