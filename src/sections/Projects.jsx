@@ -15,7 +15,7 @@ import clinicflowimage11 from "../../src/assets/images/projects/clinicflow/11.jp
 import clinicflowimage12 from "../../src/assets/images/projects/clinicflow/12.jpg";
 import clinicflowimage13 from "../../src/assets/images/projects/clinicflow/13.jpg";
 
-import logiximage1 from "../../src/assets/images/projects/logix/1.jpg";
+import logiximage1 from "../../src/assets/images/projects/logix/1.png";
 import logiximage2 from "../../src/assets/images/projects/logix/2.jpg";
 import logiximage3 from "../../src/assets/images/projects/logix/3.png";
 import logiximage4 from "../../src/assets/images/projects/logix/4.jpg";
@@ -417,95 +417,95 @@ export default function Projects() {
         )}
 
         {/* Image Gallery Overlay */}
-        <AnimatePresence>
-          {selectedImages && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-[#0A192F]/95 z-50 flex items-center justify-center p-4"
-              onClick={handleImageClose}
-            >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="relative max-w-6xl w-full"
-                onClick={(e) => e.stopPropagation()}
+<AnimatePresence>
+  {selectedImages && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 bg-[#0A192F]/95 z-50 flex items-center justify-center p-4"
+      onClick={handleImageClose}
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="relative max-w-4xl w-full"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={handleImageClose}
+          className="absolute -top-12 right-0 text-[#64FFDA] hover:text-white transition-colors p-2 z-10"
+          aria-label="Close gallery"
+        >
+          <X size={24} />
+        </button>
+
+        <div className="relative">
+          {/* Main Image - Reduced size like Certificates overlay */}
+          <div className="rounded-lg overflow-hidden shadow-xl flex items-center justify-center">
+            <img
+              src={selectedImages[currentImageIndex]}
+              alt={`Project image ${currentImageIndex + 1}`}
+              className="w-auto h-auto max-w-[75%] max-h-[70vh] object-contain"
+            />
+          </div>
+
+          {/* Navigation Buttons */}
+          {selectedImages.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-3 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
+                aria-label="Previous image"
               >
-                <button
-                  onClick={handleImageClose}
-                  className="absolute -top-12 right-0 text-[#64FFDA] hover:text-white transition-colors p-2 z-10"
-                  aria-label="Close gallery"
-                >
-                  <X size={24} />
-                </button>
-
-                <div className="relative">
-                  {/* Main Image */}
-                  <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-xl">
-                    <img
-                      src={selectedImages[currentImageIndex]}
-                      alt={`Project image ${currentImageIndex + 1}`}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-
-                  {/* Navigation Buttons */}
-                  {selectedImages.length > 1 && (
-                    <>
-                      <button
-                        onClick={prevImage}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-3 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
-                        aria-label="Previous image"
-                      >
-                        <ChevronLeft size={24} />
-                      </button>
-                      <button
-                        onClick={nextImage}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-3 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
-                        aria-label="Next image"
-                      >
-                        <ChevronRight size={24} />
-                      </button>
-                    </>
-                  )}
-
-                  {/* Image Counter */}
-                  {selectedImages.length > 1 && (
-                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] px-3 py-1 rounded-full text-sm">
-                      {currentImageIndex + 1} / {selectedImages.length}
-                    </div>
-                  )}
-
-                  {/* Thumbnail Strip */}
-                  {selectedImages.length > 1 && (
-                    <div className="flex justify-center gap-2 mt-4 overflow-x-auto py-2">
-                      {selectedImages.map((img, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setCurrentImageIndex(index)}
-                          className={`flex-shrink-0 w-16 h-16 rounded overflow-hidden border-2 transition-all ${index === currentImageIndex
-                              ? 'border-[#64FFDA] scale-110'
-                              : 'border-transparent hover:border-[#64FFDA]/50'
-                            }`}
-                        >
-                          <img
-                            src={img}
-                            alt={`Thumbnail ${index + 1}`}
-                            className="w-full h-full object-cover"
-                          />
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            </motion.div>
+                <ChevronLeft size={24} />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-3 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
+                aria-label="Next image"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </>
           )}
-        </AnimatePresence>
+
+          {/* Image Counter */}
+          {selectedImages.length > 1 && (
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] px-3 py-1 rounded-full text-sm">
+              {currentImageIndex + 1} / {selectedImages.length}
+            </div>
+          )}
+
+          {/* Thumbnail Strip */}
+          {selectedImages.length > 1 && (
+            <div className="flex justify-center gap-2 mt-4 overflow-x-auto py-2">
+              {selectedImages.map((img, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImageIndex(index)}
+                  className={`flex-shrink-0 w-16 h-16 rounded overflow-hidden border-2 transition-all ${index === currentImageIndex
+                      ? 'border-[#64FFDA] scale-110'
+                      : 'border-transparent hover:border-[#64FFDA]/50'
+                    }`}
+                >
+                  <img
+                    src={img}
+                    alt={`Thumbnail ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
       </div>
     </section>
   );

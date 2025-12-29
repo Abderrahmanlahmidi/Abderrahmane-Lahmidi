@@ -207,12 +207,12 @@ export default function Certificates() {
               whileHover={{ y: -5 }}
               className="group relative bg-[#112240]/50 rounded-lg border border-[#233554] hover:border-[#64FFDA]/30 transition-all overflow-hidden shadow-lg"
             >
-              <div className="h-[230px] bg-[#233554] overflow-hidden relative">
+              <div className="h-[200px] bg-[#233554] overflow-hidden relative">
                 {cert.image ? (
                   <motion.img 
                     src={cert.image.src || cert.image}
                     alt={cert.title}
-                    className="w-full h-full object-contain transition-transform duration-500 p-4"
+                    className="w-full h-full object-contain transition-transform duration-500 p-6"
                     initial={{ opacity: 0.9 }}
                     whileHover={{ opacity: 1 }}
                   />
@@ -396,56 +396,57 @@ export default function Certificates() {
         )}
 
         {/* Certificate Overlay */}
-        <AnimatePresence>
-          {selectedCertificate && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isOverlayOpen ? 1 : 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-[#0A192F]/95 z-50 flex items-center justify-center p-4"
-              onClick={handleCertificateClose}
-            >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ 
-                  scale: isOverlayOpen ? 1 : 0.9,
-                  opacity: isOverlayOpen ? 1 : 0
-                }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="relative max-w-6xl w-full max-h-[90vh]"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button
-                  onClick={handleCertificateClose}
-                  className="absolute -top-12 right-0 text-[#64FFDA] hover:text-white transition-colors p-2 z-10"
-                  aria-label="Close certificate view"
-                >
-                  <FiX size={24} />
-                </button>
-                
-                {/* Certificate image without white background */}
-                <div className="rounded-lg overflow-hidden shadow-2xl max-h-[80vh] flex items-center justify-center">
-                  <img 
-                    src={selectedCertificate.image.src || selectedCertificate.image}
-                    alt={selectedCertificate.title}
-                    className="w-auto h-auto max-w-full max-h-[80vh] object-contain"
-                  />
-                </div>
-                
-                <div className="mt-4 text-center">
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    {selectedCertificate.title}
-                  </h3>
-                  <p className="text-[#8892B0]">
-                    Issued by {selectedCertificate.issuer} • {selectedCertificate.date}
-                  </p>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+<AnimatePresence>
+  {selectedCertificate && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isOverlayOpen ? 1 : 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 bg-[#0A192F]/95 z-50 flex items-center justify-center p-4"
+      onClick={handleCertificateClose}
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ 
+          scale: isOverlayOpen ? 1 : 0.9,
+          opacity: isOverlayOpen ? 1 : 0
+        }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="relative max-w-4xl w-full"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close button at top-right */}
+        <button
+          onClick={handleCertificateClose}
+          className="absolute -top-10 right-0 text-[#64FFDA] hover:text-white transition-colors p-2 z-10"
+          aria-label="Close certificate view"
+        >
+          <FiX size={24} />
+        </button>
+        
+        {/* Certificate image with reduced size and no background */}
+        <div className="rounded-lg overflow-hidden shadow-2xl flex items-center justify-center">
+          <img 
+            src={selectedCertificate.image.src || selectedCertificate.image}
+            alt={selectedCertificate.title}
+            className="w-auto h-auto max-w-[75%] max-h-[70vh] object-contain"
+          />
+        </div>
+        
+        <div className="mt-4 text-center">
+          <h3 className="text-xl font-semibold text-white mb-2">
+            {selectedCertificate.title}
+          </h3>
+          <p className="text-[#8892B0]">
+            Issued by {selectedCertificate.issuer} • {selectedCertificate.date}
+          </p>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
       </div>
     </section>
   );

@@ -42,7 +42,7 @@ const experiences = [
 
   {
     type: "experience",
-    role: "Ijaza en Économie",
+    role: "Licensed en Économie",
     company: "Morocco",
     period: "2024",
     responsibilities: [
