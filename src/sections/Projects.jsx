@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Github, Image as ImageIcon, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Github, Image as ImageIcon, X, ChevronLeft, ChevronRight, CheckCircle, Zap, Clock, Circle } from 'lucide-react';
 import clinicflowimage1 from "../../src/assets/images/projects/clinicflow/1.jpg";
 import clinicflowimage2 from "../../src/assets/images/projects/clinicflow/2.jpg";
 import clinicflowimage3 from "../../src/assets/images/projects/clinicflow/3.jpg";
@@ -38,8 +38,6 @@ import devnest5 from "../../src/assets/images/projects/devnest/5.jpg";
 import devnest6 from "../../src/assets/images/projects/devnest/6.jpg";
 import devnest7 from "../../src/assets/images/projects/devnest/7.jpg";
 
-
-
 const projects = [
     {
         "title": "ClinicFlow",
@@ -52,6 +50,7 @@ const projects = [
         ],
         "github": "https://github.com/Abderrahmanlahmidi/ClinicFlow",
         "live": "#",
+        "status": "in-progress",
         "images": [
            clinicflowimage1,
            clinicflowimage2,
@@ -80,6 +79,7 @@ const projects = [
         ],
         "github": "https://github.com/Abderrahmanlahmidi/Logix",
         "live": "#",
+        "status": "completed",
         "images": [
            logiximage1,
            logiximage2,
@@ -110,6 +110,7 @@ const projects = [
         ],
         "github": "https://github.com/Abderrahmanlahmidi/DevNest",
         "live": "#",
+        "status": "completed",
         "images": [
           devnest1,
           devnest2,
@@ -122,6 +123,30 @@ const projects = [
         "featured": true
     }
 ];
+
+// Status badge configuration
+const statusConfig = {
+    "completed": {
+        icon: <CheckCircle size={14} />,
+        color: "bg-green-500/20 text-green-400 border-green-500/30",
+        label: "Completed"
+    },
+    "in-progress": {
+        icon: <Zap size={14} />,
+        color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+        label: "In Progress"
+    },
+    "planned": {
+        icon: <Clock size={14} />,
+        color: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+        label: "Planned"
+    },
+    "on-hold": {
+        icon: <Circle size={14} />,
+        color: "bg-gray-500/20 text-gray-400 border-gray-500/30",
+        label: "On Hold"
+    }
+};
 
 export default function Projects() {
   const [selectedImages, setSelectedImages] = useState(null);
@@ -233,76 +258,87 @@ export default function Projects() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {currentProjects.map((project, index) => (
-            <motion.div
-              key={startIndex + index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5 }}
-              className="group relative bg-[#112240]/50 rounded-lg border border-[#233554] hover:border-[#64FFDA]/30 transition-all overflow-hidden shadow-lg"
-            >
-              {/* Single Principal Image */}
-              {project.images && project.images.length > 0 && (
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={project.images[0]}
-                    alt={`${project.title} screenshot`}
-                    className="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                    onClick={() => handleImageOpen(project.images, 0)}
-                  />
-                  
-                  {/* Gallery Button (only show if multiple images) */}
-                  {project.images.length > 1 && (
-                    <button
-                      onClick={() => handleImageOpen(project.images)}
-                      className="absolute top-4 right-4 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-2 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
-                      aria-label="View image gallery"
-                    >
-                      <ImageIcon size={18} />
-                    </button>
-                  )}
+          {currentProjects.map((project, index) => {
+            const status = statusConfig[project.status] || statusConfig.completed;
+            
+            return (
+              <motion.div
+                key={startIndex + index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className="group relative bg-[#112240]/50 rounded-lg border border-[#233554] hover:border-[#64FFDA]/30 transition-all overflow-hidden shadow-lg"
+              >
+                {/* Single Principal Image */}
+                {project.images && project.images.length > 0 && (
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={project.images[0]}
+                      alt={`${project.title} screenshot`}
+                      className="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                      onClick={() => handleImageOpen(project.images, 0)}
+                    />
+                    
+                    {/* Gallery Button (only show if multiple images) */}
+                    {project.images.length > 1 && (
+                      <button
+                        onClick={() => handleImageOpen(project.images)}
+                        className="absolute top-4 right-4 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-2 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
+                        aria-label="View image gallery"
+                      >
+                        <ImageIcon size={18} />
+                      </button>
+                    )}
+                  </div>
+                )}
+
+                <div className="p-6">
+                  {/* Header with Title and GitHub */}
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-semibold text-[#E6F1FF]">{project.title}</h3>
+                    {/* GitHub Button in header */}
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#64FFDA] hover:text-[#64FFDA]/80 transition-colors p-1"
+                        aria-label={`${project.title} GitHub repository`}
+                      >
+                        <Github size={20} />
+                      </a>
+                    )}
+                  </div>
+
+                  {/* Status Badge - Where GitHub icon was previously */}
+                  <div className={`mb-4 inline-flex items-center gap-1 px-3 py-1 rounded-full border text-xs font-medium ${status.color}`}>
+                    {status.icon}
+                    <span>{status.label}</span>
+                  </div>
+
+                  <p className="text-[#8892B0] mb-6 text-sm sm:text-base">{project.description}</p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="text-xs text-[#64FFDA] bg-[#64FFDA]/10 px-2 py-1 rounded"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              )}
 
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-semibold text-[#E6F1FF]">{project.title}</h3>
-                  {/* GitHub Button Only */}
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#64FFDA] hover:text-[#64FFDA]/80 transition-colors p-1"
-                      aria-label={`${project.title} GitHub repository`}
-                    >
-                      <Github size={20} />
-                    </a>
-                  )}
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#64FFDA]/10 to-[#64FFDA]/5 rounded-lg blur-sm"></div>
                 </div>
-
-                <p className="text-[#8892B0] mb-6 text-sm sm:text-base">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="text-xs text-[#64FFDA] bg-[#64FFDA]/10 px-2 py-1 rounded"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Glow effect on hover */}
-              <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#64FFDA]/10 to-[#64FFDA]/5 rounded-lg blur-sm"></div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Pagination Controls */}
@@ -417,95 +453,95 @@ export default function Projects() {
         )}
 
         {/* Image Gallery Overlay */}
-<AnimatePresence>
-  {selectedImages && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="fixed inset-0 bg-[#0A192F]/95 z-50 flex items-center justify-center p-4"
-      onClick={handleImageClose}
-    >
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="relative max-w-4xl w-full"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={handleImageClose}
-          className="absolute -top-12 right-0 text-[#64FFDA] hover:text-white transition-colors p-2 z-10"
-          aria-label="Close gallery"
-        >
-          <X size={24} />
-        </button>
-
-        <div className="relative">
-          {/* Main Image - Reduced size like Certificates overlay */}
-          <div className="rounded-lg overflow-hidden shadow-xl flex items-center justify-center">
-            <img
-              src={selectedImages[currentImageIndex]}
-              alt={`Project image ${currentImageIndex + 1}`}
-              className="w-auto h-auto max-w-[75%] max-h-[70vh] object-contain"
-            />
-          </div>
-
-          {/* Navigation Buttons */}
-          {selectedImages.length > 1 && (
-            <>
-              <button
-                onClick={prevImage}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-3 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
-                aria-label="Previous image"
+        <AnimatePresence>
+          {selectedImages && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-[#0A192F]/95 z-50 flex items-center justify-center p-4"
+              onClick={handleImageClose}
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="relative max-w-4xl w-full"
+                onClick={(e) => e.stopPropagation()}
               >
-                <ChevronLeft size={24} />
-              </button>
-              <button
-                onClick={nextImage}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-3 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
-                aria-label="Next image"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </>
-          )}
-
-          {/* Image Counter */}
-          {selectedImages.length > 1 && (
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] px-3 py-1 rounded-full text-sm">
-              {currentImageIndex + 1} / {selectedImages.length}
-            </div>
-          )}
-
-          {/* Thumbnail Strip */}
-          {selectedImages.length > 1 && (
-            <div className="flex justify-center gap-2 mt-4 overflow-x-auto py-2">
-              {selectedImages.map((img, index) => (
                 <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`flex-shrink-0 w-16 h-16 rounded overflow-hidden border-2 transition-all ${index === currentImageIndex
-                      ? 'border-[#64FFDA] scale-110'
-                      : 'border-transparent hover:border-[#64FFDA]/50'
-                    }`}
+                  onClick={handleImageClose}
+                  className="absolute -top-12 right-0 text-[#64FFDA] hover:text-white transition-colors p-2 z-10"
+                  aria-label="Close gallery"
                 >
-                  <img
-                    src={img}
-                    alt={`Thumbnail ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
+                  <X size={24} />
                 </button>
-              ))}
-            </div>
+
+                <div className="relative">
+                  {/* Main Image - Reduced size like Certificates overlay */}
+                  <div className="rounded-lg overflow-hidden shadow-xl flex items-center justify-center">
+                    <img
+                      src={selectedImages[currentImageIndex]}
+                      alt={`Project image ${currentImageIndex + 1}`}
+                      className="w-auto h-auto max-w-[75%] max-h-[70vh] object-contain"
+                    />
+                  </div>
+
+                  {/* Navigation Buttons */}
+                  {selectedImages.length > 1 && (
+                    <>
+                      <button
+                        onClick={prevImage}
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-3 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft size={24} />
+                      </button>
+                      <button
+                        onClick={nextImage}
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-3 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight size={24} />
+                      </button>
+                    </>
+                  )}
+
+                  {/* Image Counter */}
+                  {selectedImages.length > 1 && (
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] px-3 py-1 rounded-full text-sm">
+                      {currentImageIndex + 1} / {selectedImages.length}
+                    </div>
+                  )}
+
+                  {/* Thumbnail Strip */}
+                  {selectedImages.length > 1 && (
+                    <div className="flex justify-center gap-2 mt-4 overflow-x-auto py-2">
+                      {selectedImages.map((img, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`flex-shrink-0 w-16 h-16 rounded overflow-hidden border-2 transition-all ${index === currentImageIndex
+                              ? 'border-[#64FFDA] scale-110'
+                              : 'border-transparent hover:border-[#64FFDA]/50'
+                            }`}
+                        >
+                          <img
+                            src={img}
+                            alt={`Thumbnail ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            </motion.div>
           )}
-        </div>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+        </AnimatePresence>
       </div>
     </section>
   );

@@ -33,126 +33,108 @@ import {
 const skillsData = [
   {
     name: "React",
-    level: "Expert",
     category: "Frontend",
     description: "Building dynamic and responsive user interfaces with modern React patterns and hooks",
     icon: <SiReact className="text-xl text-[#61DAFB]" />,
   },
   {
     name: "TypeScript",
-    level: "Advanced",
     category: "Frontend",
     description: "Developing type-safe applications with enhanced code quality and better developer experience",
     icon: <SiTypescript className="text-xl text-[#3178C6]" />,
   },
   {
     name: "Next.js",
-    level: "Advanced",
     category: "Frontend",
     description: "Creating server-rendered React applications with optimal performance and SEO",
     icon: <SiNextdotjs className="text-xl text-white" />,
   },
   {
     name: "Tailwind CSS",
-    level: "Expert",
     category: "Frontend",
     description: "Building modern, responsive layouts with utility-first CSS framework",
     icon: <SiTailwindcss className="text-xl text-[#06B6D4]" />,
   },
   {
     name: "Node.js",
-    level: "Advanced",
     category: "Backend",
     description: "Developing scalable server-side applications and RESTful APIs",
     icon: <SiNodedotjs className="text-xl text-[#339933]" />,
   },
   {
     name: "Express",
-    level: "Advanced",
     category: "Backend",
     description: "Building robust web applications and APIs with minimal and flexible Node.js framework",
     icon: <SiExpress className="text-xl text-white" />,
   },
   {
     name: "Python",
-    level: "Intermediate",
     category: "Backend",
     description: "Writing efficient backend services and automation scripts",
     icon: <SiPython className="text-xl text-[#3776AB]" />,
   },
   {
     name: "MongoDB",
-    level: "Advanced",
     category: "Database",
     description: "Designing and managing NoSQL databases with flexible document models",
     icon: <SiMongodb className="text-xl text-[#47A248]" />,
   },
   {
     name: "PostgreSQL",
-    level: "Intermediate",
     category: "Database",
     description: "Working with relational databases and complex SQL queries",
     icon: <SiPostgresql className="text-xl text-[#336791]" />,
   },
   {
     name: "Firebase",
-    level: "Intermediate",
     category: "Database",
     description: "Implementing real-time databases and authentication services",
     icon: <SiFirebase className="text-xl text-[#FFCA28]" />,
   },
   {
     name: "Git",
-    level: "Expert",
     category: "Tools",
     description: "Version control and collaborative development workflows",
     icon: <SiGit className="text-xl text-[#F05032]" />,
   },
   {
     name: "Docker",
-    level: "Intermediate",
     category: "Tools",
     description: "Containerizing applications for consistent development and deployment",
     icon: <SiDocker className="text-xl text-[#2496ED]" />,
   },
   {
     name: "AWS",
-    level: "Beginner",
     category: "Tools",
     description: "Deploying and managing cloud infrastructure and services",
     icon: <SiAmazoncloudwatch className="text-xl text-[#FF9900]" />,
   },
   {
     name: "Figma",
-    level: "Advanced",
     category: "Design",
     description: "Creating and collaborating on UI/UX designs and prototypes",
     icon: <SiFigma className="text-xl text-[#F24E1E]" />,
   },
   {
     name: "Jest",
-    level: "Intermediate",
     category: "Testing",
     description: "Writing comprehensive unit and integration tests",
     icon: <SiJest className="text-xl text-[#C21325]" />,
   },
   {
     name: "Mocha",
-    level: "Advanced",
     category: "Testing",
     description: "Feature-rich JavaScript test framework running on Node.js and in the browser",
     icon: <SiMocha className="text-xl text-[#8D6748]" />,
   },
   {
     name: "Chai",
-    level: "Advanced",
     category: "Testing",
     description: "BDD/TDD assertion library for Node.js and browser that pairs well with any testing framework",
     icon: <SiChai className="text-xl text-[#A30701]" />,
   },
   {
     name: "Supertest",
-    level: "Intermediate",
     category: "Testing",
     description: "HTTP assertion library for testing Node.js HTTP servers with a fluent API",
     icon: <svg className="w-5 h-5 text-[#2E8B57]" viewBox="0 0 24 24" fill="currentColor">
@@ -160,6 +142,39 @@ const skillsData = [
     </svg>,
   },
 ];
+
+// Get category color
+const getCategoryColor = (category) => {
+  switch(category) {
+    case "Frontend": return "bg-blue-500/20 text-blue-400 border-blue-500/30";
+    case "Backend": return "bg-green-500/20 text-green-400 border-green-500/30";
+    case "Database": return "bg-purple-500/20 text-purple-400 border-purple-500/30";
+    case "Tools": return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
+    case "Design": return "bg-pink-500/20 text-pink-400 border-pink-500/30";
+    case "Testing": return "bg-red-500/20 text-red-400 border-red-500/30";
+    default: return "bg-[#233554] text-[#8892B0] border-[#233554]";
+  }
+};
+
+// Get category icon
+const getCategoryIcon = (category) => {
+  switch (category) {
+    case "Frontend":
+      return <Code2 size={14} />;
+    case "Backend":
+      return <Server size={14} />;
+    case "Database":
+      return <Database size={14} />;
+    case "Tools":
+      return <Box size={14} />;
+    case "Design":
+      return <Palette size={14} />;
+    case "Testing":
+      return <TestTube2 size={14} />;
+    default:
+      return <Code2 size={14} />;
+  }
+};
 
 export default function Skills() {
   const [currentCategory, setCurrentCategory] = useState("All");
@@ -203,41 +218,6 @@ export default function Skills() {
     setCurrentPage(1);
   };
 
-  const getSkillLevelColor = (level) => {
-    switch (level) {
-      case "Expert":
-        return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "Advanced":
-        return "bg-blue-500/20 text-blue-400 border-blue-500/30";
-      case "Intermediate":
-        return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
-      case "Beginner":
-        return "bg-red-500/20 text-red-400 border-red-500/30";
-      default:
-        return "bg-[#233554] text-[#8892B0] border-[#233554]";
-    }
-  };
-
-  // Get category icon
-  const getCategoryIcon = (category) => {
-    switch (category) {
-      case "Frontend":
-        return <Code2 size={16} />;
-      case "Backend":
-        return <Server size={16} />;
-      case "Database":
-        return <Database size={16} />;
-      case "Tools":
-        return <Box size={16} />;
-      case "Design":
-        return <Palette size={16} />;
-      case "Testing":
-        return <TestTube2 size={16} />;
-      default:
-        return <Code2 size={16} />;
-    }
-  };
-
   return (
     <section
       id="skills"
@@ -258,8 +238,7 @@ export default function Skills() {
             <span className="hidden md:block h-px bg-[#233554] flex-grow ml-6 max-w-xs"></span>
           </h2>
           <p className="text-[#8892B0] max-w-2xl">
-            Here are the technologies and tools I work with to create
-            exceptional digital experiences.
+            Here are the technologies and tools I work with to create exceptional digital experiences.
           </p>
         </motion.div>
 
@@ -283,7 +262,7 @@ export default function Skills() {
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              {getCategoryIcon(category)}
+              {category !== "All" && getCategoryIcon(category)}
               {category}
             </motion.button>
           ))}
@@ -309,30 +288,18 @@ export default function Skills() {
                 whileHover={{ y: -5 }}
               >
                 {/* Skill Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-[#64FFDA]/10 rounded-lg flex items-center justify-center">
-                      {skill.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-[#E6F1FF]">
-                        {skill.name}
-                      </h3>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs text-[#8892B0] bg-[#233554] px-2 py-1 rounded-full flex items-center gap-1">
-                          {getCategoryIcon(skill.category)}
-                          {skill.category}
-                        </span>
-                      </div>
-                    </div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-[#64FFDA]/10 rounded-lg flex items-center justify-center">
+                    {skill.icon}
                   </div>
-                  <div className="text-right">
-                    <div
-                      className={`text-sm font-bold px-3 py-1 rounded-full border ${getSkillLevelColor(
-                        skill.level
-                      )}`}
-                    >
-                      {skill.level}
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-[#E6F1FF] mb-2">
+                      {skill.name}
+                    </h3>
+                    {/* Category Badge */}
+                    <div className={`inline-flex items-center gap-1 px-3 py-1 rounded-full border text-xs font-medium ${getCategoryColor(skill.category)}`}>
+                      {getCategoryIcon(skill.category)}
+                      <span>{skill.category}</span>
                     </div>
                   </div>
                 </div>
