@@ -15,14 +15,14 @@ const projects = [
         "github": "https://github.com/Abderrahmanlahmidi/ClinicFlow",
         "live": "#",
         "images": [
-            "/src/assets/images/projects/clinicflow/1.png",
-            "/src/assets/images/projects/clinicflow/2.png",
-            "/src/assets/images/projects/clinicflow/3.png",
-            "/src/assets/images/projects/clinicflow/4.png",
-            "/src/assets/images/projects/clinicflow/5.png",
-            "/src/assets/images/projects/clinicflow/6.png",
-            "/src/assets/images/projects/clinicflow/7.png",
-            "/src/assets/images/projects/clinicflow/8.png"
+            "../../src/assets/images/projects/clinicflow/1.png",
+            "../../src/assets/images/projects/clinicflow/2.png",
+            "../../src/assets/images/projects/clinicflow/3.png",
+            "../../src/assets/images/projects/clinicflow/4.png",
+            "../../src/assets/images/projects/clinicflow/5.png",
+            "../../src/assets/images/projects/clinicflow/6.png",
+            "../../src/assets/images/projects/clinicflow/7.png",
+            "../../src/assets/images/projects/clinicflow/8.png"
         ],
         "featured": true
     },
@@ -38,14 +38,14 @@ const projects = [
         "github": "https://github.com/Abderrahmanlahmidi/Logix",
         "live": "#",
         "images": [
-            "/src/assets/images/projects/logix/1.jpg",
-            "/src/assets/images/projects/logix/2.png",
-            "/src/assets/images/projects/logix/3.png",
-            "/src/assets/images/projects/logix/4.png",
-            "/src/assets/images/projects/logix/5.png",
-            "/src/assets/images/projects/logix/6.png",
-            "/src/assets/images/projects/logix/7.png",
-            "/src/assets/images/projects/logix/8.png"
+            "../../src/assets/images/projects/logix/1.jpg",
+            "../../src/assets/images/projects/logix/2.png",
+            "../../src/assets/images/projects/logix/3.png",
+            "../../src/assets/images/projects/logix/4.png",
+            "../../src/assets/images/projects/logix/5.png",
+            "../../src/assets/images/projects/logix/6.png",
+            "../../src/assets/images/projects/logix/7.png",
+            "../../src/assets/images/projects/logix/8.png"
         ],
         "featured": true
     },
@@ -62,14 +62,14 @@ const projects = [
         "github": "https://github.com/Abderrahmanlahmidi/DevNest",
         "live": "#",
         "images": [
-            "/src/assets/images/projects/devnest/1.jpg",
-            "/src/assets/images/projects/devnest/2.jpg",
-            "/src/assets/images/projects/devnest/3.jpg",
-            "/src/assets/images/projects/devnest/4.jpg",
-            "/src/assets/images/projects/devnest/5.jpg",
-            "/src/assets/images/projects/devnest/6.jpg",
-            "/src/assets/images/projects/devnest/7.jpg",
-            "/src/assets/images/projects/devnest/8.jpg"
+            "../../src/assets/images/projects/devnest/1.jpg",
+            "../../src/assets/images/projects/devnest/2.jpg",
+            "../../src/assets/images/projects/devnest/3.jpg",
+            "../../src/assets/images/projects/devnest/4.jpg",
+            "../../src/assets/images/projects/devnest/5.jpg",
+            "../../src/assets/images/projects/devnest/6.jpg",
+            "../../src/assets/images/projects/devnest/7.jpg",
+            "../../src/assets/images/projects/devnest/8.jpg"
         ],
         "featured": true
     }
