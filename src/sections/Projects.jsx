@@ -1,6 +1,44 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Github, Image as ImageIcon, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import clinicflowimage1 from "../../src/assets/images/projects/clinicflow/1.jpg";
+import clinicflowimage2 from "../../src/assets/images/projects/clinicflow/2.jpg";
+import clinicflowimage3 from "../../src/assets/images/projects/clinicflow/3.jpg";
+import clinicflowimage4 from "../../src/assets/images/projects/clinicflow/4.jpg";
+import clinicflowimage5 from "../../src/assets/images/projects/clinicflow/5.jpg";
+import clinicflowimage6 from "../../src/assets/images/projects/clinicflow/6.png";
+import clinicflowimage7 from "../../src/assets/images/projects/clinicflow/7.jpg";
+import clinicflowimage8 from "../../src/assets/images/projects/clinicflow/8.jpg";
+import clinicflowimage9 from "../../src/assets/images/projects/clinicflow/9.jpg";
+import clinicflowimage10 from "../../src/assets/images/projects/clinicflow/10.jpg";
+import clinicflowimage11 from "../../src/assets/images/projects/clinicflow/11.jpg";
+import clinicflowimage12 from "../../src/assets/images/projects/clinicflow/12.jpg";
+import clinicflowimage13 from "../../src/assets/images/projects/clinicflow/13.jpg";
+
+import logiximage1 from "../../src/assets/images/projects/logix/1.jpg";
+import logiximage2 from "../../src/assets/images/projects/logix/2.jpg";
+import logiximage3 from "../../src/assets/images/projects/logix/3.png";
+import logiximage4 from "../../src/assets/images/projects/logix/4.jpg";
+import logiximage5 from "../../src/assets/images/projects/logix/4.png";
+import logiximage6 from "../../src/assets/images/projects/logix/5.png";
+import logiximage7 from "../../src/assets/images/projects/logix/6.jpg";
+import logiximage8 from "../../src/assets/images/projects/logix/6.png";
+import logiximage9 from "../../src/assets/images/projects/logix/7.png";
+import logiximage10 from "../../src/assets/images/projects/logix/8.png";
+import logiximage11 from "../../src/assets/images/projects/logix/9.png";
+import logiximage12 from "../../src/assets/images/projects/logix/10.png";
+import logiximage13 from "../../src/assets/images/projects/logix/11png.png";
+import logiximage14 from "../../src/assets/images/projects/logix/12.png";
+
+import devnest1 from "../../src/assets/images/projects/devnest/1.jpg";
+import devnest2 from "../../src/assets/images/projects/devnest/2.jpg";
+import devnest3 from "../../src/assets/images/projects/devnest/3.jpg";
+import devnest4 from "../../src/assets/images/projects/devnest/4.jpg";
+import devnest5 from "../../src/assets/images/projects/devnest/5.jpg";
+import devnest6 from "../../src/assets/images/projects/devnest/6.jpg";
+import devnest7 from "../../src/assets/images/projects/devnest/7.jpg";
+
+
 
 const projects = [
     {
@@ -15,14 +53,19 @@ const projects = [
         "github": "https://github.com/Abderrahmanlahmidi/ClinicFlow",
         "live": "#",
         "images": [
-            "../../src/assets/images/projects/clinicflow/1.png",
-            "../../src/assets/images/projects/clinicflow/2.png",
-            "../../src/assets/images/projects/clinicflow/3.png",
-            "../../src/assets/images/projects/clinicflow/4.png",
-            "../../src/assets/images/projects/clinicflow/5.png",
-            "../../src/assets/images/projects/clinicflow/6.png",
-            "../../src/assets/images/projects/clinicflow/7.png",
-            "../../src/assets/images/projects/clinicflow/8.png"
+           clinicflowimage1,
+           clinicflowimage2,
+           clinicflowimage3,
+           clinicflowimage4,
+           clinicflowimage5,
+           clinicflowimage6,
+           clinicflowimage7,
+           clinicflowimage8,
+           clinicflowimage9,
+           clinicflowimage10,
+           clinicflowimage11,
+           clinicflowimage12,
+           clinicflowimage13
         ],
         "featured": true
     },
@@ -38,14 +81,20 @@ const projects = [
         "github": "https://github.com/Abderrahmanlahmidi/Logix",
         "live": "#",
         "images": [
-            "../../src/assets/images/projects/logix/1.jpg",
-            "../../src/assets/images/projects/logix/2.png",
-            "../../src/assets/images/projects/logix/3.png",
-            "../../src/assets/images/projects/logix/4.png",
-            "../../src/assets/images/projects/logix/5.png",
-            "../../src/assets/images/projects/logix/6.png",
-            "../../src/assets/images/projects/logix/7.png",
-            "../../src/assets/images/projects/logix/8.png"
+           logiximage1,
+           logiximage2,
+           logiximage3,
+           logiximage4,
+           logiximage5,
+           logiximage6,
+           logiximage7,
+           logiximage8,
+           logiximage9,
+           logiximage10,
+           logiximage11,
+           logiximage12,
+           logiximage13,
+           logiximage14   
         ],
         "featured": true
     },
@@ -62,14 +111,13 @@ const projects = [
         "github": "https://github.com/Abderrahmanlahmidi/DevNest",
         "live": "#",
         "images": [
-            "../../src/assets/images/projects/devnest/1.jpg",
-            "../../src/assets/images/projects/devnest/2.jpg",
-            "../../src/assets/images/projects/devnest/3.jpg",
-            "../../src/assets/images/projects/devnest/4.jpg",
-            "../../src/assets/images/projects/devnest/5.jpg",
-            "../../src/assets/images/projects/devnest/6.jpg",
-            "../../src/assets/images/projects/devnest/7.jpg",
-            "../../src/assets/images/projects/devnest/8.jpg"
+          devnest1,
+          devnest2,
+          devnest3,
+          devnest4,
+          devnest5,
+          devnest6,
+          devnest7,
         ],
         "featured": true
     }
