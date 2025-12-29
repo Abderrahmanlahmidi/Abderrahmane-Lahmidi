@@ -1,44 +1,14 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { FiGithub, FiExternalLink, FiPlay, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import TicTacToe from "../../src/assets/videos/TicTacToe.mp4"
-import Flowence from "../../src/assets/videos/Flowence.mp4"
-import CvSharp from "../../src/assets/videos/CvSharp.mp4"
+import { Github, Image as ImageIcon, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const projects = [
-{
-  title: "Tic-Tac-Toe",
-  description: "Classic Tic-Tac-Toe game built for web browsers with a responsive design, interactive gameplay, and real-time score tracking. Users can challenge friends or play against the computer, with a leaderboard to showcase top players.",
-  technologies: ["JavaScript", "HTML", "CSS"],
-  github: "https://github.com/Abderrahmanlahmidi/Tic-Tac-Toe",
-  // live: "https://youquiz-app.com",
-  video: TicTacToe
-},
-{
-  title: "Flowence",
-  description: "Flowence is a personal finance organizer that helps users track their income, expenses, savings, and financial goals. Built with Node.js, EJS, and TailwindCSS, it provides a responsive and interactive interface, allowing users to manage their finances efficiently and plan for future objectives.",
-  technologies: ["Node.js", "HTML", "TailwindCSS", "JavaScript", "EJS"],
-  github: "https://github.com/Abderrahmanlahmidi/Flowence",
-  // live: "https://youquiz-app.com",
-  video: Flowence
-},
-{
-  title: "CvSharp",
-  description: "CvSharp is an AI-powered CV analyzer that evaluates your resume using Gemini AI and provides a detailed score along with personalized recommendations for improvement. Built with Python, Django, React.js, and TailwindCSS, it offers a responsive and interactive interface for users to enhance their CVs effectively.",
-  technologies: ["Python", "Django", "React.js", "TailwindCSS", "Gemeni Ai"],
-  github: "https://github.com/Abderrahmanlahmidi/Hirely",
-  // live: "https://youquiz-app.com",
-  video: CvSharp
-}
+import projectsData from '../data/projects.json';
 
-
-
-
-];
+const projects = projectsData;
 
 export default function Projects() {
-  const [selectedVideo, setSelectedVideo] = useState(null);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [selectedImages, setSelectedImages] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [projectsPerPage, setProjectsPerPage] = useState(3);
 
@@ -56,7 +26,7 @@ export default function Projects() {
 
     updateProjectsPerPage();
     window.addEventListener('resize', updateProjectsPerPage);
-    
+
     return () => window.removeEventListener('resize', updateProjectsPerPage);
   }, []);
 
@@ -65,14 +35,26 @@ export default function Projects() {
   const startIndex = (currentPage - 1) * projectsPerPage;
   const currentProjects = projects.slice(startIndex, startIndex + projectsPerPage);
 
-  const handleVideoOpen = (videoUrl) => {
-    setSelectedVideo(videoUrl);
-    setIsVideoPlaying(true);
+  const handleImageOpen = (images, index = 0) => {
+    setSelectedImages(images);
+    setCurrentImageIndex(index);
   };
 
-  const handleVideoClose = () => {
-    setIsVideoPlaying(false);
-    setTimeout(() => setSelectedVideo(null), 300);
+  const handleImageClose = () => {
+    setSelectedImages(null);
+    setCurrentImageIndex(0);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex(prev =>
+      prev < selectedImages.length - 1 ? prev + 1 : 0
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex(prev =>
+      prev > 0 ? prev - 1 : selectedImages.length - 1
+    );
   };
 
   const nextPage = () => {
@@ -91,7 +73,7 @@ export default function Projects() {
   const getVisiblePages = () => {
     const visiblePages = [];
     const maxVisiblePages = window.innerWidth < 640 ? 3 : 5;
-    
+
     if (totalPages <= maxVisiblePages) {
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
@@ -144,57 +126,56 @@ export default function Projects() {
               whileHover={{ y: -5 }}
               className="group relative bg-[#112240]/50 rounded-lg border border-[#233554] hover:border-[#64FFDA]/30 transition-all overflow-hidden shadow-lg"
             >
+              {/* Single Principal Image */}
+              {project.images && project.images.length > 0 && (
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={project.images[0]}
+                    alt={`${project.title} screenshot`}
+                    className="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                    onClick={() => handleImageOpen(project.images, 0)}
+                  />
+                  
+                  {/* Gallery Button (only show if multiple images) */}
+                  {project.images.length > 1 && (
+                    <button
+                      onClick={() => handleImageOpen(project.images)}
+                      className="absolute top-4 right-4 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-2 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
+                      aria-label="View image gallery"
+                    >
+                      <ImageIcon size={18} />
+                    </button>
+                  )}
+                </div>
+              )}
+
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-xl font-semibold text-[#E6F1FF]">{project.title}</h3>
-                  <div className="flex gap-3">
-                    <a 
-                      href={project.github} 
-                      target="_blank" 
+                  {/* GitHub Button Only */}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#64FFDA] hover:text-[#64FFDA]/80 transition-colors"
+                      className="text-[#64FFDA] hover:text-[#64FFDA]/80 transition-colors p-1"
                       aria-label={`${project.title} GitHub repository`}
                     >
-                      <FiGithub size={20} />
+                      <Github size={20} />
                     </a>
-                    
-                    {/* Video Play Button */}
-                    {project.video && (
-                      <button
-                        onClick={() => handleVideoOpen(project.video)}
-                        className="text-[#64FFDA] hover:text-[#64FFDA]/80 cursor-pointer transition-colors"
-                        aria-label={`View ${project.title} demo`}
-                      >
-                        <FiPlay size={20} />
-                      </button>
-                    )}
-                    
-                    {/* Live Demo Button 
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#64FFDA] hover:text-[#64FFDA]/80 transition-colors"
-                        aria-label={`Live ${project.title} demo`}
-                      >
-                        <FiExternalLink size={20} />
-                      </a>
-                    )}*/}
-                  </div>
+                  )}
                 </div>
 
                 <p className="text-[#8892B0] mb-6 text-sm sm:text-base">{project.description}</p>
 
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, i) => (
-                    <motion.span
+                    <span
                       key={i}
                       className="text-xs text-[#64FFDA] bg-[#64FFDA]/10 px-2 py-1 rounded"
-                      whileHover={{ scale: 1.05 }}
                     >
                       {tech}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
               </div>
@@ -220,13 +201,12 @@ export default function Projects() {
             <button
               onClick={prevPage}
               disabled={currentPage === 1}
-              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${
-                currentPage === 1
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${currentPage === 1
                   ? 'border-[#233554] text-[#8892B0] cursor-not-allowed'
                   : 'border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10'
-              }`}
+                }`}
             >
-              <FiChevronLeft size={16} />
+              <ChevronLeft size={16} />
               <span className="hidden sm:inline">Previous</span>
               <span className="sm:hidden">Prev</span>
             </button>
@@ -238,11 +218,10 @@ export default function Projects() {
                 <>
                   <button
                     onClick={() => goToPage(1)}
-                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${
-                      currentPage === 1
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${currentPage === 1
                         ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
                         : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
-                    }`}
+                      }`}
                   >
                     1
                   </button>
@@ -259,11 +238,10 @@ export default function Projects() {
                 <button
                   key={page}
                   onClick={() => goToPage(page)}
-                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${
-                    currentPage === page
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${currentPage === page
                       ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
                       : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
-                  }`}
+                    }`}
                 >
                   {page}
                 </button>
@@ -279,11 +257,10 @@ export default function Projects() {
                   )}
                   <button
                     onClick={() => goToPage(totalPages)}
-                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${
-                      currentPage === totalPages
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${currentPage === totalPages
                         ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
                         : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
-                    }`}
+                      }`}
                   >
                     {totalPages}
                   </button>
@@ -295,15 +272,14 @@ export default function Projects() {
             <button
               onClick={nextPage}
               disabled={currentPage === totalPages}
-              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${
-                currentPage === totalPages
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${currentPage === totalPages
                   ? 'border-[#233554] text-[#8892B0] cursor-not-allowed'
                   : 'border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10'
-              }`}
+                }`}
             >
               <span className="hidden sm:inline">Next</span>
               <span className="sm:hidden">Next</span>
-              <FiChevronRight size={16} />
+              <ChevronRight size={16} />
             </button>
           </motion.div>
         )}
@@ -323,45 +299,91 @@ export default function Projects() {
           </motion.div>
         )}
 
-        {/* Video Demo Overlay */}
+        {/* Image Gallery Overlay */}
         <AnimatePresence>
-          {selectedVideo && (
+          {selectedImages && (
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: isVideoPlaying ? 1 : 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               className="fixed inset-0 bg-[#0A192F]/95 z-50 flex items-center justify-center p-4"
-              onClick={handleVideoClose}
+              onClick={handleImageClose}
             >
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ 
-                  scale: isVideoPlaying ? 1 : 0.9,
-                  opacity: isVideoPlaying ? 1 : 0
-                }}
+                animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="relative max-w-4xl w-full"
+                className="relative max-w-6xl w-full"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
-                  onClick={handleVideoClose}
-                  className="absolute -top-12 right-0 text-[#64FFDA] hover:text-white transition-colors p-2"
-                  aria-label="Close video"
+                  onClick={handleImageClose}
+                  className="absolute -top-12 right-0 text-[#64FFDA] hover:text-white transition-colors p-2 z-10"
+                  aria-label="Close gallery"
                 >
-                  <FiX size={24} />
+                  <X size={24} />
                 </button>
-                <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-xl">
-                  <video 
-                    src={selectedVideo} 
-                    controls 
-                    autoPlay
-                    className="w-full h-full object-contain"
-                    onEnded={handleVideoClose}
-                  >
-                    Your browser does not support the video tag.
-                  </video>
+
+                <div className="relative">
+                  {/* Main Image */}
+                  <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-xl">
+                    <img
+                      src={selectedImages[currentImageIndex]}
+                      alt={`Project image ${currentImageIndex + 1}`}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+
+                  {/* Navigation Buttons */}
+                  {selectedImages.length > 1 && (
+                    <>
+                      <button
+                        onClick={prevImage}
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-3 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft size={24} />
+                      </button>
+                      <button
+                        onClick={nextImage}
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-3 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight size={24} />
+                      </button>
+                    </>
+                  )}
+
+                  {/* Image Counter */}
+                  {selectedImages.length > 1 && (
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] px-3 py-1 rounded-full text-sm">
+                      {currentImageIndex + 1} / {selectedImages.length}
+                    </div>
+                  )}
+
+                  {/* Thumbnail Strip */}
+                  {selectedImages.length > 1 && (
+                    <div className="flex justify-center gap-2 mt-4 overflow-x-auto py-2">
+                      {selectedImages.map((img, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`flex-shrink-0 w-16 h-16 rounded overflow-hidden border-2 transition-all ${index === currentImageIndex
+                              ? 'border-[#64FFDA] scale-110'
+                              : 'border-transparent hover:border-[#64FFDA]/50'
+                            }`}
+                        >
+                          <img
+                            src={img}
+                            alt={`Thumbnail ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </motion.div>
             </motion.div>

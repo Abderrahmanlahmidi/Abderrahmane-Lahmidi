@@ -1,0 +1,72 @@
+[
+    {
+        "title": "ClinicFlow",
+        "description": "Modern Healthcare Platform. Smart Health Management Made Simple. Book appointments, track your wellness, and stay in control of your medical life—all in one simple, secure, and elegant platform.",
+        "technologies": [
+            "React",
+            "Express",
+            "MongoDB",
+            "Tailwind CSS"
+        ],
+        "github": "https://github.com/Abderrahmanlahmidi/ClinicFlow",
+        "live": "#",
+        "images": [
+            "/src/assets/images/projects/clinicflow/1.png",
+            "/src/assets/images/projects/clinicflow/2.png",
+            "/src/assets/images/projects/clinicflow/3.png",
+            "/src/assets/images/projects/clinicflow/4.png",
+            "/src/assets/images/projects/clinicflow/5.png",
+            "/src/assets/images/projects/clinicflow/6.png",
+            "/src/assets/images/projects/clinicflow/7.png",
+            "/src/assets/images/projects/clinicflow/8.png"
+        ],
+        "featured": true
+    },
+    {
+        "title": "Logix",
+        "description": "Streamline Your Truck Fleet Operations. Logix provides comprehensive tracking, fuel management, and maintenance solutions for modern truck fleets. Optimize efficiency, reduce costs, and enhance safety with our all-in-one platform.",
+        "technologies": [
+            "React",
+            "Node.js",
+            "MongoDB",
+            "Tailwind CSS"
+        ],
+        "github": "https://github.com/Abderrahmanlahmidi/Logix",
+        "live": "#",
+        "images": [
+            "/src/assets/images/projects/logix/1.jpg",
+            "/src/assets/images/projects/logix/2.png",
+            "/src/assets/images/projects/logix/3.png",
+            "/src/assets/images/projects/logix/4.png",
+            "/src/assets/images/projects/logix/5.png",
+            "/src/assets/images/projects/logix/6.png",
+            "/src/assets/images/projects/logix/7.png",
+            "/src/assets/images/projects/logix/8.png"
+        ],
+        "featured": true
+    },
+    {
+        "title": "DevNest",
+        "description": "A developer ecosystem and personal portfolio platform. Showcase your work with a modern, high-performance interface designed for the next generation of web developers.",
+        "technologies": [
+            "React",
+            "Framer Motion",
+            "Tailwind CSS",
+            "Vite",
+            "GraphQL"
+        ],
+        "github": "https://github.com/Abderrahmanlahmidi/DevNest",
+        "live": "#",
+        "images": [
+            "/src/assets/images/projects/devnest/1.jpg",
+            "/src/assets/images/projects/devnest/2.jpg",
+            "/src/assets/images/projects/devnest/3.jpg",
+            "/src/assets/images/projects/devnest/4.jpg",
+            "/src/assets/images/projects/devnest/5.jpg",
+            "/src/assets/images/projects/devnest/6.jpg",
+            "/src/assets/images/projects/devnest/7.jpg",
+            "/src/assets/images/projects/devnest/8.jpg"
+        ],
+        "featured": true
+    }
+]

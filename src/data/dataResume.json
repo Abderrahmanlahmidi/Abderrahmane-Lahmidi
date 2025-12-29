@@ -2,12 +2,12 @@
   "personalInfo": {
     "name": "LAHMIDI ABDERRAHMANE",
     "title": "Développeur Full-Stack",
-    "profileImage": "../../src/assets/images/abderrahmane.jpeg", 
+    "profileImage": "../../src/assets/images/abderrahmane.jpeg",
     "contact": [
       {
         "icon": "phone",
         "value": "0639311730"
-      }, 
+      },
       {
         "icon": "email",
         "value": "dvabderrahmane@gmail.com"
@@ -58,9 +58,19 @@
       "link": "https://github.com/Abderrahmanlahmidi/Ultimate Team"
     },
     {
-      "name": "RENTEASY - Rental Management",
-      "technologies": "HTML, CSS, ReactJS, Laravel",
-      "link": "https://github.com/Abderrahmanlahmidi/RentEase"
+      "name": "ClinicFlow - Modern Healthcare Platform",
+      "technologies": "React, Express, MongoDB, Tailwind CSS",
+      "link": "https://github.com/Abderrahmanlahmidi/ClinicFlow"
+    },
+    {
+      "name": "Logix - Enterprise Fleet Management",
+      "technologies": "React, Node.js, PostgreSQL, Tailwind CSS",
+      "link": "https://github.com/Abderrahmanlahmidi/Logix"
+    },
+    {
+      "name": "DevNest - Developer Ecosystem",
+      "technologies": "React, Framer Motion, Tailwind CSS, Vite",
+      "link": "https://github.com/Abderrahmanlahmidi/DevNest"
     }
   ],
   "education": [

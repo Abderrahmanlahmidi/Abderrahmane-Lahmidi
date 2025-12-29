@@ -1,112 +1,138 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { FiCode, FiCpu, FiDatabase, FiLayers, FiChevronLeft, FiChevronRight, FiStar, FiAward, FiZap } from 'react-icons/fi';
+import { 
+  ChevronLeft, 
+  ChevronRight,
+  Code2,
+  Server,
+  Database,
+  Box,
+  Palette,
+  TestTube2
+} from 'lucide-react';
+import { 
+  SiReact, 
+  SiTypescript, 
+  SiNextdotjs, 
+  SiTailwindcss, 
+  SiNodedotjs, 
+  SiExpress, 
+  SiPython,
+  SiMongodb,
+  SiPostgresql,
+  SiFirebase,
+  SiGit,
+  SiDocker,
+  SiAmazoncloudwatch,
+  SiFigma,
+  SiJest
+} from 'react-icons/si';
 
 const skillsData = [
   {
     name: "React",
-    level: 90,
+    level: "Expert",
     category: "Frontend",
     description: "Building dynamic and responsive user interfaces with modern React patterns and hooks",
-    icon: <FiCode className="text-xl" />
+    icon: <SiReact className="text-xl text-[#61DAFB]" />
   },
   {
     name: "TypeScript",
-    level: 85,
+    level: "Advanced",
     category: "Frontend",
     description: "Developing type-safe applications with enhanced code quality and better developer experience",
-    icon: <FiCode className="text-xl" />
+    icon: <SiTypescript className="text-xl text-[#3178C6]" />
   },
   {
     name: "Next.js",
-    level: 88,
+    level: "Advanced",
     category: "Frontend",
     description: "Creating server-rendered React applications with optimal performance and SEO",
-    icon: <FiCode className="text-xl" />
+    icon: <SiNextdotjs className="text-xl text-white" />
   },
   {
     name: "Tailwind CSS",
-    level: 95,
+    level: "Expert",
     category: "Frontend",
     description: "Building modern, responsive layouts with utility-first CSS framework",
-    icon: <FiCode className="text-xl" />
+    icon: <SiTailwindcss className="text-xl text-[#06B6D4]" />
   },
   {
     name: "Node.js",
-    level: 88,
+    level: "Advanced",
     category: "Backend",
     description: "Developing scalable server-side applications and RESTful APIs",
-    icon: <FiCpu className="text-xl" />
+    icon: <SiNodedotjs className="text-xl text-[#339933]" />
   },
   {
     name: "Express",
-    level: 85,
+    level: "Advanced",
     category: "Backend",
     description: "Building robust web applications and APIs with minimal and flexible Node.js framework",
-    icon: <FiCpu className="text-xl" />
+    icon: <SiExpress className="text-xl text-white" />
   },
   {
     name: "Python",
-    level: 82,
+    level: "Intermediate",
     category: "Backend",
     description: "Writing efficient backend services and automation scripts",
-    icon: <FiCpu className="text-xl" />
+    icon: <SiPython className="text-xl text-[#3776AB]" />
   },
   {
     name: "MongoDB",
-    level: 85,
+    level: "Advanced",
     category: "Database",
     description: "Designing and managing NoSQL databases with flexible document models",
-    icon: <FiDatabase className="text-xl" />
+    icon: <SiMongodb className="text-xl text-[#47A248]" />
   },
   {
     name: "PostgreSQL",
-    level: 80,
+    level: "Intermediate",
     category: "Database",
     description: "Working with relational databases and complex SQL queries",
-    icon: <FiDatabase className="text-xl" />
+    icon: <SiPostgresql className="text-xl text-[#336791]" />
   },
   {
     name: "Firebase",
-    level: 82,
+    level: "Intermediate",
     category: "Database",
     description: "Implementing real-time databases and authentication services",
-    icon: <FiDatabase className="text-xl" />
+    icon: <SiFirebase className="text-xl text-[#FFCA28]" />
   },
   {
     name: "Git",
-    level: 92,
+    level: "Expert",
     category: "Tools",
     description: "Version control and collaborative development workflows",
-    icon: <FiLayers className="text-xl" />
+    icon: <SiGit className="text-xl text-[#F05032]" />
   },
   {
     name: "Docker",
-    level: 75,
+    level: "Intermediate",
     category: "Tools",
     description: "Containerizing applications for consistent development and deployment",
-    icon: <FiLayers className="text-xl" />
+    icon: <SiDocker className="text-xl text-[#2496ED]" />
   },
   {
     name: "AWS",
-    level: 70,
+    level: "Beginner",
     category: "Tools",
     description: "Deploying and managing cloud infrastructure and services",
-    icon: <FiLayers className="text-xl" />
+    icon: <SiAmazoncloudwatch className="text-xl text-[#FF9900]" />
   },
   {
     name: "Figma",
-    level: 85,
+    level: "Advanced",
     category: "Design",
     description: "Creating and collaborating on UI/UX designs and prototypes",
-    icon: <FiAward className="text-xl" />
+    icon: <SiFigma className="text-xl text-[#F24E1E]" />
   },
   {
     name: "Jest",
-    level: 80,
+    level: "Intermediate",
     category: "Testing",
     description: "Writing comprehensive unit and integration tests",
-    icon: <FiZap className="text-xl" />
+    icon: <SiJest className="text-xl text-[#C21325]" />
   }
 ];
 
@@ -146,17 +172,26 @@ export default function Skills() {
   };
 
   const getSkillLevelColor = (level) => {
-    if (level >= 90) return "from-green-400 to-green-600";
-    if (level >= 80) return "from-blue-400 to-blue-600";
-    if (level >= 70) return "from-yellow-400 to-yellow-600";
-    return "from-red-400 to-red-600";
+    switch(level) {
+      case "Expert": return "bg-green-500/20 text-green-400 border-green-500/30";
+      case "Advanced": return "bg-blue-500/20 text-blue-400 border-blue-500/30";
+      case "Intermediate": return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
+      case "Beginner": return "bg-red-500/20 text-red-400 border-red-500/30";
+      default: return "bg-[#233554] text-[#8892B0] border-[#233554]";
+    }
   };
 
-  const getSkillLevelText = (level) => {
-    if (level >= 90) return "Expert";
-    if (level >= 80) return "Advanced";
-    if (level >= 70) return "Intermediate";
-    return "Beginner";
+  // Get category icon
+  const getCategoryIcon = (category) => {
+    switch(category) {
+      case "Frontend": return <Code2 size={16} />;
+      case "Backend": return <Server size={16} />;
+      case "Database": return <Database size={16} />;
+      case "Tools": return <Box size={16} />;
+      case "Design": return <Palette size={16} />;
+      case "Testing": return <TestTube2 size={16} />;
+      default: return <Code2 size={16} />;
+    }
   };
 
   return (
@@ -195,7 +230,7 @@ export default function Skills() {
             <motion.button
               key={category}
               onClick={() => handleCategoryChange(category)}
-              className={`px-5 py-2.5 rounded-full border text-sm font-medium transition-all ${
+              className={`px-5 py-2.5 rounded-full border text-sm font-medium transition-all flex items-center gap-2 ${
                 currentCategory === category
                   ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
                   : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
@@ -203,6 +238,7 @@ export default function Skills() {
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
+              {getCategoryIcon(category)}
               {category}
             </motion.button>
           ))}
@@ -224,54 +260,38 @@ export default function Skills() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-[#112240]/50 p-6 rounded-lg border border-[#233554] hover:border-[#64FFDA]/30 transition-all group"
+                className="bg-[#112240]/50 p-6 rounded-lg border border-[#233554] hover:border-[#64FFDA]/30 transition-all"
                 whileHover={{ y: -5 }}
               >
                 {/* Skill Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-[#64FFDA]/10 rounded-lg flex items-center justify-center text-[#64FFDA] group-hover:bg-[#64FFDA] group-hover:text-[#0A192F] transition-all">
+                    <div className="w-12 h-12 bg-[#64FFDA]/10 rounded-lg flex items-center justify-center">
                       {skill.icon}
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-[#E6F1FF] group-hover:text-[#64FFDA] transition-colors">
+                      <h3 className="text-lg font-semibold text-[#E6F1FF]">
                         {skill.name}
                       </h3>
-                      <span className="text-xs text-[#64FFDA] bg-[#64FFDA]/10 px-2 py-1 rounded-full">
-                        {skill.category}
-                      </span>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-xs text-[#8892B0] bg-[#233554] px-2 py-1 rounded-full flex items-center gap-1">
+                          {getCategoryIcon(skill.category)}
+                          {skill.category}
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-[#64FFDA] font-bold text-lg">
-                      {skill.level}%
-                    </div>
-                    <div className="text-xs text-[#8892B0]">
-                      {getSkillLevelText(skill.level)}
+                    <div className={`text-sm font-bold px-3 py-1 rounded-full border ${getSkillLevelColor(skill.level)}`}>
+                      {skill.level}
                     </div>
                   </div>
                 </div>
 
                 {/* Skill Description */}
-                <p className="text-[#8892B0] text-sm mb-4 leading-relaxed">
+                <p className="text-[#8892B0] text-sm leading-relaxed">
                   {skill.description}
                 </p>
-
-                {/* Animated Progress Bar */}
-                <div className="space-y-2">
-                  <div className="flex justify-between text-xs text-[#8892B0]">
-                    <span>Proficiency</span>
-                    <span>{skill.level}%</span>
-                  </div>
-                  <div className="w-full bg-[#233554] rounded-full h-2.5 overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${skill.level}%` }}
-                      transition={{ duration: 1.5, delay: index * 0.1 + 0.3, ease: "easeOut" }}
-                      className={`h-full rounded-full bg-gradient-to-r ${getSkillLevelColor(skill.level)}`}
-                    />
-                  </div>
-                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -301,7 +321,7 @@ export default function Skills() {
                 }`}
                 whileHover={{ x: currentPage === 1 ? 0 : -2 }}
               >
-                <FiChevronLeft size={16} />
+                <ChevronLeft size={16} />
                 Prev
               </motion.button>
 
@@ -332,7 +352,7 @@ export default function Skills() {
                 whileHover={{ x: currentPage === totalPages ? 0 : 2 }}
               >
                 Next
-                <FiChevronRight size={16} />
+                <ChevronRight size={16} />
               </motion.button>
             </div>
           </motion.div>
