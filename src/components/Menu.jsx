@@ -9,7 +9,7 @@ const navItems = [
   { name: 'Certificates', path: '#certificates', number: '04.' },
   { name: 'Experiences', path: '#experiences', number: '05.' },
   { name: 'Projects', path: '#projects', number: '06.' },
-  { name: 'Contact', path: '#contact', number: '07.' },
+  // { name: 'Contact', path: '#contact', number: '07.' },
 ];
 
 export default function Menu() {

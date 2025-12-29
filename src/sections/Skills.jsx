@@ -415,7 +415,7 @@ export default function Skills() {
               <motion.button
                 onClick={nextPage}
                 disabled={currentPage === totalPages}
-                className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg border transition-all text-sm ${
+                className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm ${
                   currentPage === totalPages
                     ? "border-[#233554] text-[#8892B0] cursor-not-allowed"
                     : "border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10"

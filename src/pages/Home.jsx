@@ -18,6 +18,7 @@ export default function Home() {
       <Certificates/>
       <Experiences/>
       <Projects/>
+      {/* <Contact/> */}
       <Footer/>
     </div>
   )
