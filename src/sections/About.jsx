@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { FiChevronRight } from "react-icons/fi";
 import profile from "../../src/assets/images/abderrahmane.jpeg";
+import { useTranslation } from 'react-i18next';
 
 export default function About() {
+  const { t } = useTranslation();
   return (
     <section
       id="about"
@@ -20,28 +22,20 @@ export default function About() {
           <div className="order-2 md:order-1">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 flex items-center">
               <span className="text-[#64FFDA] mr-4">02.</span>
-              About Me
+              {t('about.title')}
               <span className="hidden md:block h-px bg-[#233554] flex-grow ml-6"></span>
             </h2>
 
             <p className="text-[#8892B0] mb-4">
-              Hello! I'm Abderrahmane, a front-end developer passionate about
-              creating exceptional digital experiences. My journey in web
-              development began in 2022 when I built my first website — and I've
-              been hooked ever since.
+              {t('about.p1')}
             </p>
 
             <p className="text-[#8892B0] mb-4">
-              I specialize in building responsive, accessible, and performant
-              web applications using modern technologies. My focus is on
-              creating intuitive interfaces that solve real problems while
-              providing delightful user experiences.
+              {t('about.p2')}
             </p>
 
             <p className="text-[#8892B0] mb-8">
-              When I'm not coding, you can find me exploring new technologies,
-              contributing to open-source projects, or enjoying outdoor
-              activities to recharge my creative energy.
+              {t('about.p3')}
             </p>
 
             <div className="grid grid-cols-2 gap-3 sm:gap-4">

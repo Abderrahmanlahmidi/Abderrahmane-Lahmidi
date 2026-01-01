@@ -1,76 +1,53 @@
 import { motion } from 'framer-motion';
 import { FiBriefcase, FiAward } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
 
 const experiences = [
 
   {
     type: "experience",
-    role: "Full Stack Developer Intern",
-    company: "Jaag Advisory",
+    key: "intern_fullstack",
     period: "May 15, 2025 - July 15, 2025",
-    responsibilities: [
-      "Worked on a financial website project using Django and React",
-      "Built dynamic components and API integrations",
-      "Collaborated with backend team to ensure smooth deployment"
-    ],
+    responsibilitiesCount: 3,
     awards: []
   },
   {
     type: "experience",
-    role: "Student Developer",
-    company: "YouCode (Training Program)",
+    key: "student",
     period: "September 2024 - Present",
-    responsibilities: [
-      "Completed first year of training focusing on React, Laravel, UML, GitHub and modern web technologies",
-      "Participated in real-world projects and peer reviews",
-      "Currently continuing second year of full-stack development program"
-    ],
+    responsibilitiesCount: 3,
     awards: []
   },
   {
     type: "experience",
-    role: "Frontend Developer Intern",
-    company: "Centoria Services",
+    key: "intern_frontend",
     period: "August 7, 2023 - October 2023",
-    responsibilities: [
-      "Built UI components with HTML, CSS, and JavaScript",
-      "Worked on three projects: two for French clients and one in Morocco",
-      "Gained experience in real-world front-end development in a corporate setting"
-    ],
+    responsibilitiesCount: 3,
     awards: []
   },
 
   {
     type: "experience",
-    role: "Licensed en Économie",
-    company: "Morocco",
+    key: "economics",
     period: "2024",
-    responsibilities: [
-      "Studied core economic principles including microeconomics and macroeconomics",
-      "Developed analytical skills through case studies and projects",
-      "Learned financial management and data interpretation techniques"
-    ],
+    responsibilitiesCount: 3,
     awards: []
   },
   {
     type: "experience",
-    role: "Baccalauréat SVT",
-    company: "Morocco",
+    key: "bac",
     period: "2019",
-    responsibilities: [
-      "Acquired solid knowledge in biology, chemistry, and earth sciences",
-      "Developed critical thinking and problem-solving skills",
-      "Completed practical laboratory projects and experiments"
-    ],
+    responsibilitiesCount: 3,
     awards: []
   }
 ];
 
 
 export default function Experiences() {
+  const { t } = useTranslation();
   return (
-    <section 
-      id="experiences" 
+    <section
+      id="experiences"
       className="min-h-[calc(100vh-5rem)] bg-[#0A192F] text-[#E6F1FF] flex items-center py-16 md:py-20"
       style={{ scrollMarginTop: '5rem' }}
     >
@@ -84,11 +61,11 @@ export default function Experiences() {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center">
             <span className="text-[#64FFDA] mr-4">05.</span>
-            Professional Journey
+            {t('experience.title')}
             <span className="hidden md:block h-px bg-[#233554] flex-grow ml-6 max-w-xs"></span>
           </h2>
           <p className="text-[#8892B0] max-w-2xl">
-            My career path and the valuable experiences I've gained along the way.
+            {t('experience.description')}
           </p>
         </motion.div>
 
@@ -117,20 +94,20 @@ export default function Experiences() {
                   <div className="flex items-center gap-4 mb-4">
                     <FiBriefcase className="hidden md:block text-2xl text-[#64FFDA]" />
                     <div>
-                      <h3 className="text-lg md:text-xl font-semibold text-[#E6F1FF]">{exp.role}</h3>
-                      <p className="text-sm md:text-base text-[#64FFDA]">{exp.company} • {exp.period}</p>
+                      <h3 className="text-lg md:text-xl font-semibold text-[#E6F1FF]">{t(`experience.items.${exp.key}.role`)}</h3>
+                      <p className="text-sm md:text-base text-[#64FFDA]">{t(`experience.items.${exp.key}.company`)} • {exp.period}</p>
                     </div>
                   </div>
 
                   <ul className="space-y-2 md:space-y-3 mb-4 md:mb-6">
-                    {exp.responsibilities.map((item, i) => (
-                      <motion.li 
+                    {Array.from({ length: exp.responsibilitiesCount }).map((_, i) => (
+                      <motion.li
                         key={i}
                         className="flex items-start"
                         whileHover={{ x: 5 }}
                       >
                         <span className="text-[#64FFDA] mr-2 mt-1 text-xs md:text-sm">▹</span>
-                        <span className="text-sm md:text-base text-[#8892B0]">{item}</span>
+                        <span className="text-sm md:text-base text-[#8892B0]">{t(`experience.items.${exp.key}.r${i + 1}`)}</span>
                       </motion.li>
                     ))}
                   </ul>
@@ -139,7 +116,7 @@ export default function Experiences() {
                     <div className="pt-3 md:pt-4 border-t border-[#233554]">
                       <div className="flex items-center gap-2 text-[#64FFDA] mb-2 md:mb-3">
                         <FiAward className="text-sm md:text-base" />
-                        <span className="font-medium text-sm md:text-base">Achievements</span>
+                        <span className="font-medium text-sm md:text-base">{t('experience.achievements')}</span>
                       </div>
                       <ul className="space-y-1 md:space-y-2">
                         {exp.awards.map((award, i) => (

@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiExternalLink, FiX, FiChevronLeft, FiChevronRight, FiEye } from 'react-icons/fi';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import figmaCert from '../../src/assets/images/Certificates/FIGMA CF-1.png';
 import gitCert from '../../src/assets/images/Certificates/GIT-GITHUB CF-1.png';
@@ -14,55 +15,55 @@ import ReactCert from '../../src/assets/images/Certificates/REACT BASICS CF-1.pn
 
 const certificates = [
   {
-    title: "Figma Certification",
+    titleKey: "figma",
     issuer: "Google",
     date: "January 31, 2024",
     skills: ["Figma", "UI/UX"],
     link: "https://www.coursera.org/account/accomplishments/verify/FERKX3V4GYBG",
-    image: figmaCert 
+    image: figmaCert
   },
   {
-    title: "Introduction to Git and GitHub",
+    titleKey: "git",
     issuer: "Google",
     date: "December 19, 2023",
     skills: ["GitHub", "Version Control"],
     link: "https://www.coursera.org/account/accomplishments/verify/B36TMBB3PRQQ",
-    image: gitCert 
+    image: gitCert
   },
   {
-    title: "HTML and CSS in depth",
+    titleKey: "html_css",
     issuer: "Meta",
     date: "October 22, 2023",
     skills: ["HTML", "CSS"],
     link: "https://www.coursera.org/account/accomplishments/verify/K4YVL7DVV4XS",
-    image: htmlCssCert 
+    image: htmlCssCert
   },
   {
-    title: "Programming with JavaScript",
+    titleKey: "js",
     issuer: "Meta",
     date: "November 30, 2023",
     skills: ["JavaScript"],
     link: "https://www.coursera.org/account/accomplishments/verify/WU46BRYN7LGX",
-    image: JavascriptCert 
+    image: JavascriptCert
   },
   {
-    title: "Linux Commands and Shell",
+    titleKey: "linux",
     issuer: "IBM",
     date: "November 5, 2023",
     skills: ["Linux", "Shell"],
     link: "https://www.coursera.org/account/accomplishments/verify/FY87C4XJMK4S",
-    image: LinuxCert 
+    image: LinuxCert
   },
   {
-    title: "Introduction to MongoDB",
+    titleKey: "mongodb",
     issuer: "Mongo DB",
     date: "January 7, 2024",
     skills: ["Mongodb", "Databases"],
     link: "https://www.coursera.org/account/accomplishments/verify/736TFXHTBXN6",
-    image: MongoDbCert 
+    image: MongoDbCert
   },
   {
-    title: "Learn Typescript",
+    titleKey: "typescript",
     issuer: "SCRIMBA",
     date: "December 21, 2023",
     skills: ["Typescript", "JavaScript"],
@@ -70,32 +71,33 @@ const certificates = [
     image: TypescriptCert
   },
   {
-    title: "Foundations of User Experience",
+    titleKey: "ux_foundations",
     issuer: "Google",
     date: "November 4, 2023",
     skills: ["UI/UX"],
     link: "https://www.coursera.org/account/accomplishments/verify/EVLPBZTXC3KN",
-    image: UXCert 
+    image: UXCert
   },
   {
-    title: "Wireframes and L-F Prototypes",
+    titleKey: "wireframes",
     issuer: "Google",
     date: "January 18, 2024",
     skills: ["UI/UX"],
     link: "https://www.coursera.org/account/accomplishments/verify/46LULZ39VQYT",
-    image: UXCert 
+    image: UXCert
   },
   {
-    title: "React Basics",
+    titleKey: "react",
     issuer: "Meta",
     date: "January 10, 2024",
     skills: ["React", "Javascript"],
     link: "https://www.coursera.org/account/accomplishments/verify/5G4N28EJV2RV",
-    image: ReactCert 
+    image: ReactCert
   }
-];  
+];
 
 export default function Certificates() {
+  const { t } = useTranslation();
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -115,7 +117,7 @@ export default function Certificates() {
 
     updateCertificatesPerPage();
     window.addEventListener('resize', updateCertificatesPerPage);
-    
+
     return () => window.removeEventListener('resize', updateCertificatesPerPage);
   }, []);
 
@@ -150,7 +152,7 @@ export default function Certificates() {
   const getVisiblePages = () => {
     const visiblePages = [];
     const maxVisiblePages = window.innerWidth < 640 ? 3 : 5;
-    
+
     if (totalPages <= maxVisiblePages) {
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
@@ -172,8 +174,8 @@ export default function Certificates() {
   const visiblePages = getVisiblePages();
 
   return (
-    <section 
-      id="certificates" 
+    <section
+      id="certificates"
       className="min-h-[calc(100vh-5rem)] bg-[#0A192F] text-[#E6F1FF] flex items-center py-16 md:py-20"
       style={{ scrollMarginTop: '5rem' }}
     >
@@ -187,11 +189,11 @@ export default function Certificates() {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center">
             <span className="text-[#64FFDA] mr-4">04.</span>
-            Certifications
+            {t('certificates.title')}
             <span className="hidden md:block h-px bg-[#233554] flex-grow ml-6 max-w-xs"></span>
           </h2>
           <p className="text-[#8892B0] max-w-2xl">
-            My professional certifications that validate my technical expertise.
+            {t('certificates.description')}
           </p>
         </motion.div>
 
@@ -209,9 +211,9 @@ export default function Certificates() {
             >
               <div className="h-[200px] bg-[#233554] overflow-hidden relative">
                 {cert.image ? (
-                  <motion.img 
+                  <motion.img
                     src={cert.image.src || cert.image}
-                    alt={cert.title}
+                    alt={t(`certificates.items.${cert.titleKey}`)}
                     className="w-full h-full object-contain transition-transform duration-500 p-6"
                     initial={{ opacity: 0.9 }}
                     whileHover={{ opacity: 1 }}
@@ -221,13 +223,13 @@ export default function Certificates() {
                     Certificate Image
                   </div>
                 )}
-                
+
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] to-transparent opacity-80"></div>
               </div>
 
               <div className="p-6">
                 <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-semibold text-[#E6F1FF]">{cert.title}</h3>
+                  <h3 className="text-xl font-semibold text-[#E6F1FF]">{t(`certificates.items.${cert.titleKey}`)}</h3>
                   <div className="flex gap-2">
                     {/* View Certificate Button */}
                     <motion.button
@@ -235,18 +237,18 @@ export default function Certificates() {
                       className="text-[#64FFDA] hover:text-[#64FFDA]/80 transition-colors p-1"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
-                      aria-label={`View ${cert.title} certificate`}
+                      aria-label={`${t('certificates.view')} ${t(`certificates.items.${cert.titleKey}`)}`}
                     >
                       <FiEye size={18} />
                     </motion.button>
-                    
+
                     {/* External Link Button */}
-                    <a 
-                      href={cert.link} 
-                      target="_blank" 
+                    <a
+                      href={cert.link}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#64FFDA] hover:text-[#64FFDA]/80 transition-colors p-1"
-                      aria-label={`Verify ${cert.title} certificate`}
+                      aria-label={`${t('certificates.verify')} ${t(`certificates.items.${cert.titleKey}`)}`}
                     >
                       <FiExternalLink size={18} />
                     </a>
@@ -292,15 +294,14 @@ export default function Certificates() {
             <button
               onClick={prevPage}
               disabled={currentPage === 1}
-              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${
-                currentPage === 1
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${currentPage === 1
                   ? 'border-[#233554] text-[#8892B0] cursor-not-allowed'
                   : 'border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10'
-              }`}
+                }`}
             >
               <FiChevronLeft size={16} />
-              <span className="hidden sm:inline">Previous</span>
-              <span className="sm:hidden">Prev</span>
+              <span className="hidden sm:inline">{t('certificates.prev')}</span>
+              <span className="sm:hidden">{t('certificates.prev')}</span>
             </button>
 
             {/* Page Numbers */}
@@ -310,11 +311,10 @@ export default function Certificates() {
                 <>
                   <button
                     onClick={() => goToPage(1)}
-                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${
-                      currentPage === 1
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${currentPage === 1
                         ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
                         : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
-                    }`}
+                      }`}
                   >
                     1
                   </button>
@@ -331,11 +331,10 @@ export default function Certificates() {
                 <button
                   key={page}
                   onClick={() => goToPage(page)}
-                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${
-                    currentPage === page
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${currentPage === page
                       ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
                       : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
-                  }`}
+                    }`}
                 >
                   {page}
                 </button>
@@ -351,11 +350,10 @@ export default function Certificates() {
                   )}
                   <button
                     onClick={() => goToPage(totalPages)}
-                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${
-                      currentPage === totalPages
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${currentPage === totalPages
                         ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
                         : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
-                    }`}
+                      }`}
                   >
                     {totalPages}
                   </button>
@@ -367,14 +365,13 @@ export default function Certificates() {
             <button
               onClick={nextPage}
               disabled={currentPage === totalPages}
-              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${
-                currentPage === totalPages
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${currentPage === totalPages
                   ? 'border-[#233554] text-[#8892B0] cursor-not-allowed'
                   : 'border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10'
-              }`}
+                }`}
             >
-              <span className="hidden sm:inline">Next</span>
-              <span className="sm:hidden">Next</span>
+              <span className="hidden sm:inline">{t('certificates.next')}</span>
+              <span className="sm:hidden">{t('certificates.next')}</span>
               <FiChevronRight size={16} />
             </button>
           </motion.div>
@@ -390,63 +387,63 @@ export default function Certificates() {
             className="text-center mt-4"
           >
             <p className="text-[#8892B0] text-sm">
-              Page {currentPage} of {totalPages} • Showing {currentCertificates.length} of {certificates.length} certificates
+              {t('certificates.page')} {currentPage} {t('certificates.of')} {totalPages} • {t('certificates.showing')} {currentCertificates.length} {t('certificates.of')} {certificates.length} certificates
             </p>
           </motion.div>
         )}
 
         {/* Certificate Overlay */}
-<AnimatePresence>
-  {selectedCertificate && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isOverlayOpen ? 1 : 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="fixed inset-0 bg-[#0A192F]/95 z-50 flex items-center justify-center p-4"
-      onClick={handleCertificateClose}
-    >
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ 
-          scale: isOverlayOpen ? 1 : 0.9,
-          opacity: isOverlayOpen ? 1 : 0
-        }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="relative max-w-4xl w-full"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close button at top-right */}
-        <button
-          onClick={handleCertificateClose}
-          className="absolute -top-10 right-0 text-[#64FFDA] hover:text-white transition-colors p-2 z-10"
-          aria-label="Close certificate view"
-        >
-          <FiX size={24} />
-        </button>
-        
-        {/* Certificate image with reduced size and no background */}
-        <div className="rounded-lg overflow-hidden shadow-2xl flex items-center justify-center">
-          <img 
-            src={selectedCertificate.image.src || selectedCertificate.image}
-            alt={selectedCertificate.title}
-            className="w-auto h-auto max-w-[75%] max-h-[70vh] object-contain"
-          />
-        </div>
-        
-        <div className="mt-4 text-center">
-          <h3 className="text-xl font-semibold text-white mb-2">
-            {selectedCertificate.title}
-          </h3>
-          <p className="text-[#8892B0]">
-            Issued by {selectedCertificate.issuer} • {selectedCertificate.date}
-          </p>
-        </div>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+        <AnimatePresence>
+          {selectedCertificate && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isOverlayOpen ? 1 : 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-[#0A192F]/95 z-50 flex items-center justify-center p-4"
+              onClick={handleCertificateClose}
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{
+                  scale: isOverlayOpen ? 1 : 0.9,
+                  opacity: isOverlayOpen ? 1 : 0
+                }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="relative max-w-4xl w-full"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close button at top-right */}
+                <button
+                  onClick={handleCertificateClose}
+                  className="absolute -top-10 right-0 text-[#64FFDA] hover:text-white transition-colors p-2 z-10"
+                  aria-label="Close certificate view"
+                >
+                  <FiX size={24} />
+                </button>
+
+                {/* Certificate image with reduced size and no background */}
+                <div className="rounded-lg overflow-hidden shadow-2xl flex items-center justify-center">
+                  <img
+                    src={selectedCertificate.image.src || selectedCertificate.image}
+                    alt={t(`certificates.items.${selectedCertificate.titleKey}`)}
+                    className="w-auto h-auto max-w-[75%] max-h-[70vh] object-contain"
+                  />
+                </div>
+
+                <div className="mt-4 text-center">
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    {t(`certificates.items.${selectedCertificate.titleKey}`)}
+                  </h3>
+                  <p className="text-[#8892B0]">
+                    {t('certificates.issued_by')} {selectedCertificate.issuer} • {selectedCertificate.date}
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

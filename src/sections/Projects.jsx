@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Github, Image as ImageIcon, X, ChevronLeft, ChevronRight, CheckCircle, Zap, Clock, Circle } from 'lucide-react';
 import clinicflowimage1 from "../../src/assets/images/projects/clinicflow/1.jpg";
 import clinicflowimage2 from "../../src/assets/images/projects/clinicflow/2.jpg";
@@ -39,116 +40,114 @@ import devnest6 from "../../src/assets/images/projects/devnest/6.jpg";
 import devnest7 from "../../src/assets/images/projects/devnest/7.jpg";
 
 const projects = [
-    {
-        "title": "ClinicFlow",
-        "description": "Modern Healthcare Platform. Smart Health Management Made Simple. Book appointments, track your wellness, and stay in control of your medical life—all in one simple, secure, and elegant platform.",
-        "technologies": [
-            "React",
-            "Express",
-            "MongoDB",
-            "Tailwind CSS"
-        ],
-        "github": "https://github.com/Abderrahmanlahmidi/ClinicFlow",
-        "live": "#",
-        "status": "in-progress",
-        "images": [
-           clinicflowimage1,
-           clinicflowimage2,
-           clinicflowimage3,
-           clinicflowimage4,
-           clinicflowimage5,
-           clinicflowimage6,
-           clinicflowimage7,
-           clinicflowimage8,
-           clinicflowimage9,
-           clinicflowimage10,
-           clinicflowimage11,
-           clinicflowimage12,
-           clinicflowimage13
-        ],
-        "featured": true
-    },
-    {
-        "title": "Logix",
-        "description": "Streamline Your Truck Fleet Operations. Logix provides comprehensive tracking, fuel management, and maintenance solutions for modern truck fleets. Optimize efficiency, reduce costs, and enhance safety with our all-in-one platform.",
-        "technologies": [
-            "React",
-            "Node.js",
-            "MongoDB",
-            "Tailwind CSS"
-        ],
-        "github": "https://github.com/Abderrahmanlahmidi/Logix",
-        "live": "#",
-        "status": "completed",
-        "images": [
-           logiximage1,
-           logiximage2,
-           logiximage3,
-           logiximage4,
-           logiximage5,
-           logiximage6,
-           logiximage7,
-           logiximage8,
-           logiximage9,
-           logiximage10,
-           logiximage11,
-           logiximage12,
-           logiximage13,
-           logiximage14   
-        ],
-        "featured": true
-    },
-    {
-        "title": "DevNest",
-        "description": "A developer ecosystem and personal portfolio platform. Showcase your work with a modern, high-performance interface designed for the next generation of web developers.",
-        "technologies": [
-            "React",
-            "Framer Motion",
-            "Tailwind CSS",
-            "Vite",
-            "GraphQL"
-        ],
-        "github": "https://github.com/Abderrahmanlahmidi/DevNest",
-        "live": "#",
-        "status": "completed",
-        "images": [
-          devnest1,
-          devnest2,
-          devnest3,
-          devnest4,
-          devnest5,
-          devnest6,
-          devnest7,
-        ],
-        "featured": true
-    }
+  {
+    "key": "clinicflow",
+    "technologies": [
+      "React",
+      "Express",
+      "MongoDB",
+      "Tailwind CSS"
+    ],
+    "github": "https://github.com/Abderrahmanlahmidi/ClinicFlow",
+    "live": "#",
+    "status": "in-progress",
+    "images": [
+      clinicflowimage1,
+      clinicflowimage2,
+      clinicflowimage3,
+      clinicflowimage4,
+      clinicflowimage5,
+      clinicflowimage6,
+      clinicflowimage7,
+      clinicflowimage8,
+      clinicflowimage9,
+      clinicflowimage10,
+      clinicflowimage11,
+      clinicflowimage12,
+      clinicflowimage13
+    ],
+    "featured": true
+  },
+  {
+    "key": "logix",
+    "technologies": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Tailwind CSS"
+    ],
+    "github": "https://github.com/Abderrahmanlahmidi/Logix",
+    "live": "#",
+    "status": "completed",
+    "images": [
+      logiximage1,
+      logiximage2,
+      logiximage3,
+      logiximage4,
+      logiximage5,
+      logiximage6,
+      logiximage7,
+      logiximage8,
+      logiximage9,
+      logiximage10,
+      logiximage11,
+      logiximage12,
+      logiximage13,
+      logiximage14
+    ],
+    "featured": true
+  },
+  {
+    "key": "devnest",
+    "technologies": [
+      "React",
+      "Framer Motion",
+      "Tailwind CSS",
+      "Vite",
+      "GraphQL"
+    ],
+    "github": "https://github.com/Abderrahmanlahmidi/DevNest",
+    "live": "#",
+    "status": "completed",
+    "images": [
+      devnest1,
+      devnest2,
+      devnest3,
+      devnest4,
+      devnest5,
+      devnest6,
+      devnest7,
+    ],
+    "featured": true
+  }
 ];
 
 // Status badge configuration
 const statusConfig = {
-    "completed": {
-        icon: <CheckCircle size={14} />,
-        color: "bg-green-500/20 text-green-400 border-green-500/30",
-        label: "Completed"
-    },
-    "in-progress": {
-        icon: <Zap size={14} />,
-        color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
-        label: "In Progress"
-    },
-    "planned": {
-        icon: <Clock size={14} />,
-        color: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-        label: "Planned"
-    },
-    "on-hold": {
-        icon: <Circle size={14} />,
-        color: "bg-gray-500/20 text-gray-400 border-gray-500/30",
-        label: "On Hold"
-    }
+  "completed": {
+    icon: <CheckCircle size={14} />,
+    color: "bg-green-500/20 text-green-400 border-green-500/30",
+    labelKey: "completed"
+  },
+  "in-progress": {
+    icon: <Zap size={14} />,
+    color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+    labelKey: "in_progress"
+  },
+  "planned": {
+    icon: <Clock size={14} />,
+    color: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+    labelKey: "planned"
+  },
+  "on-hold": {
+    icon: <Circle size={14} />,
+    color: "bg-gray-500/20 text-gray-400 border-gray-500/30",
+    labelKey: "on_hold"
+  }
 };
 
 export default function Projects() {
+  const { t } = useTranslation();
   const [selectedImages, setSelectedImages] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -248,11 +247,11 @@ export default function Projects() {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center">
             <span className="text-[#64FFDA] mr-4">06.</span>
-            Projects
+            {t('projects.title')}
             <span className="hidden md:block h-px bg-[#233554] flex-grow ml-6 max-w-xs"></span>
           </h2>
           <p className="text-[#8892B0] max-w-2xl">
-            Here are some of my notable projects that showcase my skills and problem-solving approach.
+            {t('projects.description')}
           </p>
         </motion.div>
 
@@ -260,7 +259,7 @@ export default function Projects() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {currentProjects.map((project, index) => {
             const status = statusConfig[project.status] || statusConfig.completed;
-            
+
             return (
               <motion.div
                 key={startIndex + index}
@@ -276,11 +275,11 @@ export default function Projects() {
                   <div className="relative h-48 overflow-hidden">
                     <img
                       src={project.images[0]}
-                      alt={`${project.title} screenshot`}
+                      alt={`${t(`projects.items.${project.key}.title`)} screenshot`}
                       className="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
                       onClick={() => handleImageOpen(project.images, 0)}
                     />
-                    
+
                     {/* Gallery Button (only show if multiple images) */}
                     {project.images.length > 1 && (
                       <button
@@ -297,7 +296,7 @@ export default function Projects() {
                 <div className="p-6">
                   {/* Header with Title and GitHub */}
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-[#E6F1FF]">{project.title}</h3>
+                    <h3 className="text-xl font-semibold text-[#E6F1FF]">{t(`projects.items.${project.key}.title`)}</h3>
                     {/* GitHub Button in header */}
                     {project.github && (
                       <a
@@ -305,7 +304,7 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#64FFDA] hover:text-[#64FFDA]/80 transition-colors p-1"
-                        aria-label={`${project.title} GitHub repository`}
+                        aria-label={`${t(`projects.items.${project.key}.title`)} GitHub repository`}
                       >
                         <Github size={20} />
                       </a>
@@ -315,10 +314,10 @@ export default function Projects() {
                   {/* Status Badge - Where GitHub icon was previously */}
                   <div className={`mb-4 inline-flex items-center gap-1 px-3 py-1 rounded-full border text-xs font-medium ${status.color}`}>
                     {status.icon}
-                    <span>{status.label}</span>
+                    <span>{t(`projects.status.${status.labelKey}`)}</span>
                   </div>
 
-                  <p className="text-[#8892B0] mb-6 text-sm sm:text-base">{project.description}</p>
+                  <p className="text-[#8892B0] mb-6 text-sm sm:text-base">{t(`projects.items.${project.key}.desc`)}</p>
 
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, i) => (
@@ -355,13 +354,13 @@ export default function Projects() {
               onClick={prevPage}
               disabled={currentPage === 1}
               className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${currentPage === 1
-                  ? 'border-[#233554] text-[#8892B0] cursor-not-allowed'
-                  : 'border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10'
+                ? 'border-[#233554] text-[#8892B0] cursor-not-allowed'
+                : 'border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10'
                 }`}
             >
               <ChevronLeft size={16} />
-              <span className="hidden sm:inline">Previous</span>
-              <span className="sm:hidden">Prev</span>
+              <span className="hidden sm:inline">{t('projects.pagination.prev')}</span>
+              <span className="sm:hidden">{t('projects.pagination.prev')}</span>
             </button>
 
             {/* Page Numbers */}
@@ -372,8 +371,8 @@ export default function Projects() {
                   <button
                     onClick={() => goToPage(1)}
                     className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${currentPage === 1
-                        ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
-                        : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
+                      ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
+                      : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
                       }`}
                   >
                     1
@@ -392,8 +391,8 @@ export default function Projects() {
                   key={page}
                   onClick={() => goToPage(page)}
                   className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${currentPage === page
-                      ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
-                      : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
+                    ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
+                    : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
                     }`}
                 >
                   {page}
@@ -411,8 +410,8 @@ export default function Projects() {
                   <button
                     onClick={() => goToPage(totalPages)}
                     className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${currentPage === totalPages
-                        ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
-                        : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
+                      ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
+                      : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
                       }`}
                   >
                     {totalPages}
@@ -426,12 +425,12 @@ export default function Projects() {
               onClick={nextPage}
               disabled={currentPage === totalPages}
               className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${currentPage === totalPages
-                  ? 'border-[#233554] text-[#8892B0] cursor-not-allowed'
-                  : 'border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10'
+                ? 'border-[#233554] text-[#8892B0] cursor-not-allowed'
+                : 'border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10'
                 }`}
             >
-              <span className="hidden sm:inline">Next</span>
-              <span className="sm:hidden">Next</span>
+              <span className="hidden sm:inline">{t('projects.pagination.next')}</span>
+              <span className="sm:hidden">{t('projects.pagination.next')}</span>
               <ChevronRight size={16} />
             </button>
           </motion.div>
@@ -447,7 +446,7 @@ export default function Projects() {
             className="text-center mt-4"
           >
             <p className="text-[#8892B0] text-sm">
-              Page {currentPage} of {totalPages} • Showing {currentProjects.length} of {projects.length} projects
+              {t('projects.pagination.page')} {currentPage} {t('projects.pagination.of')} {totalPages} • {t('projects.pagination.showing')} {currentProjects.length} {t('projects.pagination.of')} {projects.length} projects
             </p>
           </motion.div>
         )}
@@ -524,8 +523,8 @@ export default function Projects() {
                           key={index}
                           onClick={() => setCurrentImageIndex(index)}
                           className={`flex-shrink-0 w-16 h-16 rounded overflow-hidden border-2 transition-all ${index === currentImageIndex
-                              ? 'border-[#64FFDA] scale-110'
-                              : 'border-transparent hover:border-[#64FFDA]/50'
+                            ? 'border-[#64FFDA] scale-110'
+                            : 'border-transparent hover:border-[#64FFDA]/50'
                             }`}
                         >
                           <img

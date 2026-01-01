@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowUp } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 const GoToTop = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -31,12 +33,12 @@ const GoToTop = () => {
         <motion.button
           onClick={scrollToTop}
           className="fixed bottom-6 right-6 z-50 cursor-pointer p-3 border-2 border-[#64FFDA] hover:border-white rounded-full shadow-lg transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
-          title="Go to top"
-          aria-label="Scroll to top"
+          title={t('common.scroll_top')}
+          aria-label={t('common.scroll_top')}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
-          whileHover={{ 
+          whileHover={{
             scale: 1.1,
             backgroundColor: 'rgba(100, 255, 218, 0.1)'
           }}

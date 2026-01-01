@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="bg-[#0A192F] text-[#E6F1FF] border-t border-[#233554]">
       <div className="max-w-7xl mx-auto px-6 py-12">
@@ -15,25 +17,25 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <p className="text-[#64FFDA] text-lg mb-2">Abderrahmane Lahmidi</p>
             <p className="text-[#8892B0] text-sm">
-              &copy; {new Date().getFullYear()} All Rights Reserved
+              &copy; {new Date().getFullYear()} {t('footer.rights')}
             </p>
           </div>
 
           <nav className="hidden md:flex gap-6">
             {[
-              "Home",
-              "About",
-              "Skills",
-              "Certificates",
-              "Experiences",
-              "Projects",
+              "home",
+              "about",
+              "skills",
+              "certificates",
+              "experience",
+              "projects",
             ].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-[#CCD6F6] hover:text-[#64FFDA] transition-colors text-sm"
+                className="text-[#CCD6F6] hover:text-[#64FFDA] transition-colors text-sm capitalize"
               >
-                {item}
+                {t(`nav.${item}`)}
               </a>
             ))}
           </nav>
@@ -78,21 +80,21 @@ const Footer = () => {
         >
           <nav className="flex flex-wrap justify-center gap-3 px-4">
             {[
-              "Home",
-              "About",
-              "Skills",
-              "Certificates",
-              "Experiences",
-              "Projects",
+              "home",
+              "about",
+              "skills",
+              "certificates",
+              "experience",
+              "projects",
             ].map((item) => (
               <motion.a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-[#CCD6F6] hover:text-[#64FFDA] transition-colors text-xs sm:text-sm px-2 py-1"
+                className="text-[#CCD6F6] hover:text-[#64FFDA] transition-colors text-xs sm:text-sm px-2 py-1 capitalize"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {item}
+                {t(`nav.${item}`)}
               </motion.a>
             ))}
           </nav>

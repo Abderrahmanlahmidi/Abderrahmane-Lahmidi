@@ -1,8 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiChevronDown, FiGithub, FiLinkedin, FiDownload, FiCode, FiCpu, FiDatabase } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
 
 
 export default function Hero() {
+    const { t } = useTranslation();
     const handleDownloadCV = () => {
         const cvUrl = '../../src/assets/documents/Abderrahmane-Lahmidi.pdf';
         const link = document.createElement('a');
@@ -34,7 +36,7 @@ export default function Hero() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.2, duration: 0.6 }}
                                 >
-                                    Hi, my name is
+                                    {t('hero.intro')}
                                 </motion.p>
 
                                 {/* Name with regular animation */}
@@ -54,7 +56,7 @@ export default function Hero() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.8, duration: 0.6 }}
                                 >
-                                    I build things for the web.
+                                    {t('hero.subtitle')}
                                 </motion.h2>
 
                                 {/* Description */}
@@ -64,10 +66,7 @@ export default function Hero() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 1, duration: 0.6 }}
                                 >
-                                    I'm a passionate front-end developer with a strong background in building modern,
-                                    responsive, and user-friendly web applications using technologies like React, Tailwind CSS,
-                                    and Node. Currently, I'm focused on crafting accessible and high-performance interfaces that
-                                    prioritize user experience.
+                                    {t('hero.description')}
                                 </motion.p>
 
                                 {/* Buttons */}
@@ -86,7 +85,7 @@ export default function Hero() {
                                             whileTap={{ scale: 0.95 }}
                                             transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                                         >
-                                            <span className="relative z-10">View My Work</span>
+                                            <span className="relative z-10">{t('hero.view_work')}</span>
                                             <motion.span
                                                 className="absolute inset-0 bg-[#64FFDA]/10 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"
                                             />
@@ -103,7 +102,7 @@ export default function Hero() {
                                             transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                                         >
                                             <FiDownload className="text-lg" />
-                                            <span className="relative z-10">Download CV</span>
+                                            <span className="relative z-10">{t('hero.download_cv')}</span>
                                             <motion.span
                                                 className="absolute inset-0 bg-white/20 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"
                                             />
@@ -170,7 +169,7 @@ export default function Hero() {
                                             delay: 0.3
                                         }}
                                     >
-                                        Scroll Down
+                                        {t('hero.scroll_down')}
                                     </motion.p>
                                 </motion.div>
                             </div>
@@ -189,7 +188,7 @@ export default function Hero() {
                                             <FiCode className="text-[#64FFDA]" size={18} />
                                         </div>
                                         <div>
-                                            <h4 className="text-white font-medium">Frontend Expert</h4>
+                                            <h4 className="text-white font-medium">{t('hero.frontend_expert')}</h4>
                                             <p className="text-[#8892B0] text-sm">React, TypeScript, Tailwind</p>
                                         </div>
                                     </div>
@@ -202,7 +201,7 @@ export default function Hero() {
                                             <FiCpu className="text-[#64FFDA]" size={18} />
                                         </div>
                                         <div>
-                                            <h4 className="text-white font-medium">Backend Skills</h4>
+                                            <h4 className="text-white font-medium">{t('hero.backend_skills')}</h4>
                                             <p className="text-[#8892B0] text-sm">Node.js, Express, MongoDB</p>
                                         </div>
                                     </div>
@@ -215,7 +214,7 @@ export default function Hero() {
                                             <FiDatabase className="text-[#64FFDA]" size={18} />
                                         </div>
                                         <div>
-                                            <h4 className="text-white font-medium">Database</h4>
+                                            <h4 className="text-white font-medium">{t('hero.database')}</h4>
                                             <p className="text-[#8892B0] text-sm">MongoDB, PostgreSQL</p>
                                         </div>
                                     </div>
@@ -225,7 +224,7 @@ export default function Hero() {
                                 <div className="bg-[#64FFDA]/10 border border-[#64FFDA]/30 rounded-lg p-4">
                                     <div className="flex items-center gap-2">
                                         <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                                        <span className="text-[#64FFDA] text-sm font-medium">Available for work</span>
+                                        <span className="text-[#64FFDA] text-sm font-medium">{t('hero.available')}</span>
                                     </div>
                                 </div>
                             </motion.div>
@@ -261,7 +260,7 @@ export default function Hero() {
                                     delay: 0.3
                                 }}
                             >
-                                Scroll Down
+                                {t('hero.scroll_down')}
                             </motion.p>
                         </motion.div>
                     </div>

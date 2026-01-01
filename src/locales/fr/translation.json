@@ -1,0 +1,174 @@
+{
+    "nav": {
+        "home": "Accueil",
+        "about": "À propos",
+        "skills": "Compétences",
+        "certificates": "Certificats",
+        "experience": "Expérience",
+        "projects": "Projets",
+        "contact": "Contact"
+    },
+    "hero": {
+        "intro": "Salut, je m'appelle",
+        "subtitle": "Je construis des choses pour le web.",
+        "description": "Je suis un développeur front-end passionné avec une solide expérience dans la création d'applications web modernes, réactives et conviviales en utilisant des technologies comme React, Tailwind CSS et Node. Actuellement, je me concentre sur la conception d'interfaces accessibles et performantes qui privilégient l'expérience utilisateur.",
+        "view_work": "Voir mon travail",
+        "download_cv": "Télécharger CV",
+        "scroll_down": "Défiler",
+        "frontend_expert": "Expert Frontend",
+        "backend_skills": "Compétences Backend",
+        "database": "Base de données",
+        "available": "Disponible pour travailler"
+    },
+    "about": {
+        "title": "À propos de moi",
+        "p1": "Bonjour ! Je m'appelle Abderrahmane, je suis un développeur front-end passionné par la création d'expériences numériques exceptionnelles. Mon voyage dans le développement web a commencé en 2022 quand j'ai construit mon premier site web — et je suis accro depuis lors.",
+        "p2": "Je me spécialise dans la création d'applications web réactives, accessibles et performantes en utilisant des technologies modernes. Mon objectif est de créer des interfaces intuitives qui résolvent des problèmes réels tout en offrant des expériences utilisateur agréables.",
+        "p3": "Quand je ne code pas, vous pouvez me trouver en train d'explorer de nouvelles technologies, de contribuer à des projets open-source ou de profiter d'activités de plein air pour recharger mon énergie créative."
+    },
+    "skills": {
+        "title": "Compétences & Technologies",
+        "description": "Voici les technologies et outils avec lesquels je travaille pour créer des expériences numériques exceptionnelles.",
+        "categories": {
+            "all": "Tout",
+            "frontend": "Frontend",
+            "backend": "Backend",
+            "database": "Base de données",
+            "tools": "Outils",
+            "design": "Design",
+            "testing": "Tests"
+        },
+        "items": {
+            "react": "Création d'interfaces utilisateur dynamiques et réactives avec des modèles et hooks React modernes",
+            "typescript": "Développement d'applications typées avec une meilleure qualité de code et expérience développeur",
+            "nextjs": "Création d'applications React avec rendu côté serveur, performance optimale et SEO",
+            "tailwindcss": "Construction de mises en page modernes et réactives avec un framework CSS utility-first",
+            "nodejs": "Développement d'applications côté serveur évolutives et d'APIs RESTful",
+            "express": "Construction d'applications web robustes et d'APIs avec un framework Node.js minimaliste",
+            "python": "Écriture de services backend efficaces et de scripts d'automatisation",
+            "mongodb": "Conception et gestion de bases de données NoSQL avec des modèles de documents flexibles",
+            "postgresql": "Travail avec des bases de données relationnelles et des requêtes SQL complexes",
+            "firebase": "Implémentation de bases de données en temps réel et de services d'authentification",
+            "git": "Contrôle de version et flux de travail de développement collaboratif",
+            "docker": "Conteneurisation d'applications pour un développement et un déploiement cohérents",
+            "aws": "Déploiement et gestion d'infrastructures et de services cloud",
+            "figma": "Création et collaboration sur des designs UI/UX et des prototypes",
+            "jest": "Écriture de tests unitaires et d'intégration complets",
+            "mocha": "Framework de test JavaScript riche en fonctionnalités tournant sur Node.js et dans le navigateur",
+            "chai": "Bibliothèque d'assertion BDD/TDD pour Node.js et navigateur se mariant bien avec tout framework",
+            "supertest": "Bibliothèque d'assertion HTTP pour tester les serveurs HTTP Node.js avec une API fluide"
+        },
+        "pagination": {
+            "showing": "Affichage de",
+            "of": "sur",
+            "skills": "compétences",
+            "in": "en",
+            "prev": "Préc.",
+            "next": "Suiv.",
+            "page": "Page"
+        }
+    },
+    "certificates": {
+        "title": "Certifications",
+        "description": "Mes certifications professionnelles qui valident mon expertise technique.",
+        "issued_by": "Délivré par",
+        "view": "Voir",
+        "verify": "Vérifier",
+        "prev": "Précédent",
+        "next": "Suivant",
+        "page": "Page",
+        "showing": "Affichage de",
+        "of": "sur",
+        "items": {
+            "figma": "Certification Figma",
+            "git": "Introduction à Git et GitHub",
+            "html_css": "HTML et CSS en profondeur",
+            "js": "Programmation avec JavaScript",
+            "linux": "Commandes Linux et Shell",
+            "mongodb": "Introduction à MongoDB",
+            "typescript": "Apprendre Typescript",
+            "ux_foundations": "Fondations de l'Expérience Utilisateur",
+            "wireframes": "Wireframes et Prototypes L-F",
+            "react": "Bases de React"
+        }
+    },
+    "experience": {
+        "title": "Parcours Professionnel",
+        "description": "Mon parcours professionnel et les expériences précieuses que j'ai acquises en chemin.",
+        "achievements": "Réalisations",
+        "items": {
+            "intern_fullstack": {
+                "role": "Stagiaire Développeur Full Stack",
+                "company": "Jaag Advisory",
+                "r1": "Travaillé sur un projet de site web financier utilisant Django et React",
+                "r2": "Construit des composants dynamiques et des intégrations API",
+                "r3": "Collaboré avec l'équipe backend pour assurer un déploiement fluide"
+            },
+            "student": {
+                "role": "Développeur Étudiant",
+                "company": "YouCode (Programme de Formation)",
+                "r1": "Terminé la première année de formation axée sur React, Laravel, UML, GitHub et les tech web modernes",
+                "r2": "Participé à des projets réels et à des revues par les pairs",
+                "r3": "Continue actuellement la deuxième année du programme de développement full-stack"
+            },
+            "intern_frontend": {
+                "role": "Stagiaire Développeur Frontend",
+                "company": "Centoria Services",
+                "r1": "Construit des composants UI avec HTML, CSS et JavaScript",
+                "r2": "Travaillé sur trois projets : deux pour des clients français et un au Maroc",
+                "r3": "Acquis une expérience réelle du développement front-end en entreprise"
+            },
+            "economics": {
+                "role": "Licencié en Économie",
+                "company": "Maroc",
+                "r1": "Étudié les principes économiques fondamentaux, y compris la microéconomie et la macroéconomie",
+                "r2": "Développé des compétences analytiques à travers des études de cas et des projets",
+                "r3": "Appris la gestion financière et les techniques d'interprétation des données"
+            },
+            "bac": {
+                "role": "Baccalauréat SVT",
+                "company": "Maroc",
+                "r1": "Acquis des connaissances solides en biologie, chimie et sciences de la terre",
+                "r2": "Développé l'esprit critique et des compétences en résolution de problèmes",
+                "r3": "Réalisé des projets et expériences pratiques en laboratoire"
+            }
+        }
+    },
+    "projects": {
+        "title": "Projets",
+        "description": "Voici quelques-uns de mes projets notables qui illustrent mes compétences et mon approche de résolution de problèmes.",
+        "status": {
+            "completed": "Terminé",
+            "in_progress": "En cours",
+            "planned": "Planifié",
+            "on_hold": "En pause"
+        },
+        "pagination": {
+            "prev": "Précédent",
+            "next": "Suivant",
+            "page": "Page",
+            "of": "sur",
+            "showing": "Affichage de"
+        },
+        "items": {
+            "clinicflow": {
+                "title": "ClinicFlow",
+                "desc": "Plateforme de santé moderne. Gestion intelligente de la santé simplifiée. Prenez des rendez-vous, suivez votre bien-être et gardez le contrôle de votre vie médicale."
+            },
+            "logix": {
+                "title": "Logix",
+                "desc": "Optimisez les opérations de votre flotte de camions. Logix fournit des solutions complètes de suivi, de gestion du carburant et de maintenance pour les flottes modernes."
+            },
+            "devnest": {
+                "title": "DevNest",
+                "desc": "Un écosystème de développeurs et une plateforme de portfolio personnel. Présentez votre travail avec une interface moderne et performante."
+            }
+        }
+    },
+    "footer": {
+        "rights": "Tous droits réservés"
+    },
+    "common": {
+        "scroll_top": "Retour en haut"
+    }
+}

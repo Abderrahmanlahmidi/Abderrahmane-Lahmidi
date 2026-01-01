@@ -1,18 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiMail } from 'react-icons/fi';
+import { FiMenu, FiX, FiMail, FiGlobe } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
 
 const navItems = [
-  { name: 'Home', path: '#home', number: '01.' },
-  { name: 'About', path: '#about', number: '02.' },
-  { name: 'Skills', path: '#skills', number: '03.' },
-  { name: 'Certificates', path: '#certificates', number: '04.' },
-  { name: 'Experiences', path: '#experiences', number: '05.' },
-  { name: 'Projects', path: '#projects', number: '06.' },
-  // { name: 'Contact', path: '#contact', number: '07.' },
+  { name: 'home', path: '#home', number: '01.' },
+  { name: 'about', path: '#about', number: '02.' },
+  { name: 'skills', path: '#skills', number: '03.' },
+  { name: 'certificates', path: '#certificates', number: '04.' },
+  { name: 'experience', path: '#experiences', number: '05.' },
+  { name: 'projects', path: '#projects', number: '06.' },
 ];
 
 export default function Menu() {
+  const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('#home');
   const [isVisible, setIsVisible] = useState(true);
@@ -36,10 +37,10 @@ export default function Menu() {
 
 
       setIsVisible(true);
-      
+
 
       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-      
+
 
       scrollTimeout.current = setTimeout(() => {
         setIsVisible(false);
@@ -88,7 +89,7 @@ export default function Menu() {
 
   const handleSmoothScroll = (e, path) => {
     e.preventDefault();
-    
+
     if (path === '#home') {
       window.scrollTo({
         top: 0,
@@ -109,25 +110,43 @@ export default function Menu() {
     setIsMenuOpen(false);
   };
 
+  const toggleLanguage = () => {
+    const nextLanguage = i18n.language.startsWith('en') ? 'fr' : 'en';
+    i18n.changeLanguage(nextLanguage);
+  };
+
   return (
     <>
 
       <AnimatePresence>
         {isVisible && (
-          <motion.button
-            onClick={() => setIsMenuOpen(true)}
-            className="fixed top-4 right-4 z-50 text-[#64FFDA] border-2 border-[#64FFDA] text-2xl bg-[#0A192F]/90 p-2 rounded-full backdrop-blur-md shadow-lg menu-button"
-            whileTap={{ scale: 0.95 }}
-            aria-label="Open menu"
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: isMenuOpen ? 0 : 1,
-              transition: { duration: 0.2 }
-            }}
-            exit={{ opacity: 0 }}
-          >
-            <FiMenu size={24} />
-          </motion.button>
+          <div className="fixed top-4 right-4 z-50 flex items-center gap-3">
+            <motion.button
+              onClick={toggleLanguage}
+              className="text-[#64FFDA] border-2 border-[#64FFDA] bg-[#0A192F]/90 p-2 rounded-full backdrop-blur-md shadow-lg flex items-center justify-center w-11 h-11"
+              whileTap={{ scale: 0.95 }}
+              aria-label="Change language"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+            >
+              <span className="text-xs font-bold leading-none">{i18n.language.startsWith('en') ? 'FR' : 'EN'}</span>
+            </motion.button>
+            <motion.button
+              onClick={() => setIsMenuOpen(true)}
+              className="text-[#64FFDA] border-2 border-[#64FFDA] text-2xl bg-[#0A192F]/90 p-2 rounded-full backdrop-blur-md shadow-lg menu-button"
+              whileTap={{ scale: 0.95 }}
+              aria-label="Open menu"
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: isMenuOpen ? 0 : 1,
+                transition: { duration: 0.2 }
+              }}
+              exit={{ opacity: 0 }}
+            >
+              <FiMenu size={24} />
+            </motion.button>
+          </div>
         )}
       </AnimatePresence>
 
@@ -153,7 +172,16 @@ export default function Menu() {
             className="fixed top-0 right-0 w-72 h-full bg-[#0A192F] text-white z-50 shadow-xl p-6 flex flex-col menu-container"
           >
 
-            <div className="flex justify-end">
+            <div className="flex justify-between items-center">
+              <motion.button
+                onClick={toggleLanguage}
+                className="text-[#64FFDA] flex items-center gap-2 text-sm font-medium border border-[#64FFDA]/30 px-3 py-1 rounded-full hover:bg-[#64FFDA]/10 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FiGlobe size={16} />
+                {i18n.language.startsWith('en') ? 'FR' : 'EN'}
+              </motion.button>
               <motion.button
                 onClick={() => setIsMenuOpen(false)}
                 className="text-[#64FFDA] text-2xl"
@@ -171,24 +199,23 @@ export default function Menu() {
                   key={item.name}
                   href={item.path}
                   onClick={(e) => handleSmoothScroll(e, item.path)}
-                  className={`text-lg transition-colors ${
-                    activeSection === item.path 
-                      ? 'text-[#64FFDA]' 
-                      : 'text-[#8892B0] hover:text-[#64FFDA]'
-                  }`}
+                  className={`capitalize text-lg transition-colors ${activeSection === item.path
+                    ? 'text-[#64FFDA]'
+                    : 'text-[#8892B0] hover:text-[#64FFDA]'
+                    }`}
                   initial={{ x: 50, opacity: 0 }}
-                  animate={{ 
-                    x: 0, 
+                  animate={{
+                    x: 0,
                     opacity: 1,
                     transition: { delay: 0.1 + index * 0.05 }
                   }}
-                  whileHover={{ 
+                  whileHover={{
                     x: 5,
                     transition: { duration: 0.2 }
                   }}
                 >
                   <span className="text-[#64FFDA] mr-2">{item.number}</span>
-                  {item.name}
+                  {t('nav.' + item.name)}
                 </motion.a>
               ))}
             </nav>

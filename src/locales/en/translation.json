@@ -1,0 +1,174 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "skills": "Skills",
+        "certificates": "Certificates",
+        "experience": "Experience",
+        "projects": "Projects",
+        "contact": "Contact"
+    },
+    "hero": {
+        "intro": "Hi, my name is",
+        "subtitle": "I build things for the web.",
+        "description": "I'm a passionate front-end developer with a strong background in building modern, responsive, and user-friendly web applications using technologies like React, Tailwind CSS, and Node. Currently, I'm focused on crafting accessible and high-performance interfaces that prioritize user experience.",
+        "view_work": "View My Work",
+        "download_cv": "Download CV",
+        "scroll_down": "Scroll Down",
+        "frontend_expert": "Frontend Expert",
+        "backend_skills": "Backend Skills",
+        "database": "Database",
+        "available": "Available for work"
+    },
+    "about": {
+        "title": "About Me",
+        "p1": "Hello! I'm Abderrahmane, a front-end developer passionate about creating exceptional digital experiences. My journey in web development began in 2022 when I built my first website — and I've been hooked ever since.",
+        "p2": "I specialize in building responsive, accessible, and performant web applications using modern technologies. My focus is on creating intuitive interfaces that solve real problems while providing delightful user experiences.",
+        "p3": "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying outdoor activities to recharge my creative energy."
+    },
+    "skills": {
+        "title": "Skills & Technologies",
+        "description": "Here are the technologies and tools I work with to create exceptional digital experiences.",
+        "categories": {
+            "all": "All",
+            "frontend": "Frontend",
+            "backend": "Backend",
+            "database": "Database",
+            "tools": "Tools",
+            "design": "Design",
+            "testing": "Testing"
+        },
+        "items": {
+            "react": "Building dynamic and responsive user interfaces with modern React patterns and hooks",
+            "typescript": "Developing type-safe applications with enhanced code quality and better developer experience",
+            "nextjs": "Creating server-rendered React applications with optimal performance and SEO",
+            "tailwindcss": "Building modern, responsive layouts with utility-first CSS framework",
+            "nodejs": "Developing scalable server-side applications and RESTful APIs",
+            "express": "Building robust web applications and APIs with minimal and flexible Node.js framework",
+            "python": "Writing efficient backend services and automation scripts",
+            "mongodb": "Designing and managing NoSQL databases with flexible document models",
+            "postgresql": "Working with relational databases and complex SQL queries",
+            "firebase": "Implementing real-time databases and authentication services",
+            "git": "Version control and collaborative development workflows",
+            "docker": "Containerizing applications for consistent development and deployment",
+            "aws": "Deploying and managing cloud infrastructure and services",
+            "figma": "Creating and collaborating on UI/UX designs and prototypes",
+            "jest": "Writing comprehensive unit and integration tests",
+            "mocha": "Feature-rich JavaScript test framework running on Node.js and in the browser",
+            "chai": "BDD/TDD assertion library for Node.js and browser that pairs well with any testing framework",
+            "supertest": "HTTP assertion library for testing Node.js HTTP servers with a fluent API"
+        },
+        "pagination": {
+            "showing": "Showing",
+            "of": "of",
+            "skills": "skills",
+            "in": "in",
+            "prev": "Prev",
+            "next": "Next",
+            "page": "Page"
+        }
+    },
+    "certificates": {
+        "title": "Certifications",
+        "description": "My professional certifications that validate my technical expertise.",
+        "issued_by": "Issued by",
+        "view": "View",
+        "verify": "Verify",
+        "prev": "Previous",
+        "next": "Next",
+        "page": "Page",
+        "showing": "Showing",
+        "of": "of",
+        "items": {
+            "figma": "Figma Certification",
+            "git": "Introduction to Git and GitHub",
+            "html_css": "HTML and CSS in depth",
+            "js": "Programming with JavaScript",
+            "linux": "Linux Commands and Shell",
+            "mongodb": "Introduction to MongoDB",
+            "typescript": "Learn Typescript",
+            "ux_foundations": "Foundations of User Experience",
+            "wireframes": "Wireframes and L-F Prototypes",
+            "react": "React Basics"
+        }
+    },
+    "experience": {
+        "title": "Professional Journey",
+        "description": "My career path and the valuable experiences I've gained along the way.",
+        "achievements": "Achievements",
+        "items": {
+            "intern_fullstack": {
+                "role": "Full Stack Developer Intern",
+                "company": "Jaag Advisory",
+                "r1": "Worked on a financial website project using Django and React",
+                "r2": "Built dynamic components and API integrations",
+                "r3": "Collaborated with backend team to ensure smooth deployment"
+            },
+            "student": {
+                "role": "Student Developer",
+                "company": "YouCode (Training Program)",
+                "r1": "Completed first year of training focusing on React, Laravel, UML, GitHub and modern web technologies",
+                "r2": "Participated in real-world projects and peer reviews",
+                "r3": "Currently continuing second year of full-stack development program"
+            },
+            "intern_frontend": {
+                "role": "Frontend Developer Intern",
+                "company": "Centoria Services",
+                "r1": "Built UI components with HTML, CSS, and JavaScript",
+                "r2": "Worked on three projects: two for French clients and one in Morocco",
+                "r3": "Gained experience in real-world front-end development in a corporate setting"
+            },
+            "economics": {
+                "role": "Licensed en Économie",
+                "company": "Morocco",
+                "r1": "Studied core economic principles including microeconomics and macroeconomics",
+                "r2": "Developed analytical skills through case studies and projects",
+                "r3": "Learned financial management and data interpretation techniques"
+            },
+            "bac": {
+                "role": "Baccalauréat SVT",
+                "company": "Morocco",
+                "r1": "Acquired solid knowledge in biology, chemistry, and earth sciences",
+                "r2": "Developed critical thinking and problem-solving skills",
+                "r3": "Completed practical laboratory projects and experiments"
+            }
+        }
+    },
+    "projects": {
+        "title": "Projects",
+        "description": "Here are some of my notable projects that showcase my skills and problem-solving approach.",
+        "status": {
+            "completed": "Completed",
+            "in_progress": "In Progress",
+            "planned": "Planned",
+            "on_hold": "On Hold"
+        },
+        "pagination": {
+            "prev": "Previous",
+            "next": "Next",
+            "page": "Page",
+            "of": "of",
+            "showing": "Showing"
+        },
+        "items": {
+            "clinicflow": {
+                "title": "ClinicFlow",
+                "desc": "Modern Healthcare Platform. Smart Health Management Made Simple. Book appointments, track your wellness, and stay in control of your medical life—all in one simple, secure, and elegant platform."
+            },
+            "logix": {
+                "title": "Logix",
+                "desc": "Streamline Your Truck Fleet Operations. Logix provides comprehensive tracking, fuel management, and maintenance solutions for modern truck fleets. Optimize efficiency, reduce costs, and enhance safety with our all-in-one platform."
+            },
+            "devnest": {
+                "title": "DevNest",
+                "desc": "A developer ecosystem and personal portfolio platform. Showcase your work with a modern, high-performance interface designed for the next generation of web developers."
+            }
+        }
+    },
+    "footer": {
+        "rights": "All Rights Reserved"
+    },
+    "common": {
+        "scroll_top": "Go to top"
+    }
+}
