@@ -13,8 +13,8 @@ export default function CursorFollower() {
 
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
-  const x = useSpring(cursorX, { stiffness: 500, damping: 30 });
-  const y = useSpring(cursorY, { stiffness: 500, damping: 30 });
+  const x = useSpring(cursorX, { stiffness: 600, damping: 40 });
+  const y = useSpring(cursorY, { stiffness: 600, damping: 40 });
 
   useEffect(() => {
     const screenWidth = window.innerWidth;
@@ -34,7 +34,7 @@ export default function CursorFollower() {
     const handleMouseUp = () => setIsClicking(false);
 
     const interactiveElements = document.querySelectorAll(
-      "a, button, input, textarea, [data-cursor-hover]"
+      "a, button, input, textarea, [data-cursor-hover], .next-button-primary, .next-button-secondary, .next-card"
     );
 
     interactiveElements.forEach((el) => {
@@ -65,64 +65,39 @@ export default function CursorFollower() {
       style={{ x, y }}
     >
       <motion.div
-        className="rounded-full border pointer-events-none"
-        style={{
-          borderColor: isHovering ? "#FF6B6B" : "#64FFDA",
-          borderWidth: isHovering ? 2 : 1,
-          width: isHovering ? 45 : 40,
-          height: isHovering ? 45 : 40,
-          x: isHovering ? -28 : -20,
-          y: isHovering ? -28 : -20,
-          position: "relative",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          transition: "all 0.3s ease",
-        }}
+        className="pointer-events-none rounded-full flex items-center justify-center border border-[var(--foreground)]/30 bg-[var(--foreground)]/5 backdrop-blur-[2px]"
+        initial={{ width: 20, height: 20, x: -10, y: -10 }}
         animate={{
-          scale: isClicking ? 0.85 : 1,
+          width: isHovering ? 60 : 20,
+          height: isHovering ? 60 : 20,
+          x: isHovering ? -30 : -10,
+          y: isHovering ? -30 : -10,
+          scale: isClicking ? 0.9 : 1,
+          borderWidth: isHovering ? 1 : 1.5,
+          borderColor: isHovering ? "rgba(var(--foreground), 0.5)" : "rgba(var(--foreground), 0.3)",
         }}
-        transition={{
-          type: "spring",
-          stiffness: 300,
-          damping: 20,
-        }}
+        transition={{ type: "spring", stiffness: 400, damping: 30 }}
       >
         <motion.div
-          className="rounded-full bg-[#64FFDA]"
-          style={{
-            width: 14,
-            height: 14,
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            translateX: "-50%",
-            translateY: "-50%",
-            boxShadow: "none",
-          }}
+          className="rounded-full bg-[var(--foreground)]"
           animate={{
-            scale: isClicking ? 0.7 : 1.1,
-            backgroundColor: isClicking ? "#FF4757" : "#64FFDA",
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 500,
-            damping: 20,
+            width: isHovering ? 4 : 4,
+            height: isHovering ? 4 : 4,
+            opacity: isClicking ? 0 : 1,
           }}
         />
       </motion.div>
 
-
       <AnimatePresence>
         {isClicking && (
           <motion.div
-            className="absolute top-0 left-0 rounded-full border border-[#FF4757]"
+            className="absolute top-0 left-0 rounded-full border border-[var(--foreground)]"
             initial={{
               width: 20,
               height: 20,
               x: -10,
               y: -10,
-              opacity: 0.8,
+              opacity: 0.5,
             }}
             animate={{
               width: 80,
@@ -131,9 +106,8 @@ export default function CursorFollower() {
               y: -40,
               opacity: 0,
             }}
-            exit={{ opacity: 0 }}
             transition={{
-              duration: 0.6,
+              duration: 0.4,
               ease: "easeOut",
             }}
           />

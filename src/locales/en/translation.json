@@ -5,30 +5,33 @@
         "skills": "Skills",
         "certificates": "Certificates",
         "experience": "Experience",
+        "packages": "Packages",
         "projects": "Projects",
         "contact": "Contact"
     },
     "hero": {
         "intro": "Hi, my name is",
         "subtitle": "I build things for the web.",
-        "description": "I'm a passionate front-end developer with a strong background in building modern, responsive, and user-friendly web applications using technologies like React, Tailwind CSS, and Node. Currently, I'm focused on crafting accessible and high-performance interfaces that prioritize user experience.",
+        "description": "I'm a passionate full-stack developer focused on building modern, responsive, and user-friendly web applications that prioritize performance and accessibility.",
         "view_work": "View My Work",
         "download_cv": "Download CV",
         "scroll_down": "Scroll Down",
-        "frontend_expert": "Frontend Expert",
-        "backend_skills": "Backend Skills",
-        "database": "Database",
         "available": "Available for work"
     },
+    "scroll_down": "Scroll Down",
     "about": {
-        "title": "About Me",
-        "p1": "Hello! I'm Abderrahmane, a front-end developer passionate about creating exceptional digital experiences. My journey in web development began in 2022 when I built my first website — and I've been hooked ever since.",
+        "badge": "Discovery",
+        "title": "Crafting digital experiences with purpose",
+        "p1": "Hello! I'm Abderrahmane, a full-stack developer passionate about creating exceptional digital experiences. My journey in web development began with a curiosity for how things work on the internet, which quickly evolved into a career of building complex systems.",
         "p2": "I specialize in building responsive, accessible, and performant web applications using modern technologies. My focus is on creating intuitive interfaces that solve real problems while providing delightful user experiences.",
-        "p3": "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying outdoor activities to recharge my creative energy."
+        "p3": "I believe in clean code, thoughtful design, and a user-centric approach to every project I undertake.",
+        "years_exp": "Years of Experience"
     },
     "skills": {
-        "title": "Skills & Technologies",
-        "description": "Here are the technologies and tools I work with to create exceptional digital experiences.",
+        "badge": "Expertise",
+        "title": "Technical Proficiencies",
+        "description": "A comprehensive toolkit for modern web development, from frontend aesthetics to backend stability.",
+        "expert": "Expert",
         "categories": {
             "all": "All",
             "frontend": "Frontend",
@@ -57,116 +60,125 @@
             "mocha": "Feature-rich JavaScript test framework running on Node.js and in the browser",
             "chai": "BDD/TDD assertion library for Node.js and browser that pairs well with any testing framework",
             "supertest": "HTTP assertion library for testing Node.js HTTP servers with a fluent API"
-        },
-        "pagination": {
-            "showing": "Showing",
-            "of": "of",
-            "skills": "skills",
-            "in": "in",
-            "prev": "Prev",
-            "next": "Next",
-            "page": "Page"
         }
     },
     "certificates": {
-        "title": "Certifications",
-        "description": "My professional certifications that validate my technical expertise.",
-        "issued_by": "Issued by",
-        "view": "View",
-        "verify": "Verify",
-        "prev": "Previous",
-        "next": "Next",
-        "page": "Page",
-        "showing": "Showing",
-        "of": "of",
+        "badge": "Growth",
+        "title": "Endless Learning",
+        "description": "Continuous education and professional certifications that keep me at the forefront of technology.",
+        "verify": "Verify Credentials",
         "items": {
-            "figma": "Figma Certification",
-            "git": "Introduction to Git and GitHub",
-            "html_css": "HTML and CSS in depth",
-            "js": "Programming with JavaScript",
-            "linux": "Linux Commands and Shell",
-            "mongodb": "Introduction to MongoDB",
-            "typescript": "Learn Typescript",
-            "ux_foundations": "Foundations of User Experience",
-            "wireframes": "Wireframes and L-F Prototypes",
-            "react": "React Basics"
+            "figma": "Figma UI/UX Design",
+            "git": "Version Control with Git",
+            "html_css": "Advanced HTML & CSS",
+            "js": "JavaScript Algorithms",
+            "linux": "System Administration",
+            "mongodb": "NoSQL Architecture",
+            "typescript": "TypeScript Professional",
+            "ux_foundations": "UX Fundamentals",
+            "wireframes": "Mapping User Flows",
+            "react": "React Architecture"
         }
     },
     "experience": {
-        "title": "Professional Journey",
-        "description": "My career path and the valuable experiences I've gained along the way.",
+        "badge": "History",
+        "title": "Career Milestones",
+        "description": "A timeline of my professional growth and the impactful roles I've held.",
         "achievements": "Achievements",
         "items": {
             "intern_fullstack": {
                 "role": "Full Stack Developer Intern",
                 "company": "Jaag Advisory",
-                "r1": "Worked on a financial website project using Django and React",
-                "r2": "Built dynamic components and API integrations",
-                "r3": "Collaborated with backend team to ensure smooth deployment"
+                "r1": "Engineered financial dashboards using Django and React",
+                "r2": "Optimized database queries for improved load times",
+                "r3": "Implemented real-time reporting features"
             },
             "student": {
-                "role": "Student Developer",
-                "company": "YouCode (Training Program)",
-                "r1": "Completed first year of training focusing on React, Laravel, UML, GitHub and modern web technologies",
-                "r2": "Participated in real-world projects and peer reviews",
-                "r3": "Currently continuing second year of full-stack development program"
+                "role": "Full Stack Engineering Student",
+                "company": "YouCode",
+                "r1": "Mastered modern tech stacks including React, Laravel, and Cloud basics",
+                "r2": "Led multiple collaborative projects using Agile methodologies",
+                "r3": "Focused on clean architecture and scalable system design"
             },
             "intern_frontend": {
                 "role": "Frontend Developer Intern",
                 "company": "Centoria Services",
-                "r1": "Built UI components with HTML, CSS, and JavaScript",
-                "r2": "Worked on three projects: two for French clients and one in Morocco",
-                "r3": "Gained experience in real-world front-end development in a corporate setting"
+                "r1": "Developed pixel-perfect UI components for international clients",
+                "r2": "Collaborated on internationalization (i18n) workflows",
+                "r3": "Optimized frontend performance and accessibility"
             },
             "economics": {
-                "role": "Licensed en Économie",
-                "company": "Morocco",
-                "r1": "Studied core economic principles including microeconomics and macroeconomics",
-                "r2": "Developed analytical skills through case studies and projects",
-                "r3": "Learned financial management and data interpretation techniques"
+                "role": "Bachelor in Economics & Management",
+                "company": "FSJES Casablanca",
+                "r1": "Focused on strategic analysis and financial management",
+                "r2": "Developed strong analytical and problem-solving skills",
+                "r3": "Applied quantitative methods to business problems"
             },
             "bac": {
-                "role": "Baccalauréat SVT",
-                "company": "Morocco",
-                "r1": "Acquired solid knowledge in biology, chemistry, and earth sciences",
-                "r2": "Developed critical thinking and problem-solving skills",
-                "r3": "Completed practical laboratory projects and experiments"
+                "role": "Baccalaureate in Physics & Chemistry",
+                "company": "High School",
+                "r1": "Strong foundation in mathematics and analytical thinking",
+                "r2": "Developed scientific methodology and logical reasoning",
+                "r3": "Graduated with honors in scientific stream"
             }
         }
     },
     "projects": {
-        "title": "Projects",
-        "description": "Here are some of my notable projects that showcase my skills and problem-solving approach.",
+        "badge": "Portfolio",
+        "title": "Selected Works",
+        "description": "A collection of projects that demonstrate my ability to solve complex problems with elegant solutions.",
         "status": {
             "completed": "Completed",
             "in_progress": "In Progress",
             "planned": "Planned",
             "on_hold": "On Hold"
         },
-        "pagination": {
-            "prev": "Previous",
-            "next": "Next",
-            "page": "Page",
-            "of": "of",
-            "showing": "Showing"
-        },
         "items": {
             "clinicflow": {
                 "title": "ClinicFlow",
-                "desc": "Modern Healthcare Platform. Smart Health Management Made Simple. Book appointments, track your wellness, and stay in control of your medical life—all in one simple, secure, and elegant platform."
+                "desc": "An intelligent healthcare management system designed to streamline patient care, appointment scheduling, and wellness tracking with a focus on ease of use."
             },
             "logix": {
                 "title": "Logix",
-                "desc": "Streamline Your Truck Fleet Operations. Logix provides comprehensive tracking, fuel management, and maintenance solutions for modern truck fleets. Optimize efficiency, reduce costs, and enhance safety with our all-in-one platform."
+                "desc": "A comprehensive logistics and fleet management platform providing real-time data analytics, maintenance alerts, and cost optimization for modern transport operations."
             },
             "devnest": {
                 "title": "DevNest",
-                "desc": "A developer ecosystem and personal portfolio platform. Showcase your work with a modern, high-performance interface designed for the next generation of web developers."
+                "desc": "An innovative ecosystem for developers to showcase their technical expertise through premium, high-performance portfolios and collaborative code spaces."
             }
         }
     },
+    "packages": {
+        "badge": "Open Source",
+        "title": "Featured Library",
+        "description": "Building tools that help other developers create beautiful and accessible interfaces faster.",
+        "harmony": {
+            "title": "Harmony UI",
+            "desc": "A premium, modular React UI library designed for high-performance and accessibility-first applications. Built with Tailwind CSS and Framer Motion.",
+            "npm": "View on NPM",
+            "docs": "Documentation",
+            "github": "Source Code"
+        }
+    },
     "footer": {
-        "rights": "All Rights Reserved"
+        "cta_title": "Ready to bring your",
+        "cta_highlight": "ideas to life?",
+        "contact_button": "Let's Talk",
+        "bio_short": "Designing and developing robust, user-centric applications from Casablanca with a passion for innovation.",
+        "navigation": "Navigation",
+        "status": "Current Status",
+        "rights": "Built with passion by Abderrahmane Lahmidi."
+    },
+    "contact": {
+        "title": "Get In Touch",
+        "description": "I'm always looking for new opportunities and interesting projects. Whether you have a question or just want to say hi, I'll try my best to get back to you!",
+        "availability_title": "Current Status",
+        "availability_text": "I am currently looking for new opportunities as a Full Stack or Frontend Developer. My inbox is always open!",
+        "form_name": "Full Name",
+        "form_email": "Email Address",
+        "form_message": "Message",
+        "form_message_placeholder": "Tell me about your project...",
+        "form_send": "Send Message"
     },
     "common": {
         "scroll_top": "Go to top"

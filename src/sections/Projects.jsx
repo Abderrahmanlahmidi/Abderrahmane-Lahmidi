@@ -40,110 +40,16 @@ import devnest6 from "../../src/assets/images/projects/devnest/6.jpg";
 import devnest7 from "../../src/assets/images/projects/devnest/7.jpg";
 
 const projects = [
-  {
-    "key": "clinicflow",
-    "technologies": [
-      "React",
-      "Express",
-      "MongoDB",
-      "Tailwind CSS"
-    ],
-    "github": "https://github.com/Abderrahmanlahmidi/ClinicFlow",
-    "live": "#",
-    "status": "in-progress",
-    "images": [
-      clinicflowimage1,
-      clinicflowimage2,
-      clinicflowimage3,
-      clinicflowimage4,
-      clinicflowimage5,
-      clinicflowimage6,
-      clinicflowimage7,
-      clinicflowimage8,
-      clinicflowimage9,
-      clinicflowimage10,
-      clinicflowimage11,
-      clinicflowimage12,
-      clinicflowimage13
-    ],
-    "featured": true
-  },
-  {
-    "key": "logix",
-    "technologies": [
-      "React",
-      "Node.js",
-      "MongoDB",
-      "Tailwind CSS"
-    ],
-    "github": "https://github.com/Abderrahmanlahmidi/Logix",
-    "live": "#",
-    "status": "completed",
-    "images": [
-      logiximage1,
-      logiximage2,
-      logiximage3,
-      logiximage4,
-      logiximage5,
-      logiximage6,
-      logiximage7,
-      logiximage8,
-      logiximage9,
-      logiximage10,
-      logiximage11,
-      logiximage12,
-      logiximage13,
-      logiximage14
-    ],
-    "featured": true
-  },
-  {
-    "key": "devnest",
-    "technologies": [
-      "React",
-      "Framer Motion",
-      "Tailwind CSS",
-      "Vite",
-      "GraphQL"
-    ],
-    "github": "https://github.com/Abderrahmanlahmidi/DevNest",
-    "live": "#",
-    "status": "completed",
-    "images": [
-      devnest1,
-      devnest2,
-      devnest3,
-      devnest4,
-      devnest5,
-      devnest6,
-      devnest7,
-    ],
-    "featured": true
-  }
+  { "key": "clinicflow", "technologies": ["React", "Express", "MongoDB", "Tailwind CSS"], "github": "https://github.com/Abderrahmanlahmidi/ClinicFlow", "live": "#", "status": "in-progress", "images": [clinicflowimage1, clinicflowimage2, clinicflowimage3, clinicflowimage4, clinicflowimage5, clinicflowimage6, clinicflowimage7, clinicflowimage8, clinicflowimage9, clinicflowimage10, clinicflowimage11, clinicflowimage12, clinicflowimage13], "featured": true },
+  { "key": "logix", "technologies": ["React", "Node.js", "MongoDB", "Tailwind CSS"], "github": "https://github.com/Abderrahmanlahmidi/Logix", "live": "#", "status": "completed", "images": [logiximage1, logiximage2, logiximage3, logiximage4, logiximage5, logiximage6, logiximage7, logiximage8, logiximage9, logiximage10, logiximage11, logiximage12, logiximage13, logiximage14], "featured": true },
+  { "key": "devnest", "technologies": ["React", "Framer Motion", "Tailwind CSS", "Vite", "GraphQL"], "github": "https://github.com/Abderrahmanlahmidi/DevNest", "live": "#", "status": "completed", "images": [devnest1, devnest2, devnest3, devnest4, devnest5, devnest6, devnest7], "featured": true }
 ];
 
-// Status badge configuration
 const statusConfig = {
-  "completed": {
-    icon: <CheckCircle size={14} />,
-    color: "bg-green-500/20 text-green-400 border-green-500/30",
-    labelKey: "completed"
-  },
-  "in-progress": {
-    icon: <Zap size={14} />,
-    color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
-    labelKey: "in_progress"
-  },
-  "planned": {
-    icon: <Clock size={14} />,
-    color: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-    labelKey: "planned"
-  },
-  "on-hold": {
-    icon: <Circle size={14} />,
-    color: "bg-gray-500/20 text-gray-400 border-gray-500/30",
-    labelKey: "on_hold"
-  }
+  "completed": { icon: <CheckCircle size={14} />, labelKey: "completed", color: "text-emerald-500" },
+  "in-progress": { icon: <Zap size={14} />, labelKey: "in_progress", color: "text-amber-500" },
+  "planned": { icon: <Clock size={14} />, labelKey: "planned", color: "text-blue-500" },
+  "on-hold": { icon: <Circle size={14} />, labelKey: "on_hold", color: "text-gray-500" }
 };
 
 export default function Projects() {
@@ -153,391 +59,194 @@ export default function Projects() {
   const [currentPage, setCurrentPage] = useState(1);
   const [projectsPerPage, setProjectsPerPage] = useState(3);
 
-  // Update projects per page based on screen size
   useEffect(() => {
-    const updateProjectsPerPage = () => {
-      if (window.innerWidth < 640) {
-        setProjectsPerPage(1);
-      } else if (window.innerWidth < 1024) {
-        setProjectsPerPage(2);
-      } else {
-        setProjectsPerPage(3);
-      }
+    const update = () => {
+      if (window.innerWidth < 640) setProjectsPerPage(1);
+      else if (window.innerWidth < 1024) setProjectsPerPage(2);
+      else setProjectsPerPage(3);
     };
-
-    updateProjectsPerPage();
-    window.addEventListener('resize', updateProjectsPerPage);
-
-    return () => window.removeEventListener('resize', updateProjectsPerPage);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
   }, []);
 
-  // Calculate pagination
   const totalPages = Math.ceil(projects.length / projectsPerPage);
   const startIndex = (currentPage - 1) * projectsPerPage;
   const currentProjects = projects.slice(startIndex, startIndex + projectsPerPage);
 
-  const handleImageOpen = (images, index = 0) => {
-    setSelectedImages(images);
-    setCurrentImageIndex(index);
-  };
-
-  const handleImageClose = () => {
-    setSelectedImages(null);
-    setCurrentImageIndex(0);
-  };
-
-  const nextImage = () => {
-    setCurrentImageIndex(prev =>
-      prev < selectedImages.length - 1 ? prev + 1 : 0
-    );
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex(prev =>
-      prev > 0 ? prev - 1 : selectedImages.length - 1
-    );
-  };
-
-  const nextPage = () => {
-    setCurrentPage(prev => Math.min(prev + 1, totalPages));
-  };
-
-  const prevPage = () => {
-    setCurrentPage(prev => Math.max(prev - 1, 1));
-  };
-
-  const goToPage = (page) => {
-    setCurrentPage(page);
-  };
-
-  // Generate visible page numbers for responsive pagination
-  const getVisiblePages = () => {
-    const visiblePages = [];
-    const maxVisiblePages = window.innerWidth < 640 ? 3 : 5;
-
-    if (totalPages <= maxVisiblePages) {
-      return Array.from({ length: totalPages }, (_, i) => i + 1);
-    }
-
-    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-
-    if (endPage - startPage + 1 < maxVisiblePages) {
-      startPage = Math.max(1, endPage - maxVisiblePages + 1);
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      visiblePages.push(i);
-    }
-
-    return visiblePages;
-  };
-
-  const visiblePages = getVisiblePages();
+  const handleImageOpen = (images, index = 0) => { setSelectedImages(images); setCurrentImageIndex(index); };
+  const handleImageClose = () => { setSelectedImages(null); setCurrentImageIndex(0); };
 
   return (
-    <section id="projects" className="py-20 bg-[#0A192F] text-[#E6F1FF] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="min-h-screen py-24 md:py-32 bg-[var(--background)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center">
-            <span className="text-[#64FFDA] mr-4">06.</span>
+          <div className="badge mx-auto mb-4 flex w-fit">{t('projects.badge')}</div>
+          <h2 className="section-title">
             {t('projects.title')}
-            <span className="hidden md:block h-px bg-[#233554] flex-grow ml-6 max-w-xs"></span>
           </h2>
-          <p className="text-[#8892B0] max-w-2xl">
+          <p className="section-subtitle">
             {t('projects.description')}
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {currentProjects.map((project, index) => {
             const status = statusConfig[project.status] || statusConfig.completed;
-
             return (
               <motion.div
                 key={startIndex + index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-                className="group relative bg-[#112240]/50 rounded-lg border border-[#233554] hover:border-[#64FFDA]/30 transition-all overflow-hidden shadow-lg"
+                className="next-card group flex flex-col h-full bg-[var(--card)] hover:shadow-2xl hover:shadow-primary/10"
               >
-                {/* Single Principal Image */}
-                {project.images && project.images.length > 0 && (
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={project.images[0]}
-                      alt={`${t(`projects.items.${project.key}.title`)} screenshot`}
-                      className="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                      onClick={() => handleImageOpen(project.images, 0)}
-                    />
+                <div className="h-56 relative overflow-hidden">
+                  <img
+                    src={project.images[0]}
+                    alt={`${t(`projects.items.${project.key}.title`)}`}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    onClick={() => handleImageOpen(project.images, 0)}
+                  />
 
-                    {/* Gallery Button (only show if multiple images) */}
-                    {project.images.length > 1 && (
-                      <button
-                        onClick={() => handleImageOpen(project.images)}
-                        className="absolute top-4 right-4 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-2 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
-                        aria-label="View image gallery"
-                      >
-                        <ImageIcon size={18} />
-                      </button>
-                    )}
-                  </div>
-                )}
+                  {project.images.length > 1 && (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleImageOpen(project.images); }}
+                      className="absolute bottom-4 right-4 p-2 rounded-lg bg-[var(--background)]/80 backdrop-blur-md border border-[var(--border)] text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all opacity-0 group-hover:opacity-100 shadow-xl"
+                    >
+                      <ImageIcon size={16} />
+                    </button>
+                  )}
+                </div>
 
-                <div className="p-6">
-                  {/* Header with Title and GitHub */}
+                <div className="p-7 flex flex-col flex-grow">
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-[#E6F1FF]">{t(`projects.items.${project.key}.title`)}</h3>
-                    {/* GitHub Button in header */}
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#64FFDA] hover:text-[#64FFDA]/80 transition-colors p-1"
-                        aria-label={`${t(`projects.items.${project.key}.title`)} GitHub repository`}
-                      >
-                        <Github size={20} />
-                      </a>
-                    )}
+                    <div>
+                      <div className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[var(--border)]/30 text-[8px] font-black uppercase tracking-widest mb-2 ${status.color}`}>
+                        {status.icon}
+                        <span>{t(`projects.status.${status.labelKey}`)}</span>
+                      </div>
+                      <h3 className="text-xl font-bold tracking-tight text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors leading-tight">
+                        {t(`projects.items.${project.key}.title`)}
+                      </h3>
+                    </div>
+                    <div className="flex gap-2">
+                      {project.github && (
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg border border-[var(--border)] hover:border-[var(--foreground)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-all">
+                          <Github size={18} />
+                        </a>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Status Badge - Where GitHub icon was previously */}
-                  <div className={`mb-4 inline-flex items-center gap-1 px-3 py-1 rounded-full border text-xs font-medium ${status.color}`}>
-                    {status.icon}
-                    <span>{t(`projects.status.${status.labelKey}`)}</span>
-                  </div>
+                  <p className="text-[var(--muted-foreground)] text-sm leading-relaxed mb-6 font-medium line-clamp-3">
+                    {t(`projects.items.${project.key}.desc`)}
+                  </p>
 
-                  <p className="text-[#8892B0] mb-6 text-sm sm:text-base">{t(`projects.items.${project.key}.desc`)}</p>
-
-                  <div className="flex flex-wrap gap-2">
+                  <div className="mt-auto flex flex-wrap gap-1.5">
                     {project.technologies.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="text-xs text-[#64FFDA] bg-[#64FFDA]/10 px-2 py-1 rounded"
-                      >
+                      <span key={i} className="text-[8px] uppercase font-black px-2 py-0.5 rounded-sm bg-[var(--border)]/30 text-[var(--muted-foreground)] tracking-tighter border border-[var(--border)]/50">
                         {tech}
                       </span>
                     ))}
                   </div>
-                </div>
-
-                {/* Glow effect on hover */}
-                <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#64FFDA]/10 to-[#64FFDA]/5 rounded-lg blur-sm"></div>
                 </div>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Pagination Controls */}
         {totalPages > 1 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"
-          >
-            {/* Previous Button */}
+          <div className="flex items-center justify-center gap-4 mt-12 border-t border-[var(--border)] pt-8">
             <button
-              onClick={prevPage}
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
               disabled={currentPage === 1}
-              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${currentPage === 1
-                ? 'border-[#233554] text-[#8892B0] cursor-not-allowed'
-                : 'border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10'
-                }`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--border)] transition-all ${currentPage === 1 ? "opacity-30 cursor-not-allowed" : ""}`}
             >
               <ChevronLeft size={16} />
-              <span className="hidden sm:inline">{t('projects.pagination.prev')}</span>
-              <span className="sm:hidden">{t('projects.pagination.prev')}</span>
+              <span className="text-xs font-bold uppercase tracking-wider hidden sm:inline">Prev</span>
             </button>
 
-            {/* Page Numbers */}
-            <div className="flex gap-1 sm:gap-2 flex-wrap justify-center">
-              {/* First page and ellipsis */}
-              {visiblePages[0] > 1 && (
-                <>
-                  <button
-                    onClick={() => goToPage(1)}
-                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${currentPage === 1
-                      ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
-                      : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
-                      }`}
-                  >
-                    1
-                  </button>
-                  {visiblePages[0] > 2 && (
-                    <span className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-[#8892B0]">
-                      ...
-                    </span>
-                  )}
-                </>
-              )}
-
-              {/* Visible page numbers */}
-              {visiblePages.map((page) => (
-                <button
-                  key={page}
-                  onClick={() => goToPage(page)}
-                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${currentPage === page
-                    ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
-                    : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
-                    }`}
-                >
-                  {page}
-                </button>
-              ))}
-
-              {/* Last page and ellipsis */}
-              {visiblePages[visiblePages.length - 1] < totalPages && (
-                <>
-                  {visiblePages[visiblePages.length - 1] < totalPages - 1 && (
-                    <span className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-[#8892B0]">
-                      ...
-                    </span>
-                  )}
-                  <button
-                    onClick={() => goToPage(totalPages)}
-                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded border transition-all text-xs sm:text-sm ${currentPage === totalPages
-                      ? 'border-[#64FFDA] bg-[#64FFDA]/10 text-[#64FFDA]'
-                      : 'border-[#233554] text-[#8892B0] hover:border-[#64FFDA] hover:text-[#64FFDA]'
-                      }`}
-                  >
-                    {totalPages}
-                  </button>
-                </>
-              )}
+            <div className="text-sm font-black text-[var(--muted-foreground)] uppercase tracking-widest">
+              Page <span className="text-[var(--foreground)]">{currentPage}</span> / {totalPages}
             </div>
 
-            {/* Next Button */}
             <button
-              onClick={nextPage}
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
-              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded border transition-all text-sm sm:text-base ${currentPage === totalPages
-                ? 'border-[#233554] text-[#8892B0] cursor-not-allowed'
-                : 'border-[#64FFDA] text-[#64FFDA] hover:bg-[#64FFDA]/10'
-                }`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--border)] transition-all ${currentPage === totalPages ? "opacity-30 cursor-not-allowed" : ""}`}
             >
-              <span className="hidden sm:inline">{t('projects.pagination.next')}</span>
-              <span className="sm:hidden">{t('projects.pagination.next')}</span>
+              <span className="text-xs font-bold uppercase tracking-wider hidden sm:inline">Next</span>
               <ChevronRight size={16} />
             </button>
-          </motion.div>
+          </div>
         )}
 
-        {/* Page Info */}
-        {totalPages > 1 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mt-4"
-          >
-            <p className="text-[#8892B0] text-sm">
-              {t('projects.pagination.page')} {currentPage} {t('projects.pagination.of')} {totalPages} • {t('projects.pagination.showing')} {currentProjects.length} {t('projects.pagination.of')} {projects.length} projects
-            </p>
-          </motion.div>
-        )}
-
-        {/* Image Gallery Overlay */}
         <AnimatePresence>
           {selectedImages && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-[#0A192F]/95 z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/95 z-[100] flex flex-col items-center justify-center p-4 md:p-12"
               onClick={handleImageClose}
             >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="relative max-w-4xl w-full"
-                onClick={(e) => e.stopPropagation()}
-              >
+              <div className="relative max-w-5xl w-full flex flex-col items-center" onClick={e => e.stopPropagation()}>
                 <button
                   onClick={handleImageClose}
-                  className="absolute -top-12 right-0 text-[#64FFDA] hover:text-white transition-colors p-2 z-10"
-                  aria-label="Close gallery"
+                  className="absolute -top-10 md:top-4 md:-right-16 text-white/50 hover:text-white transition-colors z-50 p-2"
+                  aria-label="Close modal"
                 >
-                  <X size={24} />
+                  <X size={32} />
                 </button>
 
-                <div className="relative">
-                  {/* Main Image - Reduced size like Certificates overlay */}
-                  <div className="rounded-lg overflow-hidden shadow-xl flex items-center justify-center">
-                    <img
-                      src={selectedImages[currentImageIndex]}
-                      alt={`Project image ${currentImageIndex + 1}`}
-                      className="w-auto h-auto max-w-[75%] max-h-[70vh] object-contain"
-                    />
-                  </div>
+                <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl flex items-center justify-center">
+                  <img
+                    src={selectedImages[currentImageIndex]}
+                    alt="Project view"
+                    className="max-w-full max-h-full object-contain select-none"
+                    draggable="false"
+                  />
 
-                  {/* Navigation Buttons */}
                   {selectedImages.length > 1 && (
                     <>
                       <button
-                        onClick={prevImage}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-3 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
-                        aria-label="Previous image"
+                        onClick={() => setCurrentImageIndex(prev => prev > 0 ? prev - 1 : selectedImages.length - 1)}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all"
                       >
                         <ChevronLeft size={24} />
                       </button>
                       <button
-                        onClick={nextImage}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] p-3 rounded-full hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all"
-                        aria-label="Next image"
+                        onClick={() => setCurrentImageIndex(prev => prev < selectedImages.length - 1 ? prev + 1 : 0)}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all"
                       >
                         <ChevronRight size={24} />
                       </button>
                     </>
                   )}
-
-                  {/* Image Counter */}
-                  {selectedImages.length > 1 && (
-                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-[#112240]/90 backdrop-blur-sm text-[#64FFDA] px-3 py-1 rounded-full text-sm">
-                      {currentImageIndex + 1} / {selectedImages.length}
-                    </div>
-                  )}
-
-                  {/* Thumbnail Strip */}
-                  {selectedImages.length > 1 && (
-                    <div className="flex justify-center gap-2 mt-4 overflow-x-auto py-2">
-                      {selectedImages.map((img, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setCurrentImageIndex(index)}
-                          className={`flex-shrink-0 w-16 h-16 rounded overflow-hidden border-2 transition-all ${index === currentImageIndex
-                            ? 'border-[#64FFDA] scale-110'
-                            : 'border-transparent hover:border-[#64FFDA]/50'
-                            }`}
-                        >
-                          <img
-                            src={img}
-                            alt={`Thumbnail ${index + 1}`}
-                            className="w-full h-full object-cover"
-                          />
-                        </button>
-                      ))}
-                    </div>
-                  )}
                 </div>
-              </motion.div>
+
+                {selectedImages.length > 1 && (
+                  <div className="flex gap-2.5 mt-8 overflow-x-auto max-w-full px-6 py-4 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent bg-white/5 rounded-2xl border border-white/10">
+                    {selectedImages.map((img, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setCurrentImageIndex(i)}
+                        className={`relative w-24 h-16 rounded-xl overflow-hidden flex-shrink-0 transition-all border-2 ${i === currentImageIndex ? "border-[var(--primary)] scale-105 shadow-lg shadow-primary/20" : "border-transparent opacity-40 hover:opacity-100"
+                          }`}
+                      >
+                        <img src={img} className="w-full h-full object-cover" loading="lazy" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

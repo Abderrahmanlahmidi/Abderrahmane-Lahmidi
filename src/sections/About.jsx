@@ -8,37 +8,37 @@ export default function About() {
   return (
     <section
       id="about"
-      className="min-h-[calc(100vh-5rem)] bg-[#0A192F] text-[#E6F1FF] flex items-center py-16 md:py-20"
-      style={{ scrollMarginTop: "5rem" }}
+      className="py-24 md:py-32 bg-[var(--background)] relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-          className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center"
+          viewport={{ once: true }}
+          className="mb-16"
         >
-          <div className="order-2 md:order-1">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 flex items-center">
-              <span className="text-[#64FFDA] mr-4">02.</span>
-              {t('about.title')}
-              <span className="hidden md:block h-px bg-[#233554] flex-grow ml-6"></span>
-            </h2>
+          <div className="badge mb-4 flex w-fit">{t('about.badge')}</div>
+          <h2 className="section-title !text-left">
+            {t('about.title')}
+          </h2>
+        </motion.div>
 
-            <p className="text-[#8892B0] mb-4">
-              {t('about.p1')}
-            </p>
+        <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <motion.div
+            className="order-2 md:order-1"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+          >
+            <div className="space-y-8 text-lg text-[var(--muted-foreground)] leading-relaxed font-medium">
+              <p className="first-letter:text-5xl first-letter:font-black first-letter:text-[var(--foreground)] first-letter:mr-3 first-letter:float-left">{t('about.p1')}</p>
+              <p>{t('about.p2')}</p>
+              <p className="bg-[var(--foreground)] text-[var(--background)] p-6 rounded-2xl italic border-l-4 border-[var(--primary)]">{t('about.p3')}</p>
+            </div>
 
-            <p className="text-[#8892B0] mb-4">
-              {t('about.p2')}
-            </p>
-
-            <p className="text-[#8892B0] mb-8">
-              {t('about.p3')}
-            </p>
-
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 gap-y-6 gap-x-10 mt-12 bg-[var(--border)]/10 p-8 rounded-3xl border border-[var(--border)]">
               {[
                 "JavaScript (ES6+)",
                 "React",
@@ -49,35 +49,45 @@ export default function About() {
                 "Framer Motion",
                 "Git & GitHub",
               ].map((skill) => (
-                <div key={skill} className="flex items-center">
-                  <FiChevronRight className="text-[#64FFDA] mr-2 min-w-[16px]" />
-                  <span className="text-[#8892B0] text-sm sm:text-base">
+                <div key={skill} className="flex items-center group cursor-default">
+                  <div className="w-2 h-2 rounded-full bg-[var(--primary)] mr-4 shadow-[0_0_8px_var(--primary)] group-hover:scale-125 transition-transform" />
+                  <span className="text-[var(--foreground)] font-bold text-base tracking-tight group-hover:text-[var(--primary)] transition-colors">
                     {skill}
                   </span>
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
+          <motion.div
+            className="order-1 md:order-2"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+          >
+            <div className="relative mx-auto w-full max-w-[450px] group">
+              <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden border-2 border-[var(--border)] bg-[var(--border)]/10 shadow-2xl transition-all duration-700 group-hover:rounded-[4rem] group-hover:border-[var(--primary)]">
+                <img
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                  src={profile}
+                  alt="Abderrahmane Lahmidi"
+                  loading="lazy"
+                />
+              </div>
+              {/* Decorative background glow */}
+              <div className="absolute -inset-10 bg-gradient-to-tr from-blue-500/10 to-purple-500/10 blur-[80px] -z-10 rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
 
-          <div className="order-1 md:order-2 relative group mx-auto w-full max-w-[400px] md:max-w-[500px]">
-            <div className="relative w-full aspect-square rounded-lg overflow-hidden">
-              <img
-                className="w-full h-full object-cover rounded-lg transition-transform duration-500 group-hover:scale-105"
-                src={profile}
-                alt="Abderrahmane Lahmidi"
-                loading="lazy"
-              />
-
-              <div className="absolute top-0 left-0 w-6 h-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#64FFDA] rounded-tl-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-[#64FFDA] rounded-tr-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute bottom-0 left-0 w-6 h-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-[#64FFDA] rounded-bl-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute bottom-0 right-0 w-6 h-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-[#64FFDA] rounded-br-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
+              {/* Feature Badge */}
+              <div className="absolute -bottom-6 -right-6 bg-[var(--background)] border border-[var(--border)] p-6 rounded-2xl shadow-xl animate-float backdrop-blur-md hidden sm:block">
+                <div className="text-2xl font-black text-[var(--foreground)]">2+</div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-[var(--muted-foreground)]">{t('about.years_exp')}</div>
+              </div>
             </div>
-
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
+
   );
 }

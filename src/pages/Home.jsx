@@ -6,20 +6,22 @@ import Skills from "../sections/Skills";
 import Experiences from "../sections/Experiences";
 import Certificates from "../sections/Certificates";
 import Projects from "../sections/Projects";
-import Contact from "../sections/Contact";
+import Packages from "../sections/Packages";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <Navbar/>
-      <Hero/>
-      <About/>
-      <Skills/>
-      <Certificates/>
-      <Experiences/>
-      <Projects/>
-      {/* <Contact/> */}
-      <Footer/>
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Certificates />
+        <Experiences />
+        <Packages />
+        <Projects />
+      </main>
+      <Footer />
     </div>
   )
 }
