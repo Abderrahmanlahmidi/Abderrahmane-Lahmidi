@@ -165,7 +165,7 @@ export default function Certificates() {
   const handleCertificateClose = () => setSelectedCertificate(null);
 
   return (
-    <section id="certificates" className="motion-section motion-section--yellow motion-certificates-section">
+    <section id="certificates" className="motion-section motion-section--ink motion-certificates-section">
       <div className="motion-section-shell motion-certificates-shell">
         <SectionHeading
           index="03"

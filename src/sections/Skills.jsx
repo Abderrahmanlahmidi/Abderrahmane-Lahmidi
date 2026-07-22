@@ -91,7 +91,7 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="motion-section motion-section--paper motion-skills">
+    <section id="skills" className="motion-section motion-section--ink motion-skills">
       <div className="motion-section-shell">
         <SectionHeading
           index="02"

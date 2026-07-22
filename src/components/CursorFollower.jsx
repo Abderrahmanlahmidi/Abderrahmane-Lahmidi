@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  motion,
+  motion as Motion,
   useMotionValue,
   useSpring,
   AnimatePresence,
@@ -60,12 +60,12 @@ export default function CursorFollower() {
   if (isMobile) return null;
 
   return (
-    <motion.div
+    <Motion.div
       className="fixed top-0 left-0 pointer-events-none z-[9999]"
       style={{ x, y }}
     >
-      <motion.div
-        className="pointer-events-none rounded-full flex items-center justify-center border border-[var(--foreground)]/30 bg-[var(--foreground)]/5 backdrop-blur-[2px]"
+      <Motion.div
+        className="motion-cursor-ring pointer-events-none rounded-full flex items-center justify-center border backdrop-blur-[2px]"
         initial={{ width: 20, height: 20, x: -10, y: -10 }}
         animate={{
           width: isHovering ? 60 : 20,
@@ -74,24 +74,24 @@ export default function CursorFollower() {
           y: isHovering ? -30 : -10,
           scale: isClicking ? 0.9 : 1,
           borderWidth: isHovering ? 1 : 1.5,
-          borderColor: isHovering ? "rgba(var(--foreground), 0.5)" : "rgba(var(--foreground), 0.3)",
+          borderColor: isHovering ? "var(--motion-yellow)" : "color-mix(in oklch, var(--motion-paper) 45%, transparent)",
         }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
       >
-        <motion.div
-          className="rounded-full bg-[var(--foreground)]"
+        <Motion.div
+          className="motion-cursor-dot rounded-full"
           animate={{
             width: isHovering ? 4 : 4,
             height: isHovering ? 4 : 4,
             opacity: isClicking ? 0 : 1,
           }}
         />
-      </motion.div>
+      </Motion.div>
 
       <AnimatePresence>
         {isClicking && (
-          <motion.div
-            className="absolute top-0 left-0 rounded-full border border-[var(--foreground)]"
+          <Motion.div
+            className="motion-cursor-pulse absolute top-0 left-0 rounded-full border"
             initial={{
               width: 20,
               height: 20,
@@ -113,6 +113,6 @@ export default function CursorFollower() {
           />
         )}
       </AnimatePresence>
-    </motion.div>
+    </Motion.div>
   );
 }

@@ -194,6 +194,7 @@ html {
 .motion-page,
 .motion-navbar-shell,
 .motion-hero {
+  --motion-black: oklch(0.095 0.008 148);
   --motion-ink: oklch(0.145 0.01 148);
   --motion-ink-raised: oklch(0.18 0.012 148);
   --motion-paper: oklch(0.94 0.008 96);
@@ -205,6 +206,11 @@ html {
   --motion-pink: oklch(0.72 0.2 345);
   --motion-red: oklch(0.67 0.22 26.43);
   --motion-green: oklch(0.76 0.15 155);
+  --motion-surface: var(--motion-ink);
+  --motion-surface-raised: var(--motion-ink-raised);
+  --motion-card-fg: var(--motion-paper);
+  --motion-card-muted: color-mix(in oklch, var(--motion-paper) 68%, transparent);
+  --motion-card-line: color-mix(in oklch, var(--motion-paper) 16%, transparent);
   --motion-sans: 'TASA Orbiter', 'Inter', sans-serif;
   --motion-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --motion-content-edge: max(30px, calc((100vw - 1440px) / 2 + 58px));
@@ -3797,4 +3803,456 @@ section[id] {
   .motion-about-toolkit {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+/* Unified black portfolio theme */
+html,
+body,
+#root,
+#root > div {
+  background-color: #080b0b;
+}
+
+html {
+  color-scheme: dark;
+  scrollbar-color: #3a413f #080b0b;
+}
+
+::-webkit-scrollbar-track {
+  background: #080b0b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a413f;
+}
+
+.motion-page {
+  color-scheme: dark;
+  background: var(--motion-black);
+}
+
+.motion-page ::selection {
+  background: var(--motion-yellow);
+  color: var(--motion-ink);
+}
+
+.motion-page :is(a, button):focus-visible {
+  outline-color: var(--motion-yellow);
+}
+
+.motion-cursor-ring,
+.motion-cursor-pulse {
+  --motion-paper: oklch(0.94 0.008 96);
+  --motion-yellow: oklch(0.88 0.18 96);
+}
+
+.motion-cursor-ring {
+  background: color-mix(in oklch, var(--motion-paper) 5%, transparent);
+}
+
+.motion-cursor-dot {
+  background: var(--motion-yellow);
+}
+
+.motion-cursor-pulse {
+  border-color: var(--motion-yellow);
+}
+
+/* Navigation */
+.motion-navbar,
+.motion-navbar-shell[data-scrolled='true'] .motion-navbar {
+  border: 1px solid var(--motion-card-line);
+  background-color: color-mix(in oklch, var(--motion-surface) 94%, transparent);
+  background-image: repeating-linear-gradient(
+    119deg,
+    rgba(255, 255, 255, 0.025) 0,
+    rgba(255, 255, 255, 0.025) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.28);
+  color: var(--motion-paper);
+  backdrop-filter: blur(16px);
+}
+
+.motion-brand-mark i,
+.motion-navbar-shell[data-scrolled='true'] .motion-brand-mark i {
+  border-color: var(--motion-yellow);
+  background: var(--motion-yellow);
+}
+
+.motion-navbar-links a:hover,
+.motion-navbar-links a.is-active,
+.motion-navbar-shell[data-scrolled='true'] .motion-navbar-links a:hover,
+.motion-navbar-shell[data-scrolled='true'] .motion-navbar-links a.is-active {
+  background-color: rgba(255, 255, 255, 0.075);
+  color: var(--motion-paper);
+}
+
+.motion-nav-icon-button,
+.motion-nav-language,
+.motion-navbar-toggle,
+.motion-navbar-shell[data-scrolled='true'] :is(.motion-nav-icon-button, .motion-nav-language, .motion-navbar-toggle) {
+  border-color: var(--motion-card-line);
+}
+
+.motion-nav-icon-button:hover,
+.motion-nav-language:hover,
+.motion-navbar-toggle:hover,
+.motion-navbar-shell[data-scrolled='true'] :is(.motion-nav-icon-button, .motion-nav-language, .motion-navbar-toggle):hover {
+  border-color: var(--motion-yellow);
+  background: var(--motion-yellow);
+  color: var(--motion-ink);
+}
+
+.motion-nav-primary,
+.motion-navbar-shell[data-scrolled='true'] .motion-nav-primary {
+  border-color: var(--motion-yellow);
+  background: var(--motion-yellow);
+  color: var(--motion-ink);
+}
+
+.motion-nav-primary:hover,
+.motion-navbar-shell[data-scrolled='true'] .motion-nav-primary:hover {
+  border-color: var(--motion-paper);
+  background: var(--motion-paper);
+  color: var(--motion-ink);
+}
+
+.motion-mobile-menu {
+  border: 1px solid var(--motion-card-line);
+  background-color: var(--motion-black);
+}
+
+/* Hero */
+.motion-hero,
+.motion-hero-field {
+  background: var(--motion-black);
+  color: var(--motion-paper);
+}
+
+.motion-hero-color-field {
+  background:
+    radial-gradient(circle at 86% 22%, color-mix(in oklch, var(--motion-red) 34%, transparent) 0 8%, transparent 27%),
+    radial-gradient(circle at 72% 62%, color-mix(in oklch, var(--motion-pink) 30%, transparent) 0 10%, transparent 31%),
+    radial-gradient(circle at 54% 88%, color-mix(in oklch, var(--motion-blue) 30%, transparent) 0 9%, transparent 30%),
+    radial-gradient(circle at 22% 84%, color-mix(in oklch, var(--motion-yellow) 15%, transparent) 0 6%, transparent 24%),
+    linear-gradient(108deg, var(--motion-black) 0 38%, color-mix(in oklch, var(--motion-black) 90%, var(--motion-purple)) 70%, var(--motion-black) 100%);
+}
+
+.motion-hero-color-field::after {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0 0.7px, transparent 0.9px);
+}
+
+.motion-hero-ascii-lines {
+  background: linear-gradient(140deg, color-mix(in oklch, var(--motion-yellow) 68%, transparent), var(--motion-paper) 52%, color-mix(in oklch, var(--motion-blue) 64%, transparent));
+  background-size: 180% 180%;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.motion-hero-orbit {
+  border-color: color-mix(in oklch, var(--motion-yellow) 32%, transparent);
+}
+
+.motion-hero-orbit::before,
+.motion-hero-orbit::after {
+  border-color: color-mix(in oklch, var(--motion-paper) 14%, transparent);
+}
+
+.motion-hero-panel {
+  border: 1px solid var(--motion-card-line);
+  background-color: var(--motion-surface);
+  box-shadow:
+    0 32px 100px rgba(0, 0, 0, 0.46),
+    0 0 0 1px color-mix(in oklch, var(--motion-yellow) 5%, transparent);
+}
+
+.motion-hero-readout {
+  border-color: var(--motion-card-line);
+  background: color-mix(in oklch, var(--motion-black) 88%, transparent);
+  color: var(--motion-paper);
+}
+
+/* Shared section surfaces */
+.motion-section,
+.motion-section--ink,
+.motion-section--paper,
+.motion-section--yellow {
+  --section-bg: var(--motion-black);
+  --section-fg: var(--motion-paper);
+  --section-muted: var(--motion-muted);
+  --section-line: var(--motion-card-line);
+  --section-accent: var(--motion-yellow);
+}
+
+.motion-skills::before {
+  border-color: color-mix(in oklch, var(--motion-yellow) 20%, transparent);
+  box-shadow:
+    0 0 0 70px color-mix(in oklch, var(--motion-yellow) 4%, transparent),
+    0 0 0 140px color-mix(in oklch, var(--motion-paper) 2%, transparent);
+}
+
+.motion-certificates-section::before {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.17) 0 0.7px, transparent 0.9px);
+  opacity: 0.38;
+}
+
+/* About */
+.motion-about-layout,
+.motion-about-copy {
+  background: var(--motion-surface);
+}
+
+.motion-about-copy blockquote {
+  border-left: 3px solid var(--motion-yellow);
+  background: var(--motion-surface-raised);
+  color: var(--motion-card-fg);
+}
+
+.motion-about-copy blockquote::before {
+  color: var(--motion-yellow);
+}
+
+.motion-about-principles > div,
+.motion-about-toolkit > div {
+  background: var(--motion-surface);
+}
+
+.motion-about-toolkit > div:hover {
+  background: color-mix(in oklch, var(--motion-yellow) 10%, var(--motion-surface-raised));
+  color: var(--motion-yellow);
+}
+
+.motion-about-toolkit > div:hover span {
+  color: var(--motion-card-muted);
+}
+
+/* Skills */
+.motion-skill-card {
+  background: var(--motion-surface);
+  color: var(--motion-card-fg);
+}
+
+.motion-skill-card::after {
+  background: color-mix(in oklch, var(--skill-field) 13%, var(--motion-surface-raised));
+}
+
+.motion-skill-card-meta,
+.motion-skill-card-copy p,
+.motion-skill-card-footer {
+  color: var(--motion-card-muted);
+}
+
+.motion-skill-card-stage,
+.motion-skill-card-footer {
+  border-color: var(--motion-card-line);
+}
+
+.motion-skill-card-stage i {
+  background: var(--motion-card-line);
+}
+
+.motion-skill-card-copy h3 {
+  color: var(--motion-card-fg);
+}
+
+.motion-skill-card:hover .motion-skill-card-stage > span {
+  border-color: var(--skill-field);
+  background: var(--motion-black);
+  color: var(--skill-field);
+}
+
+/* Certificates */
+.motion-certificate-card,
+.motion-certificate-dialog {
+  background: var(--motion-surface);
+  color: var(--motion-card-fg);
+}
+
+.motion-certificate-media,
+.motion-certificate-dialog-header,
+.motion-certificate-dialog-footer {
+  border-color: var(--motion-card-line);
+}
+
+.motion-certificate-meta,
+.motion-certificate-dialog-header > div > span,
+.motion-certificate-dialog-footer time {
+  color: var(--motion-card-muted);
+}
+
+.motion-certificate-meta span:first-child,
+.motion-certificate-content h3,
+.motion-certificate-dialog-header h3 {
+  color: var(--motion-card-fg);
+}
+
+.motion-certificate-skills li,
+.motion-certificate-actions,
+.motion-certificate-actions :is(button, a) {
+  border-color: var(--motion-card-line);
+}
+
+.motion-certificate-skills li {
+  color: var(--motion-card-muted);
+}
+
+.motion-certificate-actions :is(button, a) {
+  color: var(--motion-card-fg);
+}
+
+.motion-certificate-actions :is(button, a):hover,
+.motion-certificate-actions :is(button, a):focus-visible,
+.motion-certificate-dialog-footer a {
+  background: var(--motion-yellow);
+  color: var(--motion-ink);
+}
+
+.motion-certificates-section .motion-pagination {
+  color: var(--section-fg);
+}
+
+/* Experience */
+.motion-experience-entry {
+  background: var(--motion-surface);
+  color: var(--motion-card-fg);
+}
+
+.motion-experience-entry:hover {
+  background: color-mix(in oklch, var(--experience-accent) 10%, var(--motion-surface-raised));
+}
+
+.motion-experience-kind,
+.motion-experience-title-group p,
+.motion-experience-entry-header time,
+.motion-experience-responsibilities span,
+.motion-experience-responsibilities p {
+  color: var(--motion-card-muted);
+}
+
+.motion-experience-title-group h3 {
+  color: var(--motion-card-fg);
+}
+
+/* Packages */
+.motion-package-feature,
+.motion-package-copy {
+  background: var(--motion-surface);
+  color: var(--motion-card-fg);
+}
+
+.motion-package-kicker,
+.motion-package-tags,
+.motion-package-tags li,
+.motion-package-link {
+  border-color: var(--motion-card-line);
+}
+
+.motion-package-kicker,
+.motion-package-copy-header p,
+.motion-package-tags li span:first-child {
+  color: var(--motion-card-muted);
+}
+
+.motion-package-copy-header h3,
+.motion-package-tags li,
+.motion-package-link {
+  color: var(--motion-card-fg);
+}
+
+.motion-package-link--primary,
+.motion-package-link:hover,
+.motion-package-link:focus-visible,
+.motion-package-link--primary:hover {
+  border-color: var(--motion-yellow);
+  background: var(--motion-yellow);
+  color: var(--motion-ink);
+}
+
+/* Projects */
+.motion-project-card {
+  background: var(--motion-surface);
+  color: var(--motion-card-fg);
+}
+
+.motion-project-cover,
+.motion-project-source,
+.motion-project-technologies,
+.motion-project-technologies li {
+  border-color: var(--motion-card-line);
+}
+
+.motion-project-meta,
+.motion-project-status,
+.motion-project-description,
+.motion-project-technologies li {
+  color: var(--motion-card-muted);
+}
+
+.motion-project-status.is-in-progress {
+  color: var(--motion-yellow);
+}
+
+.motion-project-status.is-completed {
+  color: var(--motion-green);
+}
+
+.motion-project-title-row h3,
+.motion-project-source {
+  color: var(--motion-card-fg);
+}
+
+.motion-project-source:hover,
+.motion-project-source:focus-visible {
+  border-color: var(--motion-yellow);
+  background: var(--motion-yellow);
+  color: var(--motion-ink);
+}
+
+/* Footer */
+.motion-footer,
+.motion-footer-cta,
+.motion-footer-main {
+  background-color: var(--motion-black);
+  color: var(--motion-paper);
+}
+
+.motion-footer-cta {
+  border-top: 1px solid var(--motion-card-line);
+}
+
+.motion-footer-cta::after {
+  border-color: color-mix(in oklch, var(--motion-yellow) 24%, transparent);
+  box-shadow:
+    0 0 0 76px color-mix(in oklch, var(--motion-yellow) 4%, transparent),
+    0 0 0 152px color-mix(in oklch, var(--motion-paper) 2%, transparent);
+}
+
+.motion-footer-cta-meta {
+  border-color: var(--motion-card-line);
+  color: var(--motion-muted);
+}
+
+.motion-footer-cta-copy h2 {
+  color: var(--motion-paper);
+}
+
+.motion-footer-cta-copy h2 strong {
+  color: var(--motion-yellow);
+  text-shadow: none;
+}
+
+.motion-footer-cta-link {
+  border-color: var(--motion-yellow);
+  background: var(--motion-yellow);
+  color: var(--motion-ink);
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.motion-footer-cta-link:hover,
+.motion-footer-cta-link:focus-visible {
+  border-color: var(--motion-paper);
+  background: var(--motion-paper);
+  color: var(--motion-ink);
 }

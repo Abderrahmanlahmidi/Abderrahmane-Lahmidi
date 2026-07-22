@@ -46,7 +46,7 @@ export default function Experiences() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="experiences" className="motion-section motion-section--paper motion-experience">
+    <section id="experiences" className="motion-section motion-section--ink motion-experience">
       <div className="motion-section-shell">
         <SectionHeading
           index="04"
