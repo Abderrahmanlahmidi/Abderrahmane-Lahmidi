@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import Navbar from "../components/Menu";
 import SplashScreen from "../components/SplashScreen";
 import Hero from "../sections/Hero";
+import AIWorkflow from "../sections/AIWorkflow";
 import About from "../sections/About";
 import Footer from "../components/Footer";
 import Skills from "../sections/Skills";
@@ -30,6 +31,7 @@ export default function Home() {
         <Navbar />
         <main>
           <Hero />
+          <AIWorkflow />
           <About />
           <Skills />
           <Certificates />

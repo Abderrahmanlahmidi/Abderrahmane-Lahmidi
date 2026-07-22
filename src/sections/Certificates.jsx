@@ -168,7 +168,7 @@ export default function Certificates() {
     <section id="certificates" className="motion-section motion-section--ink motion-certificates-section">
       <div className="motion-section-shell motion-certificates-shell">
         <SectionHeading
-          index="03"
+          index="04"
           label={t('certificates.badge')}
           title={t('certificates.title')}
           description={t('certificates.description')}

@@ -49,7 +49,7 @@ export default function Experiences() {
     <section id="experiences" className="motion-section motion-section--ink motion-experience">
       <div className="motion-section-shell">
         <SectionHeading
-          index="04"
+          index="05"
           label={t('experience.badge')}
           title={t('experience.title')}
           description={t('experience.description')}

@@ -14,7 +14,7 @@ export default function Packages() {
     <section id="packages" className="motion-section motion-section--ink motion-package">
       <div className="motion-section-shell">
         <SectionHeading
-          index="05"
+          index="06"
           label={t('packages.badge')}
           title={t('packages.title')}
           description={t('packages.description')}

@@ -60,8 +60,10 @@ export default function Hero() {
         return () => window.clearInterval(intervalId);
     }, [shouldReduceMotion]);
 
-    const scrollToAbout = () => {
-        document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+    const scrollToNextSection = () => {
+        document.getElementById('ai-workflow')?.scrollIntoView({
+            behavior: shouldReduceMotion ? 'auto' : 'smooth',
+        });
     };
 
     return (
@@ -173,7 +175,7 @@ export default function Hero() {
                 <span>React 19</span>
                 <span>Node / Express</span>
                 <span>MongoDB</span>
-                <button type="button" onClick={scrollToAbout}>
+                <button type="button" onClick={scrollToNextSection}>
                     <span>{t('hero.scroll_down')}</span>
                     <FiArrowDown aria-hidden="true" />
                 </button>

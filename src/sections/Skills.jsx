@@ -94,7 +94,7 @@ export default function Skills() {
     <section id="skills" className="motion-section motion-section--ink motion-skills">
       <div className="motion-section-shell">
         <SectionHeading
-          index="02"
+          index="03"
           label={t('skills.badge')}
           title={t('skills.title')}
           description={t('skills.description')}

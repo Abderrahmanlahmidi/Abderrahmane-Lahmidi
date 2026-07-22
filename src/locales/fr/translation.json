@@ -30,6 +30,42 @@
         "social_intro": "Me retrouver sur"
     },
     "scroll_down": "Défiler",
+    "ai_workflow": {
+        "badge": "Workflow IA",
+        "title": "Le jugement humain, amplifié par l’IA",
+        "description": "J’utilise l’IA comme un outil d’ingénierie collaboratif — de la découverte et l’architecture à l’implémentation, aux tests et à la documentation — tout en gardant chaque décision revue, sécurisée et alignée sur le produit.",
+        "kicker": "Ma méthode",
+        "collaboration": "IA / Humain",
+        "process": "Processus",
+        "stage_count": "04 étapes",
+        "statement": "J’utilise l’IA pour passer plus vite de l’ambiguïté à un logiciel testé, sans lui déléguer les décisions qui déterminent la qualité.",
+        "body": "L’IA m’aide à explorer des options, remettre en question les hypothèses et accélérer le travail répétitif. Je reste responsable de l’architecture, de la qualité du code, de la sécurité, de l’accessibilité et du résultat final.",
+        "reviewed": "Chaque résultat est revu par un humain",
+        "stages": {
+            "context": {
+                "title": "Cadrer le contexte",
+                "description": "Définir le problème, les contraintes, les utilisateurs et les critères de réussite avant toute requête."
+            },
+            "explore": {
+                "title": "Explorer et prototyper",
+                "description": "Utiliser l’IA pour comparer les approches, tester les idées et raccourcir le chemin vers une première version utile."
+            },
+            "build": {
+                "title": "Construire avec précision",
+                "description": "Associer l’assistance IA à une architecture claire, un code maintenable et des décisions guidées par le produit."
+            },
+            "verify": {
+                "title": "Vérifier avant livraison",
+                "description": "Relire, tester, profiler et sécuriser chaque résultat avant sa mise à disposition."
+            }
+        },
+        "signals_label": "Principes de collaboration avec l’IA",
+        "signals": {
+            "direction": "Direction humaine",
+            "acceleration": "Accélération IA",
+            "verification": "Résultat vérifié"
+        }
+    },
     "about": {
         "badge": "Découverte",
         "title": "Créer des expériences numériques avec intention",

@@ -30,6 +30,42 @@
         "social_intro": "Connect on"
     },
     "scroll_down": "Scroll Down",
+    "ai_workflow": {
+        "badge": "AI Workflow",
+        "title": "Human judgment, amplified by AI",
+        "description": "I use AI as a collaborative engineering tool—from discovery and architecture to implementation, testing, and documentation—while every decision stays reviewed, secure, and aligned with the product.",
+        "kicker": "How I work",
+        "collaboration": "AI / Human",
+        "process": "Workflow",
+        "stage_count": "04 stages",
+        "statement": "I use AI to move from ambiguity to tested software faster—without outsourcing the decisions that shape quality.",
+        "body": "AI helps me explore options, challenge assumptions, and accelerate repetitive work. I remain responsible for architecture, code quality, security, accessibility, and the final result.",
+        "reviewed": "Every output reviewed by a human",
+        "stages": {
+            "context": {
+                "title": "Frame the context",
+                "description": "Define the problem, constraints, users, and success criteria before prompting."
+            },
+            "explore": {
+                "title": "Explore and prototype",
+                "description": "Use AI to compare approaches, test ideas, and shorten the path to a useful first version."
+            },
+            "build": {
+                "title": "Build with precision",
+                "description": "Pair AI assistance with clean architecture, maintainable code, and product-aware decisions."
+            },
+            "verify": {
+                "title": "Verify before shipping",
+                "description": "Review, test, profile, and secure every output before it reaches users."
+            }
+        },
+        "signals_label": "AI collaboration principles",
+        "signals": {
+            "direction": "Human direction",
+            "acceleration": "AI acceleration",
+            "verification": "Verified output"
+        }
+    },
     "about": {
         "badge": "Discovery",
         "title": "Crafting digital experiences with purpose",

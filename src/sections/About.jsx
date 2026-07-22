@@ -21,7 +21,7 @@ export default function About() {
     <section id="about" className="motion-section motion-section--ink motion-about">
       <div className="motion-section-shell">
         <SectionHeading
-          index="01"
+          index="02"
           label={t('about.badge')}
           title={t('about.title')}
           description={t('about.p1')}

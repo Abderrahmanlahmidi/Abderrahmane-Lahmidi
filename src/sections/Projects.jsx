@@ -271,7 +271,7 @@ export default function Projects() {
     <section id="projects" className="motion-section motion-section--ink motion-projects">
       <div className="motion-section-shell motion-projects-inner">
         <SectionHeading
-          index="06"
+          index="07"
           label={t('projects.badge')}
           title={t('projects.title')}
           description={t('projects.description')}
