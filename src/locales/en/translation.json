@@ -28,7 +28,12 @@
         "p1": "Hello! I'm Abderrahmane, a full-stack developer passionate about creating exceptional digital experiences. My journey in web development began with a curiosity for how things work on the internet, which quickly evolved into a career of building complex systems.",
         "p2": "I specialize in building responsive, accessible, and performant web applications using modern technologies. My focus is on creating intuitive interfaces that solve real problems while providing delightful user experiences.",
         "p3": "I believe in clean code, thoughtful design, and a user-centric approach to every project I undertake.",
-        "years_exp": "Years of Experience"
+        "years_exp": "Years of Experience",
+        "principles": {
+            "systems": "Clean systems",
+            "motion": "Useful motion",
+            "interfaces": "Human interfaces"
+        }
     },
     "skills": {
         "badge": "Expertise",
@@ -70,6 +75,10 @@
         "title": "Endless Learning",
         "description": "Continuous education and professional certifications that keep me at the forefront of technology.",
         "verify": "Verify Credentials",
+        "preview": "Preview",
+        "previous": "Previous",
+        "next": "Next",
+        "page": "Page",
         "items": {
             "figma": "Figma UI/UX Design",
             "git": "Version Control with Git",
@@ -160,7 +169,9 @@
             "desc": "A premium, modular React UI library designed for high-performance and accessibility-first applications. Built with Tailwind CSS and Framer Motion.",
             "npm": "View on NPM",
             "docs": "Documentation",
-            "github": "Source Code"
+            "github": "Source Code",
+            "available": "Available on NPM",
+            "featured": "Featured project"
         }
     },
     "footer": {

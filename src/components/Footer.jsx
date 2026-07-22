@@ -1,91 +1,148 @@
-import { motion } from "framer-motion";
-import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
-import { useTranslation } from "react-i18next";
+import { motion as Motion, useReducedMotion } from 'framer-motion';
+import { FiArrowUpRight, FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
+
+const socialLinks = [
+  {
+    label: 'GitHub',
+    href: 'https://github.com/Abderrahmanlahmidi',
+    Icon: FiGithub,
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/lahmidi/',
+    Icon: FiLinkedin,
+  },
+  {
+    label: 'X',
+    href: 'https://x.com/Abderra47978756',
+    Icon: FiTwitter,
+  },
+];
+
+const footerNavigation = [
+  { key: 'home', href: '#home' },
+  { key: 'about', href: '#about' },
+  { key: 'skills', href: '#skills' },
+  { key: 'certificates', href: '#certificates' },
+  { key: 'experience', href: '#experiences' },
+  { key: 'packages', href: '#packages' },
+  { key: 'projects', href: '#projects' },
+];
 
 const Footer = () => {
   const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="relative pt-32 pb-16 overflow-hidden bg-[var(--background)]">
-      {/* Background Decor */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+    <footer id="contact" className="motion-footer">
+      <section className="motion-footer-cta" aria-labelledby="footer-cta-title">
+        <Motion.div
+          className="motion-footer-cta-inner"
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 28 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-32"
+          transition={{
+            duration: shouldReduceMotion ? 0 : 0.7,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          viewport={{ once: true, margin: '-80px' }}
         >
-          <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-10">
-            {t('footer.cta_title')} <br />
-            <span className="gradient-text">{t('footer.cta_highlight')}</span>
-          </h2>
-          <motion.a
-            href="mailto:contact@abderrahmanelahmidi.com"
-            className="next-button-primary text-xl px-12 py-5 shadow-2xl shadow-primary/20 inline-block"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {t('footer.contact_button')}
-          </motion.a>
-        </motion.div>
+          <div className="motion-footer-cta-meta">
+            <span>07</span>
+            <span>{t('nav.contact')}</span>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 items-start border-t border-[var(--border)] pt-16">
-          <div className="text-center md:text-left">
-            <div className="text-2xl font-black tracking-tighter mb-4">
-              A.LAH<span className="text-[var(--primary)]">.</span>
+          <div className="motion-footer-cta-copy">
+            <h2 id="footer-cta-title">
+              <span>{t('footer.cta_title')}</span>
+              <strong>{t('footer.cta_highlight')}</strong>
+            </h2>
+
+            <Motion.a
+              className="motion-footer-cta-link"
+              href="mailto:contact@abderrahmanelahmidi.com"
+              whileHover={shouldReduceMotion ? undefined : { x: 4, y: -2 }}
+              whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
+            >
+              <span>{t('footer.contact_button')}</span>
+              <FiArrowUpRight aria-hidden="true" />
+            </Motion.a>
+          </div>
+        </Motion.div>
+      </section>
+
+      <div className="motion-footer-main">
+        <div className="motion-footer-main-inner">
+          <div className="motion-footer-grid">
+            <div className="motion-footer-brand">
+              <a className="motion-footer-brand-link" href="#home" aria-label="Abderrahmane Lahmidi">
+                <span className="motion-footer-brand-mark" aria-hidden="true">AL</span>
+                <span>Abderrahmane Lahmidi</span>
+              </a>
+              <p>{t('footer.bio_short')}</p>
+              <a className="motion-footer-email" href="mailto:contact@abderrahmanelahmidi.com">
+                contact@abderrahmanelahmidi.com
+              </a>
             </div>
-            <p className="text-sm text-[var(--muted-foreground)] leading-relaxed max-w-xs mx-auto md:mx-0 font-medium opacity-80">
-              {t('footer.bio_short')}
-            </p>
-            <div className="mt-8 flex justify-center md:justify-start gap-4">
-              {[
-                { icon: FiGithub, href: "https://github.com/Abderrahmanlahmidi" },
-                { icon: FiLinkedin, href: "https://www.linkedin.com/in/lahmidi/" },
-                { icon: FiTwitter, href: "https://x.com/Abderra47978756" }
-              ].map((social, i) => (
-                <motion.a
-                  key={i}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-xl border border-[var(--border)] text-[var(--muted-foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all duration-300"
-                  whileHover={{ y: -4 }}
-                >
-                  <social.icon size={20} />
-                </motion.a>
-              ))}
+
+            <nav className="motion-footer-navigation" aria-label={t('footer.navigation')}>
+              <h3>{t('footer.navigation')}</h3>
+              <ol>
+                {footerNavigation.map((item, index) => (
+                  <li key={item.key}>
+                    <a href={item.href}>
+                      <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                      <strong>{t(`nav.${item.key}`)}</strong>
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+
+            <div className="motion-footer-status-column">
+              <h3>{t('footer.status')}</h3>
+              <div className="motion-footer-status" role="status">
+                <i aria-hidden="true" />
+                <span>{t('hero.available')}</span>
+              </div>
+
+              <div className="motion-footer-socials" aria-label="Social links">
+                {socialLinks.map((social) => {
+                  const SocialIcon = social.Icon;
+
+                  return (
+                    <Motion.a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      whileHover={shouldReduceMotion ? undefined : { x: 4 }}
+                    >
+                      <span>{social.label}</span>
+                      <SocialIcon aria-hidden="true" />
+                    </Motion.a>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col items-center md:items-start gap-6">
-            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-[var(--foreground)]">{t('footer.navigation')}</h4>
-            <div className="grid grid-cols-2 gap-x-12 gap-y-4">
-              {["home", "about", "skills", "projects", "certificates", "experience"].map(item => (
-                <a key={item} href={`#${item}`} className="text-[10px] font-black text-[var(--muted-foreground)] hover:text-[var(--primary)] transition-colors uppercase tracking-widest">
-                  {t(`nav.${item}`)}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="text-center md:text-right flex flex-col items-center md:items-end gap-6">
-            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-[var(--foreground)]">{t('footer.status')}</h4>
-            <div className="flex items-center gap-3 bg-[var(--border)]/10 px-6 py-3 rounded-2xl border border-[var(--border)]">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_#10b981]" />
-              <span className="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-widest">{t('hero.available')}</span>
-            </div>
-            <p className="text-[10px] font-black text-[var(--muted-foreground)] uppercase tracking-[0.2em] mt-auto opacity-50">
-              &copy; {new Date().getFullYear()} {t('footer.rights')}
+          <div className="motion-footer-bottom">
+            <span>Casablanca, Morocco</span>
+            <p>
+              &copy; {currentYear} {t('footer.rights')}
             </p>
+            <a href="#home">
+              <span>{t('common.scroll_top')}</span>
+              <FiArrowUpRight aria-hidden="true" />
+            </a>
           </div>
         </div>
       </div>
     </footer>
   );
 };
-
 
 export default Footer;

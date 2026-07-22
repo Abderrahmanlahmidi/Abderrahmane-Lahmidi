@@ -28,7 +28,12 @@
         "p1": "Bonjour ! Je m'appelle Abderrahmane, un développeur full-stack passionné par la création d'expériences numériques exceptionnelles. Mon voyage dans le développement web a commencé par une curiosité pour le fonctionnement de l'internet, qui s'est rapidement transformée en une carrière de construction de systèmes complexes.",
         "p2": "Je me spécialise dans la création d'applications web réactives, accessibles et performantes en utilisant des technologies modernes. Mon objectif est de créer des interfaces intuitives qui résolvent des problèmes réels tout en offrant des expériences utilisateur agréables.",
         "p3": "Je crois au code propre, au design réfléchi et à une approche centrée sur l'utilisateur pour chaque projet que j'entreprends.",
-        "years_exp": "Années d'Expérience"
+        "years_exp": "Années d'Expérience",
+        "principles": {
+            "systems": "Systèmes clairs",
+            "motion": "Mouvement utile",
+            "interfaces": "Interfaces humaines"
+        }
     },
     "skills": {
         "badge": "Expertise",
@@ -70,6 +75,10 @@
         "title": "Apprentissage Continu",
         "description": "Éducation permanente et certifications professionnelles qui me maintiennent à la pointe de la technologie.",
         "verify": "Vérifier les Titres",
+        "preview": "Aperçu",
+        "previous": "Précédent",
+        "next": "Suivant",
+        "page": "Page",
         "items": {
             "figma": "Design UI/UX Figma",
             "git": "Contrôle de Version avec Git",
@@ -160,7 +169,9 @@
             "desc": "Une bibliothèque UI React premium et modulaire conçue pour des applications haute performance et accessibles. Construite avec Tailwind CSS et Framer Motion.",
             "npm": "Voir sur NPM",
             "docs": "Documentation",
-            "github": "Code Source"
+            "github": "Code Source",
+            "available": "Disponible sur NPM",
+            "featured": "Projet vedette"
         }
     },
     "footer": {

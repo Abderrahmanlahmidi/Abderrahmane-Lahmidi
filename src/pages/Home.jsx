@@ -10,7 +10,7 @@ import Packages from "../sections/Packages";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
+    <div className="motion-page">
       <Navbar />
       <main>
         <Hero />
