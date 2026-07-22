@@ -1,4 +1,12 @@
 {
+    "splash": {
+        "portfolio": "Portfolio / 2026",
+        "title_primary": "Designing systems.",
+        "title_accent": "Building the web.",
+        "role": "Full-stack developer",
+        "location": "Casablanca, Morocco",
+        "loading": "Entering portfolio"
+    },
     "nav": {
         "home": "Home",
         "about": "About",

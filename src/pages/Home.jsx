@@ -1,4 +1,7 @@
+import { useCallback, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import Navbar from "../components/Menu";
+import SplashScreen from "../components/SplashScreen";
 import Hero from "../sections/Hero";
 import About from "../sections/About";
 import Footer from "../components/Footer";
@@ -9,19 +12,33 @@ import Projects from "../sections/Projects";
 import Packages from "../sections/Packages";
 
 export default function Home() {
+  const [isSplashVisible, setIsSplashVisible] = useState(true);
+  const [isPageReady, setIsPageReady] = useState(false);
+  const closeSplash = useCallback(() => setIsSplashVisible(false), []);
+
   return (
-    <div className="motion-page">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Certificates />
-        <Experiences />
-        <Packages />
-        <Projects />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <AnimatePresence onExitComplete={() => setIsPageReady(true)}>
+        {isSplashVisible && <SplashScreen onComplete={closeSplash} />}
+      </AnimatePresence>
+
+      <div
+        className="motion-page"
+        aria-hidden={!isPageReady}
+        inert={!isPageReady ? true : undefined}
+      >
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Certificates />
+          <Experiences />
+          <Packages />
+          <Projects />
+        </main>
+        <Footer />
+      </div>
+    </>
   )
 }

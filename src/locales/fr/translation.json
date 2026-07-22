@@ -1,4 +1,12 @@
 {
+    "splash": {
+        "portfolio": "Portfolio / 2026",
+        "title_primary": "Concevoir des systèmes.",
+        "title_accent": "Construire le web.",
+        "role": "Développeur full-stack",
+        "location": "Casablanca, Maroc",
+        "loading": "Ouverture du portfolio"
+    },
     "nav": {
         "home": "Accueil",
         "about": "À propos",

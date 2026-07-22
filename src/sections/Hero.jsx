@@ -1,9 +1,8 @@
-import { useRef } from 'react';
+import { useEffect, useState } from 'react';
 import {
+    AnimatePresence,
     motion as Motion,
-    useMotionValue,
     useReducedMotion,
-    useSpring,
 } from 'framer-motion';
 import {
     FiArrowDown,
@@ -12,6 +11,13 @@ import {
     FiGithub,
     FiLinkedin,
 } from 'react-icons/fi';
+import { FaNodeJs, FaReact } from 'react-icons/fa';
+import {
+    SiExpress,
+    SiMongodb,
+    SiNextdotjs,
+    SiTypescript,
+} from 'react-icons/si';
 import { useTranslation } from 'react-i18next';
 import cvUrl from '../assets/documents/Abderrahmane-Lahmidi.pdf';
 
@@ -28,50 +34,31 @@ const socialLinks = [
     },
 ];
 
-const asciiRows = Array.from({ length: 48 }, (_, row) => {
-    let line = '';
-
-    for (let column = 0; column < 96; column += 1) {
-        const x = column - 54;
-        const y = (row - 23.5) * 1.8;
-        const radius = Math.hypot(x, y);
-        const angle = Math.atan2(y, x);
-        const wave = Math.sin(radius * 0.32 - angle * 3.2 + row * 0.08);
-
-        if ((row + column) % 23 === 0) line += '+';
-        else if (wave > 0.62) line += '/';
-        else if (wave < -0.62) line += '\\';
-        else if (Math.abs(Math.cos(angle)) > 0.72) line += '-';
-        else if (Math.abs(Math.sin(angle)) > 0.72) line += '|';
-        else line += '.';
-    }
-
-    return line;
-});
+const technologyMarks = [
+    { name: 'React', slug: 'react', icon: FaReact },
+    { name: 'TypeScript', slug: 'typescript', icon: SiTypescript },
+    { name: 'Next.js', slug: 'nextjs', icon: SiNextdotjs },
+    { name: 'Node.js', slug: 'node', icon: FaNodeJs },
+    { name: 'Express', slug: 'express', icon: SiExpress },
+    { name: 'MongoDB', slug: 'mongodb', icon: SiMongodb },
+];
 
 export default function Hero() {
     const { t } = useTranslation();
-    const heroRef = useRef(null);
     const shouldReduceMotion = useReducedMotion();
-    const fieldX = useMotionValue(0);
-    const fieldY = useMotionValue(0);
-    const smoothX = useSpring(fieldX, { stiffness: 90, damping: 24, mass: 0.8 });
-    const smoothY = useSpring(fieldY, { stiffness: 90, damping: 24, mass: 0.8 });
+    const [activeTechnologyIndex, setActiveTechnologyIndex] = useState(0);
+    const activeTechnology = technologyMarks[activeTechnologyIndex];
+    const ActiveTechnologyIcon = activeTechnology.icon;
 
-    const handlePointerMove = (event) => {
-        if (shouldReduceMotion || !heroRef.current) return;
+    useEffect(() => {
+        if (shouldReduceMotion) return undefined;
 
-        const bounds = heroRef.current.getBoundingClientRect();
-        const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-        const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-        fieldX.set(x * 22);
-        fieldY.set(y * 16);
-    };
+        const intervalId = window.setInterval(() => {
+            setActiveTechnologyIndex((currentIndex) => (currentIndex + 1) % technologyMarks.length);
+        }, 2800);
 
-    const resetFieldPosition = () => {
-        fieldX.set(0);
-        fieldY.set(0);
-    };
+        return () => window.clearInterval(intervalId);
+    }, [shouldReduceMotion]);
 
     const scrollToAbout = () => {
         document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
@@ -80,28 +67,29 @@ export default function Hero() {
     return (
         <section
             id="home"
-            ref={heroRef}
             className="motion-hero"
-            onPointerMove={handlePointerMove}
-            onPointerLeave={resetFieldPosition}
         >
-            <div className="motion-hero-field" aria-hidden="true">
-                <div className="motion-hero-color-field" />
+            <div className="motion-hero-tech-mark" aria-hidden="true">
                 <Motion.div
-                    className="motion-hero-ascii"
-                    style={{ x: smoothX, y: smoothY }}
-                    initial={{ opacity: 0, scale: 1.04 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: shouldReduceMotion ? 0 : 1.1, ease: [0.16, 1, 0.3, 1] }}
+                    className="motion-hero-tech-mark-inner"
+                    initial={{ opacity: 0, x: 36, rotate: 3 }}
+                    animate={{ opacity: 1, x: 0, rotate: 0 }}
+                    transition={{ duration: shouldReduceMotion ? 0 : 0.9, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    <div className="motion-hero-ascii-lines">
-                        {asciiRows.map((row, index) => (
-                            <span key={`${index}-${row.slice(0, 8)}`}>{row}</span>
-                        ))}
-                    </div>
+                    <AnimatePresence mode="wait" initial={false}>
+                        <Motion.div
+                            key={activeTechnology.slug}
+                            className="motion-hero-tech-icon"
+                            data-tech={activeTechnology.slug}
+                            initial={{ opacity: 0, scale: 0.72, rotate: -10, filter: 'blur(10px)' }}
+                            animate={{ opacity: 1, scale: 1, rotate: 0, filter: 'blur(0px)' }}
+                            exit={{ opacity: 0, scale: 1.14, rotate: 10, filter: 'blur(8px)' }}
+                            transition={{ duration: shouldReduceMotion ? 0 : 0.48, ease: [0.16, 1, 0.3, 1] }}
+                        >
+                            <ActiveTechnologyIcon />
+                        </Motion.div>
+                    </AnimatePresence>
                 </Motion.div>
-                <div className="motion-hero-orbit motion-hero-orbit-one" />
-                <div className="motion-hero-orbit motion-hero-orbit-two" />
             </div>
 
             <div className="motion-hero-panel-wrap">
